@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.SimilartyTextApp" parent="Base.Theme.SimilartyTextApp" />
+    <style name="buttonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/rounded_corner_primary</item>
+        <!--        <item name="android:padding">5dp</item>-->
+        <item name="cornerRadius">15dp</item>
+        <item name="backgroundTint">@color/primary</item>
+    </style>
 </resources>
