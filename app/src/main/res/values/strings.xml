@@ -16,5 +16,16 @@
     <string name="login_desc">Belum Mempunyai Akun ?</string>
     <string name="register_desc">Sudah Mempunyai Akun ?</string>
     <string name="error_textField">Isi terlebih dahulu</string>
+    // Home
+    <string name="title_home">Home</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_plagiarism">Plagiarism</string>
+    <string name="profile_name">Nama Profile</string>
+    <string name="initial_name">My Name</string>
+    <string name="initial_hello">Hallo</string>
+    <string name="profile_username">Nama Username</string>
+
+    <string name="imageView_banner">banner</string>
+
 
 </resources>

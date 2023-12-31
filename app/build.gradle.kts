@@ -74,8 +74,10 @@ dependencies {
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
     // Navigation
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.6")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.7.6")
+    val nav_version = "2.7.6"
+    implementation ("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation ("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
 
     // Paging
     implementation ("androidx.paging:paging-runtime-ktx:3.2.1")
