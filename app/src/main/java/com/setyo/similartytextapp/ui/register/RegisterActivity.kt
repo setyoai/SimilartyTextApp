@@ -7,13 +7,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.setyo.similartytextapp.databinding.ActivityRegisterBinding
+import com.setyo.similartytextapp.ui.ViewModelFactory
 import com.setyo.similartytextapp.ui.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
-//    private lateinit var factory: ViewModelFactory
-//    private val registerViewModel: RegisterViewModel by viewModels { factory }
+    private lateinit var factory: ViewModelFactory
+    private val registerViewModel: RegisterViewModel by viewModels { factory }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)

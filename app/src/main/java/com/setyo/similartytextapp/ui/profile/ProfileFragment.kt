@@ -4,9 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.databinding.FragmentProfileBinding
+import com.setyo.similartytextapp.ui.ViewModelFactory
 import java.io.File
 
 class ProfileFragment : Fragment() {
@@ -14,9 +19,9 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private var getFile: File? = null
     private val binding get() = _binding!!
-//    private val profileViewModel by viewModels<ProfileViewModel> {
-//        ViewModelFactory.getInstance(requireContext())
-//    }
+    private val profileViewModel by viewModels<ProfileViewModel> {
+        ViewModelFactory.getInstance(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +31,7 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
 //        setupUser()
-//        setupAction()
+        setupAction()
 //        setupView()
 //        binding.apply {
 //            imageViewChangeAvatar.setOnClickListener { openGallery() }
@@ -48,15 +53,15 @@ class ProfileFragment : Fragment() {
 //    }
 
 //    private fun setupUser() {
-//        profileViewModel.getUser().observe(viewLifecycleOwner) {
-//            setUserData(it.token)
-//        }
+////        profileViewModel.getUser().observe(viewLifecycleOwner) {
+////            setUserData(it.token)
+////        }
 //        profileViewModel.userResponse.observe(viewLifecycleOwner) {
 //            val userData = it.userData
 //            getUserData(userData)
 //        }
 //    }
-//
+
 //    private fun getUserData(userData: UserData) {
 //        binding.apply {
 //           Glide.with(requireContext())
@@ -67,7 +72,7 @@ class ProfileFragment : Fragment() {
 //           textViewUsername.text =  userData.username
 //        }
 //    }
-//
+
 //    private val cropFragmentResultLauncher =
 //        registerForActivityResult(CropImageContract()) { result ->
 //            if (result.isSuccessful) {
@@ -90,15 +95,15 @@ class ProfileFragment : Fragment() {
 //            }
 //        )
 //    }
-//
+
 //    private fun allPermissionGranted() = REQUIRED_PERMISSIONS.all {
 //        ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
 //    }
-//
+
 //    private fun setUserData(token: String) {
 //        profileViewModel.getUserData(token)
 //    }
-//
+
 //    private fun updateUser() {
 //        profileViewModel.getUser().observe(viewLifecycleOwner) { user ->
 //            if (getFile != null) {
@@ -123,18 +128,18 @@ class ProfileFragment : Fragment() {
 //            }
 //        }
 //    }
-//
-//    private fun setupAction() {
-//        binding.buttonLogout.setOnClickListener{
-//            profileViewModel.logoutUser()
-//        }
-//    }
-//
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
-//
+
+    private fun setupAction() {
+        binding.buttonLogout.setOnClickListener{
+            profileViewModel.logoutUser()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 //    private fun showToast() {
 //        profileViewModel.textToast.observe(viewLifecycleOwner) {
 //            it.getContentIfNotHandled()?.let { message ->

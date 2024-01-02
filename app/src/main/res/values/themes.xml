@@ -18,6 +18,11 @@
 
     <style name="Theme.SimilartyTextApp" parent="Base.Theme.SimilartyTextApp" />
 
+    <style name="Theme.SimilartyTextApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="buttonStyle" parent="Widget.AppCompat.Button">
         <item name="backgroundTint">@color/primary</item>
     </style>
