@@ -4,10 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
-import com.example.aksacarma.data.remote.response.*
-import com.setyo.similartytextapp.data.remote.response.LoginResponse
-import com.setyo.similartytextapp.data.remote.response.LoginResult
-import com.setyo.similartytextapp.data.remote.response.UpdateUserResponse
+import com.setyo.similartytextapp.data.remote.response.*
 import com.setyo.similartytextapp.data.remote.retrofit.ApiService
 import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.model.UserPreferences
@@ -22,14 +19,14 @@ class UserRepository constructor(
     private val preferences: UserPreferences
 ) {
 
-//    private val _registerResponse = MutableLiveData<RegisterResponse>()
-//    val registerResponse: LiveData<RegisterResponse> = _registerResponse
+    private val _registerResponse = MutableLiveData<RegisterResponse>()
+    val registerResponse: LiveData<RegisterResponse> = _registerResponse
 
     private val _loginResponse = MutableLiveData<LoginResponse>()
     val loginResponse: LiveData<LoginResponse> = _loginResponse
 
-    private val _userResponse = MutableLiveData<LoginResponse>()
-    val userResponse : LiveData<LoginResponse> = _userResponse
+    private val _userResponse = MutableLiveData<UserResponse>()
+    val userResponse : LiveData<UserResponse> = _userResponse
 
     private val _updateUserResponse = MutableLiveData<UpdateUserResponse>()
     val updateUserResponse : LiveData<UpdateUserResponse> = _updateUserResponse
@@ -40,27 +37,27 @@ class UserRepository constructor(
     private val _textToast = MutableLiveData<Event<String>>()
     val textToast: LiveData<Event<String>> = _textToast
 
-//    fun registerUser(username: String, password: String, name: String, avatar: String) {
-//        _isLoading.value = true
-//        val client = apiService.registerUser(username, password, name, avatar)
-//        client.enqueue(object : Callback<RegisterResponse> {
-//            override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
-//                _isLoading.value = false
-//                if (response.isSuccessful) {
-//                    _textToast.value = Event("Selamat Anda Berhasil Registrasi")
-//                    _registerResponse.value = response.body()
-//                } else {
-//                    _textToast.value = Event("Akun Sudah Pernah Dibuat")
-//                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
-//                }
-//            }
-//            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-//                _isLoading.value = false
-//                _textToast.value = Event("Tidak Terhubung ke Internet")
-//                Log.e(TAG, "onFailure: ${t.message.toString()}")
-//            }
-//        })
-//    }
+    fun registerUser(username: String, password: String, name: String) {
+        _isLoading.value = true
+        val client = apiService.registerUser(username, password, name)
+        client.enqueue(object : Callback<RegisterResponse> {
+            override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _textToast.value = Event("Selamat Anda Berhasil Registrasi")
+                    _registerResponse.value = response.body()
+                } else {
+                    _textToast.value = Event("Akun Sudah Pernah Dibuat")
+                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                }
+            }
+            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
 
     fun loginUser(username: String, password: String) {
         _isLoading.value = true
@@ -84,29 +81,29 @@ class UserRepository constructor(
         })
     }
 
-//    fun getUserData(token: String) {
-//        _isLoading.value = true
-//        val client = apiService.getUserData(token)
-//        client.enqueue(object : Callback<UserResponse> {
-//            override fun onResponse(
-//                call: Call<UserResponse>,
-//                response: Response<UserResponse>
-//            ) {
-//                _isLoading.value = false
-//                if (response.isSuccessful) {
-//                    _userResponse.value = response.body()
-//                } else {
-//                    _textToast.value = Event("Bisa dicoba kembali")
-//                    Log.e(TAG,"onFailure: ${response.message()}")
-//                }
-//            }
-//            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-//                _isLoading.value = false
-//                _textToast.value = Event("Tidak Terhubung ke Internet")
-//                Log.e(TAG, "onFailure: ${t.message.toString()}")
-//            }
-//        })
-//    }
+    fun getUserData(id: String) {
+        _isLoading.value = true
+        val client = apiService.getUserData(id)
+        client.enqueue(object : Callback<UserResponse> {
+            override fun onResponse(
+                call: Call<UserResponse>,
+                response: Response<UserResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _userResponse.value = response.body()
+                } else {
+                    _textToast.value = Event("Bisa dicoba kembali")
+                    Log.e(TAG,"onFailure: ${response.message()}")
+                }
+            }
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
 
 //    fun updateUser(token: String, avatar_image:MultipartBody.Part) {
 //        _isLoading.value = true
@@ -169,7 +166,7 @@ class UserRepository constructor(
     }
 
     companion object {
-        private const val TAG = "StoryRepository"
+        private const val TAG = "Bearer"
 
         @Volatile
         private var instance: UserRepository? = null

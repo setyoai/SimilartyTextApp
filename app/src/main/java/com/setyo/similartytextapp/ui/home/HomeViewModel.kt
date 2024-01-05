@@ -2,20 +2,21 @@ package com.setyo.similartytextapp.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.setyo.similartytextapp.data.remote.response.LoginResponse
-import com.setyo.similartytextapp.data.remote.response.LoginResult
+import androidx.lifecycle.viewModelScope
+import com.setyo.similartytextapp.data.remote.response.UserResponse
 import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.repository.UserRepository
+import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: UserRepository) : ViewModel() {
 
-    val userResponse: LiveData<LoginResponse> = repository.userResponse
+    val userResponse: LiveData<UserResponse> = repository.userResponse
 
-//    fun getUserData(token: String) {
-//        viewModelScope.launch {
-//            repository.getUserData(token)
-//        }
-//    }
+    fun getUserData(token: String) {
+        viewModelScope.launch {
+            repository.getUserData(token)
+        }
+    }
 
     fun getUser(): LiveData<UserModel> {
         return repository.getUser()

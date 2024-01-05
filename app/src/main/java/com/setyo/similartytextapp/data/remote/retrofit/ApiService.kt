@@ -1,19 +1,17 @@
 package com.setyo.similartytextapp.data.remote.retrofit
 
-import com.example.aksacarma.data.remote.response.*
-import com.setyo.similartytextapp.data.remote.response.LoginResponse
+import com.setyo.similartytextapp.data.remote.response.*
 import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
-//    @FormUrlEncoded
-//    @POST("register")
-//    fun registerUser(
-//        @Field("username") username: String,
-//        @Field("password") password: String,
-//        @Field("name") name: String,
-//        @Field("avatar_url") avatar: String
-//    ) : Call<RegisterResponse>
+    @FormUrlEncoded
+    @POST("registermahasiswa")
+    fun registerUser(
+        @Field("nim_mhs") username: String,
+        @Field("nama_mhs") name: String,
+        @Field("password_mhs") password: String,
+    ) : Call<RegisterResponse>
 
 //    @FormUrlEncoded
     @GET("loginmahasiswa")
@@ -34,10 +32,10 @@ interface ApiService {
 //        @Header("token") token: String,
 //    ): Call<List<HistoryResponseItem>>
 //
-//    @GET("get-user-data")
-//    fun getUserData(
-//        @Header("token") token: String,
-//    ): Call<UserResponse>
+    @GET("mahasiswaapi/{id}")
+    fun getUserData(
+        @Path("id") id: String,
+    ): Call<UserResponse>
 //
 //    @Multipart
 //    @POST("update-user")

@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.data.remote.response.LoginResult
+import com.setyo.similartytextapp.data.remote.response.UserData
+import com.setyo.similartytextapp.data.remote.response.UserResponse
 import com.setyo.similartytextapp.databinding.FragmentHomeBinding
 import com.setyo.similartytextapp.ui.ViewModelFactory
 
@@ -30,35 +34,26 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        binding.recyclerViewArticle.adapter = ArticleListAdapter(ArticleData.article)
-//        showRecyclerView()
-//    }
-
     private fun setupUser() {
-//        homeViewModel.getUser().observe(viewLifecycleOwner) {
-//            setProfileData(it.token)
-//        }
         homeViewModel.userResponse.observe(viewLifecycleOwner) {
-            val userData = it.loginResult
+            val userData = it.userData
             getUserData(userData)
         }
     }
 
-    private fun getUserData(userData: LoginResult) {
+    private fun getUserData(userData: UserData) {
         binding.apply {
-//            Glide.with(requireContext())
-//                .load(userData.avatarUrl)
-//                .error(R.drawable.round_account_box_24)
-//                .into(imageViewAvatar)
+            Glide.with(requireContext())
+                .load(userData.photoMhs)
+                .error(R.drawable.round_account_box_24)
+                .into(imageViewAvatar)
             textViewInitial.text = userData.namaMhs
         }
     }
 
-//    private fun setProfileData(token: String) {
-//        homeViewModel.getUserData(token)
-//    }
+    private fun setProfileData(token: String) {
+        homeViewModel.getUserData(token)
+    }
 
 
     override fun onDestroyView() {

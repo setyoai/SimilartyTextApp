@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.setyo.similartytextapp.R
+import com.setyo.similartytextapp.data.remote.response.UserData
 import com.setyo.similartytextapp.databinding.FragmentProfileBinding
 import com.setyo.similartytextapp.ui.ViewModelFactory
 import java.io.File
@@ -30,7 +31,7 @@ class ProfileFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-//        setupUser()
+        setupUser()
         setupAction()
 //        setupView()
 //        binding.apply {
@@ -52,26 +53,26 @@ class ProfileFragment : Fragment() {
 //        }
 //    }
 
-//    private fun setupUser() {
-////        profileViewModel.getUser().observe(viewLifecycleOwner) {
-////            setUserData(it.token)
-////        }
-//        profileViewModel.userResponse.observe(viewLifecycleOwner) {
-//            val userData = it.userData
-//            getUserData(userData)
-//        }
-//    }
+    private fun setupUser() {
+        profileViewModel.getUser().observe(viewLifecycleOwner) {
+            setUserData(it.nim_mhs)
+        }
+        profileViewModel.userResponse.observe(viewLifecycleOwner) {
+            val userData = it.userData
+            getUserData(userData)
+        }
+    }
 
-//    private fun getUserData(userData: UserData) {
-//        binding.apply {
-//           Glide.with(requireContext())
-//                .load(userData.avatarUrl)
-//                .error(R.drawable.outline_account_circle_24)
-//                .into(imageViewAvatar)
-//           textViewName.text = userData.name
-//           textViewUsername.text =  userData.username
-//        }
-//    }
+    private fun getUserData(userData: UserData) {
+        binding.apply {
+            Glide.with(requireContext())
+                .load(userData.photoMhs)
+                .error(R.drawable.outline_account_circle_24)
+                .into(imageViewAvatar)
+           textViewName.text = userData.namaMhs
+           textViewUsername.text =  userData.nimMhs
+        }
+    }
 
 //    private val cropFragmentResultLauncher =
 //        registerForActivityResult(CropImageContract()) { result ->
@@ -100,9 +101,9 @@ class ProfileFragment : Fragment() {
 //        ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
 //    }
 
-//    private fun setUserData(token: String) {
-//        profileViewModel.getUserData(token)
-//    }
+    private fun setUserData(id: String) {
+        profileViewModel.getUserData(id)
+    }
 
 //    private fun updateUser() {
 //        profileViewModel.getUser().observe(viewLifecycleOwner) { user ->

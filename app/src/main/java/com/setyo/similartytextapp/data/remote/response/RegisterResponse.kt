@@ -1,4 +1,4 @@
-package com.example.aksacarma.data.remote.response
+package com.setyo.similartytextapp.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 

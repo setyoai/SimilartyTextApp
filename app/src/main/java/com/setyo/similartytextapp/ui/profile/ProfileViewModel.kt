@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.setyo.similartytextapp.data.remote.response.UpdateUserResponse
+import com.setyo.similartytextapp.data.remote.response.UserResponse
 //import com.setyo.similartytextapp.data.remote.response.UserResponse
 import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.repository.UserRepository
@@ -12,15 +13,15 @@ import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 
 class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
-    val updateUserResponse : LiveData<UpdateUserResponse> = repository.updateUserResponse
-//    val userResponse: LiveData<UserResponse> = repository.userResponse
+//    val updateUserResponse : LiveData<UpdateUserResponse> = repository.updateUserResponse
+    val userResponse: LiveData<UserResponse> = repository.userResponse
     val textToast: LiveData<Event<String>> = repository.textToast
 
-//    fun getUserData(token: String) {
-//        viewModelScope.launch {
-//            repository.getUserData(token)
-//        }
-//    }
+    fun getUserData(id: String) {
+        viewModelScope.launch {
+            repository.getUserData(id)
+        }
+    }
 //    fun updateUser(token: String, avatar_image: MultipartBody.Part) {
 //        viewModelScope.launch {
 //            repository.updateUser(token, avatar_image)
