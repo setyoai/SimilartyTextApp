@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.setyo.similartytextapp.data.remote.response.*
 import com.setyo.similartytextapp.data.remote.retrofit.ApiService
+import com.setyo.similartytextapp.databinding.ActivityUpdateProfileBinding
 import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.model.UserPreferences
 import com.setyo.similartytextapp.ui.Event
@@ -18,6 +19,8 @@ class UserRepository constructor(
     private val apiService: ApiService,
     private val preferences: UserPreferences
 ) {
+
+    private lateinit var binding : ActivityUpdateProfileBinding
 
     private val _registerResponse = MutableLiveData<RegisterResponse>()
     val registerResponse: LiveData<RegisterResponse> = _registerResponse
@@ -93,7 +96,6 @@ class UserRepository constructor(
                 if (response.isSuccessful) {
                     _userResponse.value = response.body()
                 } else {
-                    _textToast.value = Event("Bisa dicoba kembali")
                     Log.e(TAG,"onFailure: ${response.message()}")
                 }
             }
@@ -104,6 +106,33 @@ class UserRepository constructor(
             }
         })
     }
+
+//    fun getDetailUser(id: String) {
+//        _isLoading.value = true
+//        val client = apiService.getUserData(id)
+//        client.enqueue(object : Callback<UserResponse> {
+//            override fun onResponse(
+//                call: Call<UserResponse>,
+//                response: Response<UserResponse>
+//            ) {
+//                _isLoading.value = false
+//                if (response.isSuccessful) {
+//                    response.body()?.let {
+//                        with(binding){
+//                            it.userData.
+//                        }
+//                    }
+//                } else {
+//                    Log.e(TAG,"onFailure: ${response.message()}")
+//                }
+//            }
+//            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+//                _isLoading.value = false
+//                _textToast.value = Event("Tidak Terhubung ke Internet")
+//                Log.e(TAG, "onFailure: ${t.message.toString()}")
+//            }
+//        })
+//    }
 
 //    fun updateUser(token: String, avatar_image:MultipartBody.Part) {
 //        _isLoading.value = true
@@ -127,27 +156,30 @@ class UserRepository constructor(
 //        })
 //    }
 //
-//    fun updateDataUser(token: String, username: String, password: String, name: String) {
-//        _isLoading.value = true
-//        val client = apiService.updateDataUser(token, username, password, name)
-//        client.enqueue(object : Callback<UpdateUserResponse> {
-//            override fun onResponse(call: Call<UpdateUserResponse>, response: Response<UpdateUserResponse>) {
-//                _isLoading.value = false
-//                if (response.isSuccessful) {
-//                    _textToast.value = Event("Berhasil Update Profile")
-//                    _updateUserResponse.value = response.body()
-//                } else {
-//                    _textToast.value = Event("Gagal Update Profile")
-//                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
-//                }
-//            }
-//            override fun onFailure(call: Call<UpdateUserResponse>, t: Throwable) {
-//                _isLoading.value = false
-//                _textToast.value = Event("Bisa dicoba kembali")
-//                Log.e(TAG, "onFailure: ${t.message.toString()}")
-//            }
-//        })
-//    }
+    fun updateDataUser(id: String, username: String, password: String, name: String, address: String) {
+        _isLoading.value = true
+        val client = apiService.updateDataUser(id, username, password, name, address)
+        client.enqueue(object : Callback<UpdateUserResponse> {
+            override fun onResponse(call: Call<UpdateUserResponse>, response: Response<UpdateUserResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _textToast.value = Event("Berhasil Update Profile")
+                    _updateUserResponse.value = response.body()
+                } else {
+                    _textToast.value = Event("Gagal Update Profile")
+                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                }
+            }
+            override fun onFailure(call: Call<UpdateUserResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun getApiService(): ApiService {
+        return apiService
+    }
 
     fun getUser(): LiveData<UserModel> {
         return preferences.getUser().asLiveData()

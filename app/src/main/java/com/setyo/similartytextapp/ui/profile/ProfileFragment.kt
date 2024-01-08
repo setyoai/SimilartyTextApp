@@ -1,5 +1,6 @@
 package com.setyo.similartytextapp.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,7 +34,7 @@ class ProfileFragment : Fragment() {
 
         setupUser()
         setupAction()
-//        setupView()
+        setupView()
 //        binding.apply {
 //            imageViewChangeAvatar.setOnClickListener { openGallery() }
 //            updateUser()
@@ -46,16 +47,16 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
-//    private fun setupView() {
-//        binding.toolbarProfile.imageViewSetting.setOnClickListener {
-//            val intent = Intent(requireActivity(), UpdateProfileActivity::class.java)
-//            startActivity(intent)
-//        }
-//    }
+    private fun setupView() {
+        binding.toolbarProfile.imageViewSetting.setOnClickListener {
+            val intent = Intent(requireActivity(), UpdateProfileActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
     private fun setupUser() {
         profileViewModel.getUser().observe(viewLifecycleOwner) {
-            setUserData(it.nim_mhs)
+            setUserData(it.id_mhs)
         }
         profileViewModel.userResponse.observe(viewLifecycleOwner) {
             val userData = it.userData
@@ -141,13 +142,13 @@ class ProfileFragment : Fragment() {
         _binding = null
     }
 
-//    private fun showToast() {
-//        profileViewModel.textToast.observe(viewLifecycleOwner) {
-//            it.getContentIfNotHandled()?.let { message ->
-//                Toast.makeText(this.requireContext(), message, Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
+    private fun showToast() {
+        profileViewModel.textToast.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { message ->
+                Toast.makeText(this.requireContext(), message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
         companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA)

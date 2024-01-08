@@ -15,7 +15,7 @@ android {
         versionName = "1.0"
 
         buildConfigField("String", "USER_TOKEN", "\"2F4zAdm1e1Nx1nB2jGrzPcq6OplMpT1WxE3i\"")
-        buildConfigField("String", "API_URL", "\"http://192.168.0.105/seminar-proposal-exam/public/\"")
+        buildConfigField("String", "API_URL", "\"http://192.168.0.107/seminar-proposal-exam/public/\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

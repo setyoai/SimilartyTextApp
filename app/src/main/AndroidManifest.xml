@@ -20,6 +20,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.profile.UpdateProfileActivity"
+            android:theme="@style/Theme.SimilartyTextApp.NoActionBar"
+            android:exported="false" />
+        <activity
             android:name=".ui.register.RegisterActivity"
             android:theme="@style/Theme.SimilartyTextApp.NoActionBar"
             android:exported="false" />
@@ -32,6 +36,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.splash.SplashActivity"
+            android:theme="@style/Theme.SimilartyTextApp.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

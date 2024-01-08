@@ -70,6 +70,7 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResponse.observe(this@LoginActivity) {
             getLoginUser(
                 UserModel(
+                    it.loginResult?.idMhs.toString(),
                     it.loginResult?.nimMhs.toString(),
                     it.loginResult?.namaMhs.toString(),
                     it.loginResult?.token.toString(),

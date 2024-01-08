@@ -12,9 +12,9 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
 
     val userResponse: LiveData<UserResponse> = repository.userResponse
 
-    fun getUserData(token: String) {
+    fun getUserData(id: String) {
         viewModelScope.launch {
-            repository.getUserData(token)
+            repository.getUserData(id)
         }
     }
 

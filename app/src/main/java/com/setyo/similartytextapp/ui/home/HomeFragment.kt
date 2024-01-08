@@ -35,6 +35,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupUser() {
+        homeViewModel.getUser().observe(viewLifecycleOwner) {
+            setUserData(it.id_mhs)
+        }
         homeViewModel.userResponse.observe(viewLifecycleOwner) {
             val userData = it.userData
             getUserData(userData)
@@ -51,8 +54,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setProfileData(token: String) {
-        homeViewModel.getUserData(token)
+    private fun setUserData(id: String) {
+        homeViewModel.getUserData(id)
     }
 
 

@@ -25,6 +25,6 @@ class SplashActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val VALUE_SPLASH = 100L
+        const val VALUE_SPLASH = 300L
     }
 }

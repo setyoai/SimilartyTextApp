@@ -6,15 +6,15 @@ import retrofit2.http.*
 
 interface ApiService {
     @FormUrlEncoded
-    @POST("registermahasiswa")
+    @POST("mahasiswarest")
     fun registerUser(
         @Field("nim_mhs") username: String,
-        @Field("nama_mhs") name: String,
         @Field("password_mhs") password: String,
+        @Field("nama_mhs") name: String,
     ) : Call<RegisterResponse>
 
 //    @FormUrlEncoded
-    @GET("loginmahasiswa")
+    @GET("mahasiswarest")
     fun loginUser(
         @Query("nim_mhs") username: String,
         @Query("password_mhs") password: String
@@ -32,7 +32,7 @@ interface ApiService {
 //        @Header("token") token: String,
 //    ): Call<List<HistoryResponseItem>>
 //
-    @GET("mahasiswaapi/{id}")
+    @GET("mahasiswarest/{id}")
     fun getUserData(
         @Path("id") id: String,
     ): Call<UserResponse>
@@ -44,12 +44,13 @@ interface ApiService {
 //        @Part avatar_image: MultipartBody.Part
 //    ): Call<UpdateUserResponse>
 //
-//    @FormUrlEncoded
-//    @POST("update-user")
-//    fun updateDataUser(
-//        @Header("token") token: String,
-//        @Field("username") username: String,
-//        @Field("password") password: String,
-//        @Field("name") name: String
-//    ): Call<UpdateUserResponse>
+    @FormUrlEncoded
+    @PUT("mahasiswarest/{id_mhs}")
+    fun updateDataUser(
+        @Path("id_mhs") id: String,
+        @Field("nim_mhs") username: String,
+        @Field("password_mhs") password: String,
+        @Field("nama_mhs") name: String,
+        @Field("alamat_mhs") address: String
+    ): Call<UpdateUserResponse>
 }

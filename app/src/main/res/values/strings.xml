@@ -1,10 +1,11 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">SimilartyTextApp</string>
     <string name="image_logo">image_logo</string>
     <string name="textView_login">Login</string>
     <string name="inputText_username">Username</string>
     <string name="inputText_password">Password</string>
     <string name="inputText_name">Name</string>
+    <string name="inputText_address">Alamat</string>
     <string name="email_error">Masukkan alamat email yang valid!</string>
     <string name="password_error">Minimal 8 karakter password</string>
     <string name="button_login">Login</string>
@@ -20,12 +21,14 @@
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
     <string name="title_plagiarism">Plagiarism</string>
+    <string name="title_update">Update Profile</string>
     <string name="profile_name">Nama Profile</string>
     <string name="initial_name">My Name</string>
     <string name="initial_hello">Hallo</string>
     <string name="profile_username">Nama Username</string>
 
     <string name="imageView_banner">banner</string>
+    <string name="inputText_id">ID</string>
 
 
 </resources>

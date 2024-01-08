@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.register.RegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,29 +36,6 @@
             app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textFieldName"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:hint="@string/inputText_name"
-            app:hintTextColor="@color/secondary"
-            app:boxStrokeColor="@color/primary"
-            app:boxStrokeWidth="2dp"
-            app:startIconDrawable="@drawable/outline_account_circle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTitleRegister">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputTextName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:inputType="text"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textFieldUsername"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -70,7 +47,7 @@
             app:boxStrokeColor="@color/primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textFieldName">
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitleRegister">
 
             <com.setyo.similartytextapp.ui.custom.CustomEditText
                 android:id="@+id/inputTextUsername"
@@ -105,6 +82,29 @@
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textFieldName"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:hint="@string/inputText_name"
+            app:hintTextColor="@color/secondary"
+            app:boxStrokeColor="@color/primary"
+            app:boxStrokeWidth="2dp"
+            app:startIconDrawable="@drawable/outline_account_circle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textFieldPassword">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/buttonRegister"
             android:layout_width="250dp"
@@ -114,7 +114,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textFieldPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/textFieldName" />
 
         <TextView
             android:id="@+id/textviewRegisDesc"
