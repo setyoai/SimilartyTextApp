@@ -1,19 +1,26 @@
 package com.setyo.similartytextapp.ui.profile
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.canhub.cropper.*
 import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.data.remote.response.UserData
 import com.setyo.similartytextapp.databinding.FragmentProfileBinding
+import com.setyo.similartytextapp.helper.reduceImageSize
+import com.setyo.similartytextapp.helper.uriToFile
 import com.setyo.similartytextapp.ui.ViewModelFactory
+import okhttp3.MultipartBody
 import java.io.File
 
 class ProfileFragment : Fragment() {
@@ -33,22 +40,22 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         setupUser()
-        setupAction()
+//        setupAction()
         setupView()
 //        binding.apply {
-//            imageViewChangeAvatar.setOnClickListener { openGallery() }
-//            updateUser()
+//            imageViewAvatar.setOnClickListener { openGallery() }
+////            updateUser()
 //        }
-//        if (!allPermissionGranted()) {
-//            ActivityCompat.requestPermissions(
-//                this.requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
-//            )
-//        }
+        if (!allPermissionGranted()) {
+            ActivityCompat.requestPermissions(
+                this.requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+            )
+        }
         return binding.root
     }
 
     private fun setupView() {
-        binding.toolbarProfile.imageViewSetting.setOnClickListener {
+        binding.buttonEdit.setOnClickListener {
             val intent = Intent(requireActivity(), UpdateProfileActivity::class.java)
             startActivity(intent)
         }
@@ -68,39 +75,39 @@ class ProfileFragment : Fragment() {
         binding.apply {
             Glide.with(requireContext())
                 .load(userData.photoMhs)
-                .error(R.drawable.outline_account_circle_24)
+                .error(R.drawable.outline_account_circle_64)
                 .into(imageViewAvatar)
            textViewName.text = userData.namaMhs
            textViewUsername.text =  userData.nimMhs
         }
     }
 
-//    private val cropFragmentResultLauncher =
-//        registerForActivityResult(CropImageContract()) { result ->
-//            if (result.isSuccessful) {
-//                val selectedImage = result.uriContent
-//                val localFile = selectedImage?.let { uriToFile(it, this.requireContext()) }
-//
-//                getFile = localFile
-//                binding.imageViewAvatar.setImageURI(selectedImage)
-//            } else {
-//                Toast.makeText(this.requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//
-//    private fun openGallery() {
-//        cropFragmentResultLauncher.launch(
-//            options {
-//                setGuidelines(CropImageView.Guidelines.ON)
-//                setAspectRatio(1,1)
-//                setFixAspectRatio(true)
-//            }
-//        )
-//    }
+    private val cropFragmentResultLauncher =
+        registerForActivityResult(CropImageContract()) { result ->
+            if (result.isSuccessful) {
+                val selectedImage = result.uriContent
+                val localFile = selectedImage?.let { uriToFile(it, this.requireContext()) }
 
-//    private fun allPermissionGranted() = REQUIRED_PERMISSIONS.all {
-//        ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
-//    }
+                getFile = localFile
+                binding.imageViewAvatar.setImageURI(selectedImage)
+            } else {
+                Toast.makeText(this.requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    private fun openGallery() {
+        cropFragmentResultLauncher.launch(
+            options {
+                setGuidelines(CropImageView.Guidelines.ON)
+                setAspectRatio(1,1)
+                setFixAspectRatio(true)
+            }
+        )
+    }
+
+    private fun allPermissionGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
+    }
 
     private fun setUserData(id: String) {
         profileViewModel.getUserData(id)
@@ -116,13 +123,12 @@ class ProfileFragment : Fragment() {
 //                    file.name,
 //                    requestImageFile
 //                )
-//                val token = user.token
-//                updateResponse(token, imageMultipart)
+//                updateResponse(imageMultipart)
 //            }
 //        }
 //    }
 //
-//    private fun updateResponse(token: String, avatar_image: MultipartBody.Part) {
+//    private fun updateResponse(avatar_image: MultipartBody.Part) {
 //        profileViewModel.updateUser(token, avatar_image)
 //        profileViewModel.updateUserResponse.observe(viewLifecycleOwner) {
 //            if (!it.error) {
@@ -130,12 +136,12 @@ class ProfileFragment : Fragment() {
 //            }
 //        }
 //    }
-
-    private fun setupAction() {
-        binding.buttonLogout.setOnClickListener{
-            profileViewModel.logoutUser()
-        }
-    }
+//
+//    private fun setupAction() {
+//        binding.buttonLogout.setOnClickListener{
+//            profileViewModel.logoutUser()
+//        }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

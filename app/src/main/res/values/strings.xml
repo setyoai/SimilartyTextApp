@@ -1,18 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">SimilartyTextApp</string>
+    <string name="app_name">Similarty Text</string>
     <string name="image_logo">image_logo</string>
     <string name="textView_login">Login</string>
+
     <string name="inputText_username">Username</string>
     <string name="inputText_password">Password</string>
     <string name="inputText_name">Name</string>
     <string name="inputText_address">Alamat</string>
+    <string name="inputText_id">ID</string>
+
     <string name="email_error">Masukkan alamat email yang valid!</string>
     <string name="password_error">Minimal 8 karakter password</string>
+
     <string name="button_login">Login</string>
-    <string name="button_detection">Deteksi Kulit</string>
+    <string name="button_upload">Upload File</string>
+    <string name="button_cek">Cek Judul</string>
     <string name="button_register">Register</string>
-    <string name="button_logout">Logout</string>
+    <string name="button_edit">Edit Profile</string>
     <string name="button_save">Simpan</string>
+    <string name="button_file">Pilih File</string>
+
     <string name="textView_register">Register</string>
     <string name="login_desc">Belum Mempunyai Akun ?</string>
     <string name="register_desc">Sudah Mempunyai Akun ?</string>
@@ -20,7 +27,8 @@
     // Home
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
-    <string name="title_plagiarism">Plagiarism</string>
+    <string name="title_similarity">Similarity</string>
+    <string name="title_seminar">Daftar Seminar</string>
     <string name="title_update">Update Profile</string>
     <string name="profile_name">Nama Profile</string>
     <string name="initial_name">My Name</string>
@@ -28,7 +36,20 @@
     <string name="profile_username">Nama Username</string>
 
     <string name="imageView_banner">banner</string>
-    <string name="inputText_id">ID</string>
+    <string name="textview_seminar">Silahkan Upload File Seminar</string>
+    <string name="textview_similarty">Silahkan Masukan Judul Skripsi Yang Ingin di Cek</string>
+    <string name="inputText_cek_title">Masukan Judul</string>
+    <string name="textview_name_transkripnilai">Transkrip Nilai</string>
+    <string name="textview_name_pengesahan">Halaman Pengesahan</string>
+    <string name="textview_name_bimbingan">Buku Bimbingan</string>
+    <string name="textview_name_kwkomputer">KW Komputer</string>
+    <string name="textview_name_kwinggris">KW B.Inggris</string>
+    <string name="textview_name_kwkewirausahaan">KW Keweriusahaan</string>
+    <string name="textview_name_slippembayaran">Slip Pembayaran</string>
+    <string name="top_three_title">Tiga besar judul skripsi yang mirip adalah: %1$s</string>
+    <string name="textview_name_plagiasi">Plagiasi</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -12,9 +12,15 @@
         tools:layout="@layout/fragment_home"/>
 
     <fragment
-        android:id="@+id/navigation_plagiarism"
-        android:name="com.setyo.similartytextapp.ui.plagiarism.PlagiarismFragment"
-        android:label="@string/title_plagiarism"
+        android:id="@+id/navigation_seminar"
+        android:name="com.setyo.similartytextapp.ui.seminar.SeminarFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/activity_seminar"/>
+
+    <fragment
+        android:id="@+id/navigation_similarity"
+        android:name="com.setyo.similartytextapp.ui.similarty.SimilartyFragment"
+        android:label="@string/title_similarity"
         tools:layout="@layout/fragment_plagiarism"/>
 
     <fragment

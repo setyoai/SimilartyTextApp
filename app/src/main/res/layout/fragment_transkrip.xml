@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.seminar.SeminarFragment">
+
+    <TextView
+        android:id="@+id/seminarTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="16sp"
+        android:text="@string/textview_seminar"
+        android:textColor="@color/primary"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewTranskripNilai"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seminarTextView"
+        app:srcCompat="@drawable/image" />
+
+    <TextView
+        android:id="@+id/nameTranskripNilaiTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/textview_name_transkripnilai"
+        app:layout_constraintStart_toEndOf="@+id/imageViewTranskripNilai"
+        app:layout_constraintTop_toTopOf="@id/imageViewTranskripNilai"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewTranskripNilai" />
+
+    <ImageView
+        android:id="@+id/imageViewPengesahan"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/imageViewTranskripNilai"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewTranskripNilai"
+        app:srcCompat="@drawable/image" />
+
+    <TextView
+        android:id="@+id/namePengesahanTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/textview_name_pengesahan"
+        app:layout_constraintStart_toEndOf="@id/imageViewPengesahan"
+        app:layout_constraintTop_toTopOf="@id/imageViewPengesahan"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewPengesahan" />
+
+    <ImageView
+        android:id="@+id/imageViewBimbingan"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/imageViewPengesahan"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPengesahan"
+        app:srcCompat="@drawable/image" />
+
+    <TextView
+        android:id="@+id/nameBimbinganTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/textview_name_bimbingan"
+        app:layout_constraintStart_toEndOf="@id/imageViewBimbingan"
+        app:layout_constraintTop_toTopOf="@id/imageViewBimbingan"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewBimbingan"/>
+
+    <ImageView
+        android:id="@+id/imageViewKomputer"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/imageViewBimbingan"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewBimbingan"
+        app:srcCompat="@drawable/image" />
+
+    <TextView
+        android:id="@+id/nameKomputerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/textview_name_kwkomputer"
+        app:layout_constraintStart_toEndOf="@id/imageViewKomputer"
+        app:layout_constraintTop_toTopOf="@id/imageViewKomputer"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewKomputer"/>
+
+    <ImageView
+        android:id="@+id/imageViewInggris"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/imageViewKomputer"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewKomputer"
+        app:srcCompat="@drawable/image" />
+
+    <TextView
+        android:id="@+id/nameInggrisTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/textview_name_kwinggris"
+        app:layout_constraintStart_toEndOf="@id/imageViewInggris"
+        app:layout_constraintTop_toTopOf="@id/imageViewInggris"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewInggris"/>
+
+    <ImageView
+        android:id="@+id/imageViewKewirausahaan"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/imageViewInggris"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewInggris"
+        app:srcCompat="@drawable/image" />
+
+    <TextView
+        android:id="@+id/nameKewirausahaanTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/textview_name_kwkewirausahaan"
+        app:layout_constraintStart_toEndOf="@id/imageViewKewirausahaan"
+        app:layout_constraintTop_toTopOf="@id/imageViewKewirausahaan"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewKewirausahaan"/>
+
+    <ImageView
+        android:id="@+id/imageViewSlip"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/imageViewKewirausahaan"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewKewirausahaan"
+        app:srcCompat="@drawable/image" />
+
+    <TextView
+        android:id="@+id/nameSlipTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/textview_name_slippembayaran"
+        app:layout_constraintStart_toEndOf="@id/imageViewSlip"
+        app:layout_constraintTop_toTopOf="@id/imageViewSlip"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewSlip"/>
+
+    <ImageView
+        android:id="@+id/imageViewPlagiasi"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/imageViewSlip"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewSlip"
+        app:srcCompat="@drawable/image" />
+
+    <TextView
+        android:id="@+id/namePlagiasiTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/textview_name_plagiasi"
+        app:layout_constraintStart_toEndOf="@id/imageViewPlagiasi"
+        app:layout_constraintTop_toTopOf="@id/imageViewPlagiasi"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewPlagiasi"/>
+
+<!--        <Button-->
+<!--            android:id="@+id/buttonFile"-->
+<!--            style="?attr/materialButtonOutlinedStyle"-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="55dp"-->
+<!--            android:layout_marginBottom="32dp"-->
+<!--            android:fontFamily="@font/poppins_medium"-->
+<!--            android:text="@string/button_file"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/progressBar"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:strokeColor="@color/primary"-->
+<!--            app:strokeWidth="2dp" />-->
+
+    <Button
+        android:id="@+id/buttonUpload"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.Button.IconButton.Filled"
+        app:icon="@drawable/upload"
+        android:layout_marginBottom="64dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/button_upload"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="70dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

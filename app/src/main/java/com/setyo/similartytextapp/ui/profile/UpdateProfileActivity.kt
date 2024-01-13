@@ -2,14 +2,10 @@ package com.setyo.similartytextapp.ui.profile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.setyo.similartytextapp.data.remote.response.UserResponse
-import com.setyo.similartytextapp.data.remote.retrofit.ApiService
 import com.setyo.similartytextapp.databinding.ActivityUpdateProfileBinding
-import com.setyo.similartytextapp.repository.UserRepository
-import com.setyo.similartytextapp.ui.Event
 import com.setyo.similartytextapp.ui.ViewModelFactory
 import retrofit2.Call
 import retrofit2.Callback
@@ -90,7 +86,7 @@ class UpdateProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateResponse(id: String, username: String, password: String, name: String, address: String ,) {
+    private fun updateResponse(id: String, username: String, password: String, name: String, address: String) {
         profileViewModel.updateUserData( id, username, password, name, address)
         profileViewModel.updateUserResponse.observe(this@UpdateProfileActivity) {
             if (!it.error) {

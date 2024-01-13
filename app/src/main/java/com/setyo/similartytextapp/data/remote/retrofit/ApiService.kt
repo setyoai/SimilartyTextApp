@@ -1,6 +1,8 @@
 package com.setyo.similartytextapp.data.remote.retrofit
 
 import com.setyo.similartytextapp.data.remote.response.*
+import com.setyo.similartytextapp.ui.similarty.SimilartyModel
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -13,29 +15,32 @@ interface ApiService {
         @Field("nama_mhs") name: String,
     ) : Call<RegisterResponse>
 
-//    @FormUrlEncoded
     @GET("mahasiswarest")
     fun loginUser(
         @Query("nim_mhs") username: String,
         @Query("password_mhs") password: String
     ): Call<LoginResponse>
 
-//    @Multipart
-//    @POST("get-disease-name")
-//    fun uploadImage(
-//        @Header("token") token: String,
-//        @Part image: MultipartBody.Part
-//    ): Call<PredictionResponse>
-//
-//    @GET("get-user-history")
-//    fun getHistoryUser(
-//        @Header("token") token: String,
-//    ): Call<List<HistoryResponseItem>>
-//
+    @Multipart
+    @POST("dafsemprorest")
+    fun uploadFile(
+        @Part transkripNilai: MultipartBody.Part,
+        @Part pengesahan: MultipartBody.Part,
+        @Part bukuBimbingan: MultipartBody.Part,
+        @Part kwKomputer: MultipartBody.Part,
+        @Part kwInggris: MultipartBody.Part,
+        @Part kwKewirausahaan: MultipartBody.Part,
+        @Part slipPembayaran: MultipartBody.Part,
+        @Part plagiasi: MultipartBody.Part,
+    ): Call<DaftarSeminarResponse>
+
     @GET("mahasiswarest/{id}")
     fun getUserData(
         @Path("id") id: String,
     ): Call<UserResponse>
+
+    @GET("judulrest")
+    fun getTitledata() : Call<List<SimilartyModel>>
 //
 //    @Multipart
 //    @POST("update-user")

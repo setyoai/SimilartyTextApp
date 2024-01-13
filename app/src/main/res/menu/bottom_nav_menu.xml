@@ -6,16 +6,16 @@
         android:icon="@drawable/home"
         android:title="@string/title_home" />
 
-<!--    <item-->
-<!--        android:id="@+id/navigation_camera"-->
-<!--        android:icon="@drawable/outline_filter_center_focus"-->
-<!--        android:title="@string/title_camera" />-->
+    <item
+        android:id="@+id/navigation_seminar"
+        android:icon="@drawable/library_books"
+        android:title="@string/title_seminar" />
 
     <item
-        android:id="@+id/navigation_plagiarism"
+        android:id="@+id/navigation_similarity"
         android:enabled="true"
         android:icon="@drawable/plagiarism"
-        android:title="@string/title_plagiarism" />
+        android:title="@string/title_similarity" />
 
     <item
         android:id="@+id/navigation_profile"

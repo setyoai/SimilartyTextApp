@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
         binding.apply {
             Glide.with(requireContext())
                 .load(userData.photoMhs)
-                .error(R.drawable.round_account_box_24)
+                .error(R.drawable.outline_account_circle)
                 .into(imageViewAvatar)
             textViewInitial.text = userData.namaMhs
         }

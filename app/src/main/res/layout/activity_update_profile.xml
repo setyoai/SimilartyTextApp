@@ -125,7 +125,9 @@
 
     <Button
         android:id="@+id/buttonSave"
-        android:layout_width="250dp"
+        style="@style/Widget.Material3.Button.IconButton.Filled"
+        app:icon="@drawable/save"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/button_save"

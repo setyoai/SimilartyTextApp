@@ -21,25 +21,16 @@
             android:id="@+id/imageViewAvatar"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_marginTop="64dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarProfile"
-            tools:src="@tools:sample/avatars" />
-
-        <ImageView
-            android:id="@+id/imageViewChangeAvatar"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/add_a_photo"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewAvatar"
-            app:layout_constraintEnd_toEndOf="@+id/imageViewAvatar" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/outline_account_circle_64" />
 
         <TextView
             android:id="@+id/textViewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:fontFamily="@font/poppins_medium"
@@ -62,14 +53,17 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
         <Button
-            android:id="@+id/buttonLogout"
-            android:layout_width="250dp"
+            android:id="@+id/buttonEdit"
+            style="@style/Widget.Material3.Button.IconButton.Filled"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="@string/button_logout"
             android:fontFamily="@font/poppins_bold"
+            android:text="@string/button_edit"
+            app:icon="@drawable/edit"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guidelineVertical2" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewUsername" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineVertical2"
