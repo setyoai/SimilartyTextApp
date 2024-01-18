@@ -12,10 +12,16 @@
         tools:layout="@layout/fragment_home"/>
 
     <fragment
+        android:id="@+id/navigation_skripsi"
+        android:name="com.setyo.similartytextapp.ui.skripsi.SkripsiFragment"
+        android:label="@string/title_skripsi"
+        tools:layout="@layout/fragment_skripsi"/>
+
+    <fragment
         android:id="@+id/navigation_seminar"
         android:name="com.setyo.similartytextapp.ui.seminar.SeminarFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/activity_seminar"/>
+        tools:layout="@layout/fragment_seminar"/>
 
     <fragment
         android:id="@+id/navigation_similarity"

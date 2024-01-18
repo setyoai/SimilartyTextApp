@@ -13,6 +13,7 @@ import com.setyo.similartytextapp.model.UserPreferences
 import com.setyo.similartytextapp.ui.Event
 import com.setyo.similartytextapp.ui.similarty.SimilartyModel
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,6 +38,9 @@ class UserRepository (
 
     private val _dafsemResponse = MutableLiveData<DaftarSeminarResponse>()
     val dafsemResponse : LiveData<DaftarSeminarResponse> = _dafsemResponse
+
+    private val _dafSkripsiResponse = MutableLiveData<DafSkripsiResponse>()
+    val dafSkripsiResponse : LiveData<DafSkripsiResponse> = _dafSkripsiResponse
 
     private val _updateUserResponse = MutableLiveData<UpdateUserResponse>()
     val updateUserResponse : LiveData<UpdateUserResponse> = _updateUserResponse
@@ -114,7 +118,40 @@ class UserRepository (
         })
     }
 
-    fun uploadFile(
+    fun uploadFileSkripsi(
+        nim: RequestBody,
+        krs: MultipartBody.Part,
+        transkripNilai: MultipartBody.Part,
+        slipPembayaran: MultipartBody.Part
+    ) {
+        _isLoading.value = true
+        val client = apiService.uploadFileSkripsi(
+            nim,
+            krs,
+            transkripNilai,
+            slipPembayaran,
+        )
+        client.enqueue(object : Callback<DafSkripsiResponse> {
+            override fun onResponse(call: Call<DafSkripsiResponse>, response: Response<DafSkripsiResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _textToast.value = Event("Berhasil Upload File")
+                    _dafSkripsiResponse.value = response.body()
+                } else {
+                    _textToast.value = Event("Gagal Upload File")
+                    Log.e(this@UserRepository.javaClass.simpleName,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                }
+            }
+            override fun onFailure(call: Call<DafSkripsiResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Bisa dicoba kembali")
+                Log.e(this@UserRepository.javaClass.simpleName, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun uploadFileSeminar(
+        id: RequestBody,
         transkripNilai: MultipartBody.Part,
         pengesahan: MultipartBody.Part,
         bukuBimbingan: MultipartBody.Part,
@@ -126,6 +163,7 @@ class UserRepository (
     ) {
         _isLoading.value = true
         val client = apiService.uploadFile(
+            id,
             transkripNilai,
             pengesahan,
             bukuBimbingan,
@@ -225,9 +263,12 @@ class UserRepository (
 //        })
 //    }
 //
-    fun updateDataUser(id: String, username: String, password: String, name: String, address: String) {
+    fun updateDataUser(
+        id: String, username: String, password: String, name: String, address: String, nohp: String,
+        email: String
+    ) {
         _isLoading.value = true
-        val client = apiService.updateDataUser(id, username, password, name, address)
+        val client = apiService.updateDataUser(id, username, password, name, address, nohp, email)
         client.enqueue(object : Callback<UpdateUserResponse> {
             override fun onResponse(call: Call<UpdateUserResponse>, response: Response<UpdateUserResponse>) {
                 _isLoading.value = false

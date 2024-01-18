@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -40,7 +41,7 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         setupUser()
-//        setupAction()
+        setupAction()
         setupView()
 //        binding.apply {
 //            imageViewAvatar.setOnClickListener { openGallery() }
@@ -137,11 +138,28 @@ class ProfileFragment : Fragment() {
 //        }
 //    }
 //
-//    private fun setupAction() {
-//        binding.buttonLogout.setOnClickListener{
-//            profileViewModel.logoutUser()
-//        }
-//    }
+    private fun setupAction() {
+        binding.toolbarProfile.imageViewSetting.setOnClickListener{
+            showPopupMenu(binding.toolbarProfile.imageViewSetting)
+        }
+    }
+
+    private fun showPopupMenu(view: View) {
+        val popupMenu = PopupMenu(requireContext(), view)
+        popupMenu.inflate(R.menu.option_menu) // Ganti dengan ID menu yang sesuai
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.logout -> {
+                    // Handle logout menu item click
+                    profileViewModel.logoutUser()
+                    true
+                }
+                // Handle other menu items if needed
+                else -> false
+            }
+        }
+        popupMenu.show()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

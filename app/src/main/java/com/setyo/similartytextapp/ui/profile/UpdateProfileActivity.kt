@@ -59,6 +59,8 @@ class UpdateProfileActivity : AppCompatActivity() {
                             inputTextUsername.setText(it.userData.nimMhs.orEmpty())
                             inputTextName.setText(it.userData.namaMhs.orEmpty())
                             inputTextAddress.setText(it.userData.alamatMhs.orEmpty())
+                            inputTextNoHp.setText(it.userData.nohpMhs.orEmpty())
+                            inputTextEmail.setText(it.userData.emailMhs.orEmpty())
                         }
                     }
                 } else {
@@ -80,14 +82,19 @@ class UpdateProfileActivity : AppCompatActivity() {
                     val password = inputTextPassword.text.toString()
                     val name = inputTextName.text.toString()
                     val address = inputTextAddress.text.toString()
-                    updateResponse(id, username ,password, name, address)
+                    val nohp = inputTextNoHp.text.toString()
+                    val email = inputTextEmail.text.toString()
+                    updateResponse(id, username ,password, name, address, nohp, email)
                 }
             }
         }
     }
 
-    private fun updateResponse(id: String, username: String, password: String, name: String, address: String) {
-        profileViewModel.updateUserData( id, username, password, name, address)
+    private fun updateResponse(
+        id: String, username: String, password: String, name: String, address: String, nohp: String,
+        email: String
+    ) {
+        profileViewModel.updateUserData( id, username, password, name, address, nohp, email)
         profileViewModel.updateUserResponse.observe(this@UpdateProfileActivity) {
             if (!it.error) {
                 showToast()

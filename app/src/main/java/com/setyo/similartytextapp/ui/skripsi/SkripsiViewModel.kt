@@ -1,8 +1,9 @@
-package com.setyo.similartytextapp.ui.seminar
+package com.setyo.similartytextapp.ui.skripsi
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.setyo.similartytextapp.data.remote.response.DafSkripsiResponse
 import com.setyo.similartytextapp.data.remote.response.DaftarSeminarResponse
 import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.repository.UserRepository
@@ -11,33 +12,25 @@ import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
-class SeminarViewModel(private val repository: UserRepository): ViewModel() {
-    val dafsemResponse: LiveData<DaftarSeminarResponse> = repository.dafsemResponse
+class SkripsiViewModel(private val repository: UserRepository): ViewModel() {
+    val dafSkripsiResponse: LiveData<DafSkripsiResponse> = repository.dafSkripsiResponse
     val isLoading: LiveData<Boolean> = repository.isLoading
     val textToast: LiveData<Event<String>> = repository.textToast
 
-    fun uploadFileSeminar(
-        id: RequestBody,
+    fun uploadFileSkripsi(
+        nim: RequestBody,
+        krs: MultipartBody.Part,
         transkripNilai: MultipartBody.Part,
-        pengesahan: MultipartBody.Part,
-        bukuBimbingan: MultipartBody.Part,
-        kwKomputer: MultipartBody.Part,
-        kwInggris: MultipartBody.Part,
-        kwKewirausahaan: MultipartBody.Part,
         slipPembayaran: MultipartBody.Part,
-        plagiasi: MultipartBody.Part,
+
     ) {
         viewModelScope.launch {
-            repository.uploadFileSeminar(
-                id,
+            repository.uploadFileSkripsi(
+                nim,
+                krs,
                 transkripNilai,
-                pengesahan,
-                bukuBimbingan,
-                kwKomputer,
-                kwInggris,
-                kwKewirausahaan,
                 slipPembayaran,
-                plagiasi
+
             )
         }
     }

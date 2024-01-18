@@ -17,17 +17,20 @@ import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
-import com.setyo.similartytextapp.databinding.FragmentTranskripBinding
+import com.setyo.similartytextapp.databinding.FragmentSeminarBinding
 import com.setyo.similartytextapp.helper.uriToFile
 import com.setyo.similartytextapp.ui.ViewModelFactory
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 
 class SeminarFragment : Fragment() {
-    private var _binding: FragmentTranskripBinding? = null
+    private var _binding: FragmentSeminarBinding? = null
     private var getFileTranskrip: File? = null
     private var getFilePengesahan: File? = null
     private var getFileBimbingan: File? = null
@@ -46,7 +49,7 @@ class SeminarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         (activity as AppCompatActivity).supportActionBar?.hide()
-        _binding = FragmentTranskripBinding.inflate(inflater, container, false)
+        _binding = FragmentSeminarBinding.inflate(inflater, container, false)
 
         return binding.root
 
@@ -283,9 +286,11 @@ class SeminarFragment : Fragment() {
                 val plagiasiMultipart: MultipartBody.Part = createFormDataPart(
                     originalFilePlagiasi, "plagiasi_dafsempro"
                 )
+                val id = it.nim_mhs.toRequestBody("text/plain".toMediaType())
 
                 // Call the uploadResponse function with the created MultipartBody.Parts
                 uploadResponse(
+                    id,
                     transkripMultipart,
                     pengesahanMultipart,
                     bukuBimbinganMultipart,
@@ -310,6 +315,7 @@ class SeminarFragment : Fragment() {
 
 
     private fun uploadResponse(
+        id: RequestBody,
         transkripNilai: MultipartBody.Part,
         pengesahan: MultipartBody.Part,
         bukuBimbingan: MultipartBody.Part,
@@ -319,7 +325,8 @@ class SeminarFragment : Fragment() {
         slipPembayaran: MultipartBody.Part,
         plagiasi: MultipartBody.Part,
     ) {
-        dafsemproModel.uploadFile(
+        dafsemproModel.uploadFileSeminar(
+            id,
             transkripNilai,
             pengesahan,
             bukuBimbingan,

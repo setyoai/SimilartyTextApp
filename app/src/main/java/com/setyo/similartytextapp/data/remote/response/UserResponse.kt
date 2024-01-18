@@ -31,6 +31,12 @@ data class UserData(
 	@field:SerializedName("alamat_mhs")
 	val alamatMhs: String? = null,
 
+	@field:SerializedName("nohp_mhs")
+	val nohpMhs: String? = null,
+
+	@field:SerializedName("email_mhs")
+	val emailMhs: String? = null,
+
 	@field:SerializedName("photo_mhs")
 	val photoMhs: String? = null
 )

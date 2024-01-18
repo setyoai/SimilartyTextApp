@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class DaftarSeminarResponse(
 
 	@field:SerializedName("upload_result")
-	val uploadResult: UploadResult? = null,
+	val uploadResult: UploadResultSkripsi? = null,
 
 	@field:SerializedName("error")
 	val error: Boolean? = null,
@@ -14,7 +14,7 @@ data class DaftarSeminarResponse(
 	val message: String? = null
 )
 
-data class UploadResult(
+data class UploadResultSkripsi(
 
 	@field:SerializedName("pengesahan_dafsempro")
 	val pengesahanDafsempro: String? = null,

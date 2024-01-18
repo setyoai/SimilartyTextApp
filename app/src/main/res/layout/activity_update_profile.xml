@@ -123,6 +123,50 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textFieldNoHp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="@string/inputText_nohp"
+        app:boxStrokeColor="@color/primary"
+        app:boxStrokeWidth="2dp"
+        app:hintTextColor="@color/secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textFieldAddress">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputTextNoHp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textFieldEmail"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="@string/inputText_email"
+        app:boxStrokeColor="@color/primary"
+        app:boxStrokeWidth="2dp"
+        app:hintTextColor="@color/secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textFieldNoHp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/buttonSave"
         style="@style/Widget.Material3.Button.IconButton.Filled"
@@ -135,7 +179,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldAddress"
+        app:layout_constraintTop_toBottomOf="@+id/textFieldEmail"
         app:layout_constraintVertical_bias="0.246" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

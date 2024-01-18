@@ -83,6 +83,8 @@ dependencies {
     implementation ("androidx.navigation:navigation-ui-ktx:$nav_version")
     implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
 
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
+
     // Paging
     implementation ("androidx.paging:paging-runtime-ktx:3.2.1")
 

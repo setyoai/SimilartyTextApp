@@ -12,6 +12,7 @@ import com.setyo.similartytextapp.ui.profile.ProfileViewModel
 import com.setyo.similartytextapp.ui.register.RegisterViewModel
 import com.setyo.similartytextapp.ui.seminar.SeminarViewModel
 import com.setyo.similartytextapp.ui.similarty.SimilartyViewModel
+import com.setyo.similartytextapp.ui.skripsi.SkripsiViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
 
@@ -32,6 +33,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(SkripsiViewModel::class.java) -> {
+                SkripsiViewModel(repository) as T
             }
             modelClass.isAssignableFrom(SeminarViewModel::class.java) -> {
                 SeminarViewModel(repository) as T

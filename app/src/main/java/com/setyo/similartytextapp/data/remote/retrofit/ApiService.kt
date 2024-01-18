@@ -3,6 +3,7 @@ package com.setyo.similartytextapp.data.remote.retrofit
 import com.setyo.similartytextapp.data.remote.response.*
 import com.setyo.similartytextapp.ui.similarty.SimilartyModel
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -22,8 +23,18 @@ interface ApiService {
     ): Call<LoginResponse>
 
     @Multipart
+    @POST("dafskripsirest")
+    fun uploadFileSkripsi(
+        @Part("nim_dafskripsi") nim: RequestBody,
+        @Part krs: MultipartBody.Part,
+        @Part transkripNilai: MultipartBody.Part,
+        @Part slipPembayaran: MultipartBody.Part,
+    ): Call<DafSkripsiResponse>
+
+    @Multipart
     @POST("dafsemprorest")
     fun uploadFile(
+        @Part("id_dafskripsi") id: RequestBody,
         @Part transkripNilai: MultipartBody.Part,
         @Part pengesahan: MultipartBody.Part,
         @Part bukuBimbingan: MultipartBody.Part,
@@ -56,6 +67,8 @@ interface ApiService {
         @Field("nim_mhs") username: String,
         @Field("password_mhs") password: String,
         @Field("nama_mhs") name: String,
-        @Field("alamat_mhs") address: String
+        @Field("alamat_mhs") address: String,
+        @Field("nohp_mhs") nohp: String,
+        @Field("email_mhs") email: String,
     ): Call<UpdateUserResponse>
 }

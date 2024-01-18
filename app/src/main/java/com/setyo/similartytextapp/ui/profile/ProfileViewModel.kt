@@ -29,9 +29,12 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
 //        }
 //    }
 
-    fun updateUserData( id: String, username: String, password: String, name: String, address: String,) {
+    fun updateUserData(
+        id: String, username: String, password: String, name: String, address: String, nohp: String,
+        email: String
+    ) {
         viewModelScope.launch {
-            repository.updateDataUser(id, username, password, name, address,)
+            repository.updateDataUser(id, username, password, name, address,nohp, email)
         }
     }
 
