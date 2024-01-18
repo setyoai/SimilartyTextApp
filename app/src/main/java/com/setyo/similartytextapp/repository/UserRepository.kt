@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.setyo.similartytextapp.data.remote.response.*
 import com.setyo.similartytextapp.data.remote.retrofit.ApiService
+import com.setyo.similartytextapp.model.DafSkripsiModel
 import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.model.UserPreferences
 import com.setyo.similartytextapp.ui.Event
@@ -35,6 +36,9 @@ class UserRepository (
 
     private val _userResponse = MutableLiveData<UserResponse>()
     val userResponse : LiveData<UserResponse> = _userResponse
+
+    private val _resultDafSkripsiResponse = MutableLiveData<ResultDafSkripsiResponse>()
+    val resultDafSkripsiResponse : LiveData<ResultDafSkripsiResponse> = _resultDafSkripsiResponse
 
     private val _dafsemResponse = MutableLiveData<DaftarSeminarResponse>()
     val dafsemResponse : LiveData<DaftarSeminarResponse> = _dafsemResponse
@@ -118,6 +122,29 @@ class UserRepository (
         })
     }
 
+    fun getUserDafSkripsi(id: String) {
+        _isLoading.value = true
+        val client = apiService.getUserDafSkripsi(id)
+        client.enqueue(object : Callback<ResultDafSkripsiResponse> {
+            override fun onResponse(
+                call: Call<ResultDafSkripsiResponse>,
+                response: Response<ResultDafSkripsiResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _resultDafSkripsiResponse.value = response.body()
+                } else {
+                    Log.e(TAG,"onFailure: ${response.message()}")
+                }
+            }
+            override fun onFailure(call: Call<ResultDafSkripsiResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
     fun uploadFileSkripsi(
         nim: RequestBody,
         krs: MultipartBody.Part,
@@ -154,24 +181,24 @@ class UserRepository (
         id: RequestBody,
         transkripNilai: MultipartBody.Part,
         pengesahan: MultipartBody.Part,
-        bukuBimbingan: MultipartBody.Part,
-        kwKomputer: MultipartBody.Part,
-        kwInggris: MultipartBody.Part,
-        kwKewirausahaan: MultipartBody.Part,
-        slipPembayaran: MultipartBody.Part,
-        plagiasi: MultipartBody.Part,
+//        bukuBimbingan: MultipartBody.Part,
+//        kwKomputer: MultipartBody.Part,
+//        kwInggris: MultipartBody.Part,
+//        kwKewirausahaan: MultipartBody.Part,
+//        slipPembayaran: MultipartBody.Part,
+//        plagiasi: MultipartBody.Part,
     ) {
         _isLoading.value = true
         val client = apiService.uploadFile(
             id,
             transkripNilai,
             pengesahan,
-            bukuBimbingan,
-            kwKomputer,
-            kwInggris,
-            kwKewirausahaan,
-            slipPembayaran,
-            plagiasi
+//            bukuBimbingan,
+//            kwKomputer,
+//            kwInggris,
+//            kwKewirausahaan,
+//            slipPembayaran,
+//            plagiasi
         )
         client.enqueue(object : Callback<DaftarSeminarResponse> {
             override fun onResponse(call: Call<DaftarSeminarResponse>, response: Response<DaftarSeminarResponse>) {
@@ -295,9 +322,18 @@ class UserRepository (
         return preferences.getUser().asLiveData()
     }
 
+    fun getUserResultSkripsi(): LiveData<DafSkripsiModel> {
+        return preferences.getUserResultSkripsi().asLiveData()
+    }
+
     suspend fun getLoginUser(user: UserModel) {
         preferences.getLoginUser(user)
     }
+
+    suspend fun getResultSkripsi(dafSkripsi: DafSkripsiModel) {
+        preferences.getResultSkripsi(dafSkripsi)
+    }
+
 
     suspend fun getToken() {
         preferences.getToken()

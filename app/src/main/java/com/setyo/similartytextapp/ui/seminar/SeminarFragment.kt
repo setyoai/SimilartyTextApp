@@ -33,12 +33,12 @@ class SeminarFragment : Fragment() {
     private var _binding: FragmentSeminarBinding? = null
     private var getFileTranskrip: File? = null
     private var getFilePengesahan: File? = null
-    private var getFileBimbingan: File? = null
-    private var getFileKomputer: File? = null
-    private var getFileInggris: File? = null
-    private var getFileKewirausahaan: File? = null
-    private var getFileSlip: File? = null
-    private var getFilePlagiasi: File? = null
+//    private var getFileBimbingan: File? = null
+//    private var getFileKomputer: File? = null
+//    private var getFileInggris: File? = null
+//    private var getFileKewirausahaan: File? = null
+//    private var getFileSlip: File? = null
+//    private var getFilePlagiasi: File? = null
     private val binding get() = _binding!!
     private val dafsemproModel by viewModels<SeminarViewModel> {
         ViewModelFactory.getInstance(requireContext())
@@ -63,29 +63,29 @@ class SeminarFragment : Fragment() {
         handleCropPengesahanResult(result, binding.imageViewPengesahan)
     }
 
-    private val cropBimbinganResultLauncher = registerForActivityResult(CropImageContract()) { result ->
-        handleCropBimbinganResult(result, binding.imageViewBimbingan)
-    }
-
-    private val cropKomputerResultLauncher = registerForActivityResult(CropImageContract()) { result ->
-        handleCropKomputerResult(result, binding.imageViewKomputer)
-    }
-
-    private val cropInggrisResultLauncher = registerForActivityResult(CropImageContract()) { result ->
-        handleCropInggrisResult(result, binding.imageViewInggris)
-    }
-
-    private val cropKewirausahaanResultLauncher = registerForActivityResult(CropImageContract()) { result ->
-        handleCropKewirausahaanResult(result, binding.imageViewKewirausahaan)
-    }
-
-    private val cropSlipResultLauncher = registerForActivityResult(CropImageContract()) { result ->
-        handleCropSlipResult(result, binding.imageViewSlip)
-    }
-
-    private val cropPlagiasiResultLauncher = registerForActivityResult(CropImageContract()) { result ->
-        handleCropPlagiasiResult(result, binding.imageViewPlagiasi)
-    }
+//    private val cropBimbinganResultLauncher = registerForActivityResult(CropImageContract()) { result ->
+//        handleCropBimbinganResult(result, binding.imageViewBimbingan)
+//    }
+//
+//    private val cropKomputerResultLauncher = registerForActivityResult(CropImageContract()) { result ->
+//        handleCropKomputerResult(result, binding.imageViewKomputer)
+//    }
+//
+//    private val cropInggrisResultLauncher = registerForActivityResult(CropImageContract()) { result ->
+//        handleCropInggrisResult(result, binding.imageViewInggris)
+//    }
+//
+//    private val cropKewirausahaanResultLauncher = registerForActivityResult(CropImageContract()) { result ->
+//        handleCropKewirausahaanResult(result, binding.imageViewKewirausahaan)
+//    }
+//
+//    private val cropSlipResultLauncher = registerForActivityResult(CropImageContract()) { result ->
+//        handleCropSlipResult(result, binding.imageViewSlip)
+//    }
+//
+//    private val cropPlagiasiResultLauncher = registerForActivityResult(CropImageContract()) { result ->
+//        handleCropPlagiasiResult(result, binding.imageViewPlagiasi)
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -93,12 +93,12 @@ class SeminarFragment : Fragment() {
         binding.apply {
             imageViewTranskripNilai.setOnClickListener { openGallery(cropTranskripResultLauncher) }
             imageViewPengesahan.setOnClickListener { openGallery(cropPengesahanResultLauncher) }
-            imageViewBimbingan.setOnClickListener { openGallery(cropBimbinganResultLauncher) }
-            imageViewKomputer.setOnClickListener { openGallery(cropKomputerResultLauncher) }
-            imageViewInggris.setOnClickListener { openGallery(cropInggrisResultLauncher) }
-            imageViewKewirausahaan.setOnClickListener { openGallery(cropKewirausahaanResultLauncher) }
-            imageViewSlip.setOnClickListener { openGallery(cropSlipResultLauncher) }
-            imageViewPlagiasi.setOnClickListener { openGallery(cropPlagiasiResultLauncher) }
+//            imageViewBimbingan.setOnClickListener { openGallery(cropBimbinganResultLauncher) }
+//            imageViewKomputer.setOnClickListener { openGallery(cropKomputerResultLauncher) }
+//            imageViewInggris.setOnClickListener { openGallery(cropInggrisResultLauncher) }
+//            imageViewKewirausahaan.setOnClickListener { openGallery(cropKewirausahaanResultLauncher) }
+//            imageViewSlip.setOnClickListener { openGallery(cropSlipResultLauncher) }
+//            imageViewPlagiasi.setOnClickListener { openGallery(cropPlagiasiResultLauncher) }
             buttonUpload.setOnClickListener { uploadFile() }
         }
 
@@ -142,78 +142,78 @@ class SeminarFragment : Fragment() {
             Toast.makeText(requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
         }
     }
-
-    private fun handleCropBimbinganResult(result: CropImageView.CropResult, imageView: ImageView) {
-        if (result.isSuccessful) {
-            val selectedImage = result.uriContent
-            val localFile = selectedImage?.let { uriToFile(it, requireContext()) }
-
-            getFileBimbingan = localFile
-            imageView.setImageURI(selectedImage)
-        } else {
-            Toast.makeText(requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun handleCropKomputerResult(result: CropImageView.CropResult, imageView: ImageView) {
-        if (result.isSuccessful) {
-            val selectedImage = result.uriContent
-            val localFile = selectedImage?.let { uriToFile(it, requireContext()) }
-
-            getFileKomputer = localFile
-            imageView.setImageURI(selectedImage)
-        } else {
-            Toast.makeText(requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun handleCropInggrisResult(result: CropImageView.CropResult, imageView: ImageView) {
-        if (result.isSuccessful) {
-            val selectedImage = result.uriContent
-            val localFile = selectedImage?.let { uriToFile(it, requireContext()) }
-
-            getFileInggris = localFile
-            imageView.setImageURI(selectedImage)
-        } else {
-            Toast.makeText(requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun handleCropKewirausahaanResult(result: CropImageView.CropResult, imageView: ImageView) {
-        if (result.isSuccessful) {
-            val selectedImage = result.uriContent
-            val localFile = selectedImage?.let { uriToFile(it, requireContext()) }
-
-            getFileKewirausahaan = localFile
-            imageView.setImageURI(selectedImage)
-        } else {
-            Toast.makeText(requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun handleCropSlipResult(result: CropImageView.CropResult, imageView: ImageView) {
-        if (result.isSuccessful) {
-            val selectedImage = result.uriContent
-            val localFile = selectedImage?.let { uriToFile(it, requireContext()) }
-
-            getFileSlip = localFile
-            imageView.setImageURI(selectedImage)
-        } else {
-            Toast.makeText(requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun handleCropPlagiasiResult(result: CropImageView.CropResult, imageView: ImageView) {
-        if (result.isSuccessful) {
-            val selectedImage = result.uriContent
-            val localFile = selectedImage?.let { uriToFile(it, requireContext()) }
-
-            getFilePlagiasi = localFile
-            imageView.setImageURI(selectedImage)
-        } else {
-            Toast.makeText(requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
-        }
-    }
+//
+//    private fun handleCropBimbinganResult(result: CropImageView.CropResult, imageView: ImageView) {
+//        if (result.isSuccessful) {
+//            val selectedImage = result.uriContent
+//            val localFile = selectedImage?.let { uriToFile(it, requireContext()) }
+//
+//            getFileBimbingan = localFile
+//            imageView.setImageURI(selectedImage)
+//        } else {
+//            Toast.makeText(requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
+//        }
+//    }
+//
+//    private fun handleCropKomputerResult(result: CropImageView.CropResult, imageView: ImageView) {
+//        if (result.isSuccessful) {
+//            val selectedImage = result.uriContent
+//            val localFile = selectedImage?.let { uriToFile(it, requireContext()) }
+//
+//            getFileKomputer = localFile
+//            imageView.setImageURI(selectedImage)
+//        } else {
+//            Toast.makeText(requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
+//        }
+//    }
+//
+//    private fun handleCropInggrisResult(result: CropImageView.CropResult, imageView: ImageView) {
+//        if (result.isSuccessful) {
+//            val selectedImage = result.uriContent
+//            val localFile = selectedImage?.let { uriToFile(it, requireContext()) }
+//
+//            getFileInggris = localFile
+//            imageView.setImageURI(selectedImage)
+//        } else {
+//            Toast.makeText(requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
+//        }
+//    }
+//
+//    private fun handleCropKewirausahaanResult(result: CropImageView.CropResult, imageView: ImageView) {
+//        if (result.isSuccessful) {
+//            val selectedImage = result.uriContent
+//            val localFile = selectedImage?.let { uriToFile(it, requireContext()) }
+//
+//            getFileKewirausahaan = localFile
+//            imageView.setImageURI(selectedImage)
+//        } else {
+//            Toast.makeText(requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
+//        }
+//    }
+//
+//    private fun handleCropSlipResult(result: CropImageView.CropResult, imageView: ImageView) {
+//        if (result.isSuccessful) {
+//            val selectedImage = result.uriContent
+//            val localFile = selectedImage?.let { uriToFile(it, requireContext()) }
+//
+//            getFileSlip = localFile
+//            imageView.setImageURI(selectedImage)
+//        } else {
+//            Toast.makeText(requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
+//        }
+//    }
+//
+//    private fun handleCropPlagiasiResult(result: CropImageView.CropResult, imageView: ImageView) {
+//        if (result.isSuccessful) {
+//            val selectedImage = result.uriContent
+//            val localFile = selectedImage?.let { uriToFile(it, requireContext()) }
+//
+//            getFilePlagiasi = localFile
+//            imageView.setImageURI(selectedImage)
+//        } else {
+//            Toast.makeText(requireContext(), "Gagal mengambil Gambar", Toast.LENGTH_SHORT).show()
+//        }
+//    }
 
 //    private fun uploadFile() {
 //        showLoading()
@@ -236,23 +236,23 @@ class SeminarFragment : Fragment() {
         showLoading()
 
         // Observe user data using a ViewModel (dafsemproModel)
-        dafsemproModel.getUser().observe(viewLifecycleOwner) {
+        dafsemproModel.getUserResultSkripsi().observe(viewLifecycleOwner) {
             // Check if the getFile variable is not null
             if (
-                getFileTranskrip != null && getFilePengesahan != null &&
-                getFileBimbingan != null && getFileKomputer != null &&
-                getFileInggris != null && getFileKewirausahaan != null &&
-                getFileSlip != null && getFilePlagiasi != null
+                getFileTranskrip != null && getFilePengesahan != null
+//                getFileBimbingan != null && getFileKomputer != null &&
+//                getFileInggris != null && getFileKewirausahaan != null &&
+//                getFileSlip != null && getFilePlagiasi != null
             ) {
                 // Get the original file
                 val originalFileTranskrip = getFileTranskrip as File
                 val originalFilePengesahan = getFilePengesahan as File
-                val originalFileBimbingan = getFileBimbingan as File
-                val originalFileKomputer = getFileKomputer as File
-                val originalFileInggris = getFileInggris as File
-                val originalFileKewirausahaan = getFileKewirausahaan as File
-                val originalFileSlip = getFileSlip as File
-                val originalFilePlagiasi = getFilePlagiasi as File
+//                val originalFileBimbingan = getFileBimbingan as File
+//                val originalFileKomputer = getFileKomputer as File
+//                val originalFileInggris = getFileInggris as File
+//                val originalFileKewirausahaan = getFileKewirausahaan as File
+//                val originalFileSlip = getFileSlip as File
+//                val originalFilePlagiasi = getFilePlagiasi as File
 
 //                val transkripFile = reduceImageSize(originalFile, requireContext())
 //                val pengesahanFile = reduceImageSize(originalFile, requireContext())
@@ -268,37 +268,37 @@ class SeminarFragment : Fragment() {
                 val pengesahanMultipart: MultipartBody.Part = createFormDataPart(
                     originalFilePengesahan, "pengesahan_dafsempro"
                 )
-                val bukuBimbinganMultipart: MultipartBody.Part = createFormDataPart(
-                    originalFileBimbingan, "bukubimbingan_dafsempro"
-                )
-                val kwKomputerMultipart: MultipartBody.Part = createFormDataPart(
-                    originalFileKomputer, "kwkomputer_dafsempro"
-                )
-                val kwInggrisMultipart: MultipartBody.Part = createFormDataPart(
-                    originalFileInggris, "kwinggris_dafsempro"
-                )
-                val kwKewirausahaanMultipart: MultipartBody.Part = createFormDataPart(
-                    originalFileKewirausahaan, "kwkewirausahaan_dafsempro"
-                )
-                val slipPembayaranMultipart: MultipartBody.Part = createFormDataPart(
-                    originalFileSlip, "slippembayaran_dafsempro"
-                )
-                val plagiasiMultipart: MultipartBody.Part = createFormDataPart(
-                    originalFilePlagiasi, "plagiasi_dafsempro"
-                )
-                val id = it.nim_mhs.toRequestBody("text/plain".toMediaType())
+//                val bukuBimbinganMultipart: MultipartBody.Part = createFormDataPart(
+//                    originalFileBimbingan, "bukubimbingan_dafsempro"
+//                )
+//                val kwKomputerMultipart: MultipartBody.Part = createFormDataPart(
+//                    originalFileKomputer, "kwkomputer_dafsempro"
+//                )
+//                val kwInggrisMultipart: MultipartBody.Part = createFormDataPart(
+//                    originalFileInggris, "kwinggris_dafsempro"
+//                )
+//                val kwKewirausahaanMultipart: MultipartBody.Part = createFormDataPart(
+//                    originalFileKewirausahaan, "kwkwu_dafsempro"
+//                )
+//                val slipPembayaranMultipart: MultipartBody.Part = createFormDataPart(
+//                    originalFileSlip, "slippembayaran_dafsempro"
+//                )
+//                val plagiasiMultipart: MultipartBody.Part = createFormDataPart(
+//                    originalFilePlagiasi, "plagiasi_dafsempro"
+//                )
+                val id = it.id_dafskripsi.toRequestBody("text/plain".toMediaType())
 
                 // Call the uploadResponse function with the created MultipartBody.Parts
                 uploadResponse(
                     id,
                     transkripMultipart,
                     pengesahanMultipart,
-                    bukuBimbinganMultipart,
-                    kwKomputerMultipart,
-                    kwInggrisMultipart,
-                    kwKewirausahaanMultipart,
-                    slipPembayaranMultipart,
-                    plagiasiMultipart,
+//                    bukuBimbinganMultipart,
+//                    kwKomputerMultipart,
+//                    kwInggrisMultipart,
+//                    kwKewirausahaanMultipart,
+//                    slipPembayaranMultipart,
+//                    plagiasiMultipart,
                 )
             }
         }
@@ -318,23 +318,23 @@ class SeminarFragment : Fragment() {
         id: RequestBody,
         transkripNilai: MultipartBody.Part,
         pengesahan: MultipartBody.Part,
-        bukuBimbingan: MultipartBody.Part,
-        kwKomputer: MultipartBody.Part,
-        kwInggris: MultipartBody.Part,
-        kwKewirausahaan: MultipartBody.Part,
-        slipPembayaran: MultipartBody.Part,
-        plagiasi: MultipartBody.Part,
+//        bukuBimbingan: MultipartBody.Part,
+//        kwKomputer: MultipartBody.Part,
+//        kwInggris: MultipartBody.Part,
+//        kwKewirausahaan: MultipartBody.Part,
+//        slipPembayaran: MultipartBody.Part,
+//        plagiasi: MultipartBody.Part,
     ) {
         dafsemproModel.uploadFileSeminar(
             id,
             transkripNilai,
             pengesahan,
-            bukuBimbingan,
-            kwKomputer,
-            kwInggris,
-            kwKewirausahaan,
-            slipPembayaran,
-            plagiasi,
+//            bukuBimbingan,
+//            kwKomputer,
+//            kwInggris,
+//            kwKewirausahaan,
+//            slipPembayaran,
+//            plagiasi,
         )
         dafsemproModel.dafsemResponse.observe(viewLifecycleOwner) {
             if (!it.error!!) {

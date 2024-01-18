@@ -37,18 +37,23 @@ interface ApiService {
         @Part("id_dafskripsi") id: RequestBody,
         @Part transkripNilai: MultipartBody.Part,
         @Part pengesahan: MultipartBody.Part,
-        @Part bukuBimbingan: MultipartBody.Part,
-        @Part kwKomputer: MultipartBody.Part,
-        @Part kwInggris: MultipartBody.Part,
-        @Part kwKewirausahaan: MultipartBody.Part,
-        @Part slipPembayaran: MultipartBody.Part,
-        @Part plagiasi: MultipartBody.Part,
+//        @Part bukuBimbingan: MultipartBody.Part,
+//        @Part kwKomputer: MultipartBody.Part,
+//        @Part kwInggris: MultipartBody.Part,
+//        @Part kwKewirausahaan: MultipartBody.Part,
+//        @Part slipPembayaran: MultipartBody.Part,
+//        @Part plagiasi: MultipartBody.Part,
     ): Call<DaftarSeminarResponse>
 
     @GET("mahasiswarest/{id}")
     fun getUserData(
         @Path("id") id: String,
     ): Call<UserResponse>
+
+    @GET("dafskripsirest/{id}")
+    fun getUserDafSkripsi(
+        @Path("id_dafskripsi") id: String,
+    ): Call<ResultDafSkripsiResponse>
 
     @GET("judulrest")
     fun getTitledata() : Call<List<SimilartyModel>>

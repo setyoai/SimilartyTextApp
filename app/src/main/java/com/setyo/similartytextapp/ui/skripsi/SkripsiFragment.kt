@@ -19,6 +19,8 @@ import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
 import com.setyo.similartytextapp.databinding.FragmentSkripsiBinding
 import com.setyo.similartytextapp.helper.uriToFile
+import com.setyo.similartytextapp.model.DafSkripsiModel
+import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.ui.ViewModelFactory
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -127,8 +129,7 @@ class SkripsiFragment : Fragment() {
 
     private fun uploadFile() {
         // Show loading indicator while the files are being uploaded
-//        showLoading()
-
+        showLoading()
         // Observe user data using a ViewModel (dafsemproModel)
         dafsemproModel.getUser().observe(viewLifecycleOwner) {
             // Check if the getFile variable is not null
@@ -145,7 +146,6 @@ class SkripsiFragment : Fragment() {
 //                val bukuBimbinganFile = reduceImageSize(originalFile, requireContext())
 //                val kwKomputerFile = reduceImageSize(originalFile, requireContext())
 //                val kwInggrisFile = reduceImageSize(originalFile, requireContext())
-
 
                 val krsMultipart: MultipartBody.Part = createFormDataPart(
                     originalFileKrs, "krs_dafskripsi"
@@ -186,20 +186,28 @@ class SkripsiFragment : Fragment() {
         krs: MultipartBody.Part,
         transkripNilai: MultipartBody.Part,
         slipPembayaran: MultipartBody.Part,
-
     ) {
         dafsemproModel.uploadFileSkripsi(nim, krs, transkripNilai, slipPembayaran)
         dafsemproModel.dafSkripsiResponse.observe(viewLifecycleOwner) {
-            if (!it.error!!) {
-//                moveFragment()
-            }
+            getResultSkripsi(
+                DafSkripsiModel(
+                    it.uploadResult?.idDafskripsi.toString()
+                )
+            )
         }
         showToast()
     }
 
+    private fun getResultSkripsi(dafSkripsi: DafSkripsiModel) {
+        dafsemproModel.getResultSkripsi(dafSkripsi)
+    }
+
+
     private fun moveFragment() {
 
     }
+
+
 
     private fun showToast() {
         dafsemproModel.textToast.observe(viewLifecycleOwner) {

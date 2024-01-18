@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class DafSkripsiResponse(
 
 	@field:SerializedName("upload_result")
-	val uploadResult: UploadResultDaf? = null,
+	val uploadResult: UploadResultDaf,
 
 	@field:SerializedName("error")
 	val error: Boolean? = null,
@@ -16,12 +16,6 @@ data class DafSkripsiResponse(
 
 data class UploadResultDaf(
 
-	@field:SerializedName("slippembayaran_dafskripsi")
-	val slippembayaranDafskripsi: String? = null,
-
-	@field:SerializedName("krs_dafskripsi")
-	val krsDafskripsi: String? = null,
-
-	@field:SerializedName("transkrip_dafskripsi")
-	val transkripDafskripsi: String? = null
+	@field:SerializedName("id_dafskripsi")
+	val idDafskripsi: Int? = null,
 )

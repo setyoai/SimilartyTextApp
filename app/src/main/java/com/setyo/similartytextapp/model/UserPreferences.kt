@@ -34,6 +34,20 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
+    fun getUserResultSkripsi(): Flow<DafSkripsiModel> {
+        return dataStore.data.map { preferences ->
+            DafSkripsiModel(
+                id_dafskripsi = preferences[ID_DAFSKRIPSI] ?:"",
+            )
+        }
+    }
+
+    suspend fun getResultSkripsi(dafSkripsi: DafSkripsiModel) {
+        dataStore.edit { preferences ->
+            preferences[ID_DAFSKRIPSI] = dafSkripsi.id_dafskripsi
+        }
+    }
+
     suspend fun logoutUser() {
         dataStore.edit { preferences ->
             preferences.clear()
@@ -47,7 +61,6 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
     }
 
 
-
     companion object {
         @Volatile
         private var INSTANCE: UserPreferences? = null
@@ -57,6 +70,8 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         private val NAME_KEY = stringPreferencesKey("nama_mhs")
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val STATE_KEY = booleanPreferencesKey("state")
+
+        private val ID_DAFSKRIPSI = stringPreferencesKey("id_dafskripsi")
 
         fun getInstance(dataStore: DataStore<Preferences>) : UserPreferences {
             return INSTANCE ?: synchronized(this) {

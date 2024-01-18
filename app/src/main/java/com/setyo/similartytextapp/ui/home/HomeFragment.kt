@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.setyo.similartytextapp.R
+import com.setyo.similartytextapp.data.remote.response.DafskripsiData
 import com.setyo.similartytextapp.data.remote.response.LoginResult
 import com.setyo.similartytextapp.data.remote.response.UserData
 import com.setyo.similartytextapp.data.remote.response.UserResponse
@@ -31,6 +32,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         setupUser()
+        getResult()
         return binding.root
     }
 
@@ -42,6 +44,15 @@ class HomeFragment : Fragment() {
             val userData = it.userData
             getUserData(userData)
         }
+        homeViewModel
+
+    }
+
+    private fun getResult() {
+        homeViewModel.resultDafSkripsiResponse.observe(viewLifecycleOwner) {
+            val resultData = it.dafskripsiData
+            getResult(resultData)
+        }
     }
 
     private fun getUserData(userData: UserData) {
@@ -51,6 +62,13 @@ class HomeFragment : Fragment() {
                 .error(R.drawable.outline_account_circle)
                 .into(imageViewAvatar)
             textViewInitial.text = userData.namaMhs
+        }
+    }
+
+    private fun getResult(resultData: DafskripsiData) {
+        binding.apply {
+            textViewResultSkripsi.text = resultData.statusDafskripsi
+            textViewResultKet.text = resultData.keteranganDafskripsi
         }
     }
 
