@@ -1,19 +1,20 @@
 package com.setyo.similartytextapp.data.remote.response
 
 import com.google.gson.annotations.SerializedName
+import com.setyo.similartytextapp.data.remote.response.UserData
 
 data class UpdateUserResponse(
 
-	@field:SerializedName("user_data")
+    @field:SerializedName("user_data")
 	val userData: UserData,
 
-	@field:SerializedName("error")
+    @field:SerializedName("error")
 	val error: Boolean,
 
-	@field:SerializedName("message")
+    @field:SerializedName("message")
 	val message: String,
 
-	@field:SerializedName("status")
+    @field:SerializedName("status")
 	val status: Int
 )
 

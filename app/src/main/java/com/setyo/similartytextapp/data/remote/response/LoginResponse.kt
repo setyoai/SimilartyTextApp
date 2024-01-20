@@ -1,16 +1,17 @@
 package com.setyo.similartytextapp.data.remote.response
 
 import com.google.gson.annotations.SerializedName
+import com.setyo.similartytextapp.data.remote.response.LoginResult
 
 data class LoginResponse(
 
-	@field:SerializedName("login_result")
+    @field:SerializedName("login_result")
 	val loginResult: LoginResult,
 
-	@field:SerializedName("error")
+    @field:SerializedName("error")
 	val error: Boolean,
 
-	@field:SerializedName("message")
+    @field:SerializedName("message")
 	val message: String
 )
 
@@ -29,5 +30,8 @@ data class LoginResult(
 	val nimMhs: String? = null,
 
 	@field:SerializedName("token")
-	val token: String? = null
+	val token: String? = null,
+
+	@field:SerializedName("role")
+	val role: String? = null,
 )

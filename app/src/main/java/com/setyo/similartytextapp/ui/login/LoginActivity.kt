@@ -74,6 +74,7 @@ class LoginActivity : AppCompatActivity() {
                     it.loginResult?.nimMhs.toString(),
                     it.loginResult?.namaMhs.toString(),
                     it.loginResult?.token.toString(),
+                    it.loginResult?.role.toString(),
                     true
                 )
             )
@@ -107,11 +108,4 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        fun start(context: Context) {
-            Intent(context, MainActivity::class.java).apply {
-                context.startActivity(this)
-            }
-        }
-    }
 }

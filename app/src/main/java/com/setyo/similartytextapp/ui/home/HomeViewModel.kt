@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.setyo.similartytextapp.data.remote.response.ResultDafSkripsiResponse
 import com.setyo.similartytextapp.data.remote.response.UserResponse
+import com.setyo.similartytextapp.model.DafSkripsiModel
 import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.repository.UserRepository
 import kotlinx.coroutines.launch
@@ -26,7 +27,12 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
+    fun getUserResultSkripsi(): LiveData<DafSkripsiModel> {
+        return repository.getUserResultSkripsi()
+    }
+
     fun getUser(): LiveData<UserModel> {
         return repository.getUser()
     }
+
 }

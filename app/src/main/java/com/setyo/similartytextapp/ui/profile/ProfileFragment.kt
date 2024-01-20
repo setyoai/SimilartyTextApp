@@ -18,10 +18,8 @@ import com.canhub.cropper.*
 import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.data.remote.response.UserData
 import com.setyo.similartytextapp.databinding.FragmentProfileBinding
-import com.setyo.similartytextapp.helper.reduceImageSize
 import com.setyo.similartytextapp.helper.uriToFile
 import com.setyo.similartytextapp.ui.ViewModelFactory
-import okhttp3.MultipartBody
 import java.io.File
 
 class ProfileFragment : Fragment() {

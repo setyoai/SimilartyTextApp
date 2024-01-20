@@ -1,7 +1,7 @@
 package com.setyo.similartytextapp.data.remote.retrofit
 
 import com.setyo.similartytextapp.BuildConfig
-import okhttp3.Interceptor
+import com.setyo.similartytextapp.data.remote.retrofit.ApiService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import okhttp3.logging.HttpLoggingInterceptor

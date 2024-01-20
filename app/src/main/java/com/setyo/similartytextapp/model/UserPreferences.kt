@@ -5,6 +5,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.setyo.similartytextapp.model.UserModel
+import com.setyo.similartytextapp.model.UserPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -18,6 +20,19 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
                 nim_mhs = preferences[USERNAME_KEY] ?:"",
                 nama_mhs = preferences[NAME_KEY] ?:"",
                 token = preferences[TOKEN_KEY] ?:"",
+                role = preferences[ROLE_KEY] ?:"",
+                isLogin = preferences[STATE_KEY] ?: false
+            )
+        }
+    }
+
+    fun getDosen(): Flow<DosenModel> {
+        return dataStore.data.map { preferences ->
+            DosenModel(
+                id_user = preferences[ID_DOSEN] ?:"",
+                username_user = preferences[USERDOSEN_KEY] ?:"",
+                token = preferences[TOKEN_KEY] ?:"",
+                role = preferences[ROLE_KEY] ?:"",
                 isLogin = preferences[STATE_KEY] ?: false
             )
         }
@@ -30,7 +45,18 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
             preferences[USERNAME_KEY] = user.nim_mhs
             preferences[NAME_KEY] = user.nama_mhs
             preferences[TOKEN_KEY] = user.token
+            preferences[ROLE_KEY] = user.role
             preferences[STATE_KEY] = user.isLogin
+        }
+    }
+
+    suspend fun getLoginDosen(dosen: DosenModel) {
+        dataStore.edit { preferences ->
+            preferences[ID_DOSEN] = dosen.id_user
+            preferences[USERDOSEN_KEY] = dosen.username_user
+            preferences[TOKEN_KEY] = dosen.token
+            preferences[ROLE_KEY] = dosen.role
+            preferences[STATE_KEY] = dosen.isLogin
         }
     }
 
@@ -50,7 +76,13 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
 
     suspend fun logoutUser() {
         dataStore.edit { preferences ->
-            preferences.clear()
+            preferences.remove(ID_KEY)
+            preferences.remove(USERNAME_KEY)
+            preferences.remove(NAME_KEY)
+            preferences.remove(TOKEN_KEY)
+            preferences.remove(ROLE_KEY)
+            preferences.remove(STATE_KEY)
+            // Tambahkan kunci lainnya yang ingin dihapus
         }
     }
 
@@ -66,9 +98,12 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         private var INSTANCE: UserPreferences? = null
 
         private val ID_KEY = stringPreferencesKey("id_mhs")
+        private val ID_DOSEN = stringPreferencesKey("id_user")
         private val USERNAME_KEY = stringPreferencesKey("nim_mhs")
+        private val USERDOSEN_KEY = stringPreferencesKey("username_mhs")
         private val NAME_KEY = stringPreferencesKey("nama_mhs")
         private val TOKEN_KEY = stringPreferencesKey("token")
+        private val ROLE_KEY = stringPreferencesKey("role")
         private val STATE_KEY = booleanPreferencesKey("state")
 
         private val ID_DAFSKRIPSI = stringPreferencesKey("id_dafskripsi")

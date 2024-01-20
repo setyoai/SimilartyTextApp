@@ -35,5 +35,11 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile"/>
 
+    <fragment
+        android:id="@+id/navigation_penilaian"
+        android:name="com.setyo.similartytextapp.ui.penilaian.PenilaianFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_penilaian"/>
+
 
 </navigation>

@@ -2,6 +2,10 @@ package com.setyo.similartytextapp.data.remote.retrofit
 
 import com.setyo.similartytextapp.data.remote.response.*
 import com.setyo.similartytextapp.ui.similarty.SimilartyModel
+import com.setyo.similartytextapp.data.remote.response.LoginResponse
+import com.setyo.similartytextapp.data.remote.response.RegisterResponse
+import com.setyo.similartytextapp.data.remote.response.UpdateUserResponse
+import com.setyo.similartytextapp.data.remote.response.UserResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -52,7 +56,7 @@ interface ApiService {
 
     @GET("dafskripsirest/{id}")
     fun getUserDafSkripsi(
-        @Path("id_dafskripsi") id: String,
+        @Path("id") id: String,
     ): Call<ResultDafSkripsiResponse>
 
     @GET("judulrest")
@@ -76,4 +80,10 @@ interface ApiService {
         @Field("nohp_mhs") nohp: String,
         @Field("email_mhs") email: String,
     ): Call<UpdateUserResponse>
+
+    @GET("userrest")
+    fun loginUserDosen(
+        @Query("username_user") username: String,
+        @Query("password_user") password: String
+    ): Call<LoginUserResponse>
 }

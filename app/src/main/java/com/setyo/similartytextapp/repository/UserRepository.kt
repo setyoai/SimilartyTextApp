@@ -1,24 +1,26 @@
 package com.setyo.similartytextapp.repository
 
-import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import com.setyo.similartytextapp.data.remote.response.*
 import com.setyo.similartytextapp.data.remote.retrofit.ApiService
-import com.setyo.similartytextapp.model.DafSkripsiModel
 import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.model.UserPreferences
 import com.setyo.similartytextapp.ui.Event
 import com.setyo.similartytextapp.ui.similarty.SimilartyModel
+import com.setyo.similartytextapp.data.remote.response.LoginResponse
+import com.setyo.similartytextapp.data.remote.response.RegisterResponse
+import com.setyo.similartytextapp.data.remote.response.UpdateUserResponse
+import com.setyo.similartytextapp.data.remote.response.UserResponse
+import com.setyo.similartytextapp.model.DafSkripsiModel
+import com.setyo.similartytextapp.model.DosenModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Part
 
 class UserRepository (
     private val apiService: ApiService,
@@ -33,6 +35,9 @@ class UserRepository (
 
     private val _loginResponse = MutableLiveData<LoginResponse>()
     val loginResponse: LiveData<LoginResponse> = _loginResponse
+
+    private val _loginUserResponse = MutableLiveData<LoginUserResponse>()
+    val loginUserResponse: LiveData<LoginUserResponse> = _loginUserResponse
 
     private val _userResponse = MutableLiveData<UserResponse>()
     val userResponse : LiveData<UserResponse> = _userResponse
@@ -92,6 +97,28 @@ class UserRepository (
                 }
             }
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun loginUserDosen(username: String, password: String) {
+        _isLoading.value = true
+        val client = apiService.loginUserDosen(username, password)
+        client.enqueue(object : Callback<LoginUserResponse> {
+            override fun onResponse(call: Call<LoginUserResponse>, response: Response<LoginUserResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _textToast.value = Event("Login Berhasil")
+                    _loginUserResponse.value = response.body()
+                } else {
+                    _textToast.value = Event("Username atau password salah!")
+                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                }
+            }
+            override fun onFailure(call: Call<LoginUserResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
@@ -322,12 +349,20 @@ class UserRepository (
         return preferences.getUser().asLiveData()
     }
 
+    fun getDosen(): LiveData<DosenModel> {
+        return preferences.getDosen().asLiveData()
+    }
+
     fun getUserResultSkripsi(): LiveData<DafSkripsiModel> {
         return preferences.getUserResultSkripsi().asLiveData()
     }
 
     suspend fun getLoginUser(user: UserModel) {
         preferences.getLoginUser(user)
+    }
+
+    suspend fun getLoginDosen(dosen: DosenModel) {
+        preferences.getLoginDosen(dosen)
     }
 
     suspend fun getResultSkripsi(dafSkripsi: DafSkripsiModel) {

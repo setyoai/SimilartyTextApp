@@ -10,6 +10,11 @@
         android:icon="@drawable/app_registration"
         android:title="@string/title_skripsi" />
 
+<!--    <item-->
+<!--        android:id="@+id/navigation_penilaian"-->
+<!--        android:icon="@drawable/edit_note"-->
+<!--        android:title="@string/title_skripsi" />-->
+
     <item
         android:id="@+id/navigation_seminar"
         android:icon="@drawable/library_books"

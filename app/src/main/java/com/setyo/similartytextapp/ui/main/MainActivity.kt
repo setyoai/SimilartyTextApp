@@ -14,6 +14,7 @@ import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.databinding.ActivityMainBinding
 import com.setyo.similartytextapp.ui.ViewModelFactory
 import com.setyo.similartytextapp.ui.login.LoginActivity
+import com.setyo.similartytextapp.ui.welcome.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
+                R.id.navigation_skripsi,
                 R.id.navigation_seminar,
                 R.id.navigation_similarity,
                 R.id.navigation_profile
@@ -43,6 +45,26 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val menu = navView.menu
+
+        var userRole: String? = null // Initialize with a default value or null depending on your use case
+
+        mainViewModel.getDosen().observe(this@MainActivity) { userData ->
+            userData?.let {
+                userRole = it.role
+                when (userRole) {
+                    "mahasiswa" -> {
+
+                    }
+                    // Handle other roles as needed
+                    else -> {
+                        menu.findItem(R.id.navigation_seminar).isVisible = false
+                        menu.findItem(R.id.navigation_skripsi).isVisible = false
+                    }
+                }
+            }
+        }
     }
 
     private fun setupViewModel() {
@@ -60,7 +82,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun moveActivity() {
-        startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+        startActivity(Intent(this@MainActivity, WelcomeActivity::class.java))
         finish()
     }
 

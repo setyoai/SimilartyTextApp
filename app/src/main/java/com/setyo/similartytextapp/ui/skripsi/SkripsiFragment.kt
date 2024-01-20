@@ -20,7 +20,6 @@ import com.canhub.cropper.options
 import com.setyo.similartytextapp.databinding.FragmentSkripsiBinding
 import com.setyo.similartytextapp.helper.uriToFile
 import com.setyo.similartytextapp.model.DafSkripsiModel
-import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.ui.ViewModelFactory
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull

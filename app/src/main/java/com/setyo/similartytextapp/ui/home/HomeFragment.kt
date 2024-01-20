@@ -1,5 +1,6 @@
 package com.setyo.similartytextapp.ui.home
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,9 +11,7 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.data.remote.response.DafskripsiData
-import com.setyo.similartytextapp.data.remote.response.LoginResult
 import com.setyo.similartytextapp.data.remote.response.UserData
-import com.setyo.similartytextapp.data.remote.response.UserResponse
 import com.setyo.similartytextapp.databinding.FragmentHomeBinding
 import com.setyo.similartytextapp.ui.ViewModelFactory
 
@@ -32,7 +31,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         setupUser()
-        getResult()
+        setDafSkripsi()
         return binding.root
     }
 
@@ -44,16 +43,18 @@ class HomeFragment : Fragment() {
             val userData = it.userData
             getUserData(userData)
         }
-        homeViewModel
-
     }
 
-    private fun getResult() {
+    private fun setDafSkripsi(){
+        homeViewModel.getUserResultSkripsi().observe(viewLifecycleOwner) {
+            setDafSkripsi(it.id_dafskripsi)
+        }
         homeViewModel.resultDafSkripsiResponse.observe(viewLifecycleOwner) {
-            val resultData = it.dafskripsiData
-            getResult(resultData)
+            val dafskripsiData = it.dafskripsiData
+            getResult(dafskripsiData)
         }
     }
+
 
     private fun getUserData(userData: UserData) {
         binding.apply {
@@ -68,6 +69,21 @@ class HomeFragment : Fragment() {
     private fun getResult(resultData: DafskripsiData) {
         binding.apply {
             textViewResultSkripsi.text = resultData.statusDafskripsi
+            when (resultData.statusDafskripsi) {
+                "1" -> {
+                    textViewResultSkripsi.text = "Berhasil"
+                    textViewResultSkripsi.setTextColor(Color.GREEN) // Set the color to green for success
+                }
+                "2" -> {
+                    textViewResultSkripsi.text = "Ditolak"
+                    textViewResultSkripsi.setTextColor(Color.RED) // Set the color to red for rejection
+                }
+                else -> {
+                    // Set a default value or handle other cases if needed
+                    textViewResultSkripsi.text = getString(R.string.initial_status_waiting)
+                    textViewResultSkripsi.setTextColor(Color.BLACK) // Set a default color if needed
+                }
+            }
             textViewResultKet.text = resultData.keteranganDafskripsi
         }
     }
@@ -76,6 +92,9 @@ class HomeFragment : Fragment() {
         homeViewModel.getUserData(id)
     }
 
+    private fun setDafSkripsi(id: String) {
+        homeViewModel.getDafSkripsi(id)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

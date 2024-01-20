@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.setyo.similartytextapp.data.remote.response.DafSkripsiResponse
-import com.setyo.similartytextapp.data.remote.response.DaftarSeminarResponse
 import com.setyo.similartytextapp.model.DafSkripsiModel
 import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.repository.UserRepository

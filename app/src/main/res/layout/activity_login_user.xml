@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.login.LoginUserActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:hint="@string/inputText_username"
+            android:hint="@string/inputText_nidn"
             app:hintTextColor="@color/secondary"
             app:boxStrokeColor="@color/primary"
             app:boxStrokeWidth="2dp"
@@ -88,6 +88,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             style="@style/Widget.Material3.Button.IconButton.Filled"
+            android:layout_marginTop="32dp"
             android:text="@string/button_login"
             android:fontFamily="@font/poppins_bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -95,31 +96,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textFieldPassword" />
 
-        <TextView
-            android:id="@+id/textviewLoginDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/login_desc"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textFieldPassword"
-            app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
-            app:layout_constraintVertical_bias="1.0" />
+<!--        <TextView-->
+<!--            android:id="@+id/textviewLoginDesc"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="24dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:fontFamily="@font/poppins_medium"-->
+<!--            android:text="@string/login_desc"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/textFieldPassword"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/buttonLogin"-->
+<!--            app:layout_constraintVertical_bias="1.0" />-->
 
-        <TextView
-            android:id="@+id/textviewRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/textView_register"
-            android:textColor="@color/primary"
-            app:layout_constraintBottom_toBottomOf="@+id/textviewLoginDesc"
-            app:layout_constraintStart_toEndOf="@+id/textviewLoginDesc"
-            app:layout_constraintTop_toTopOf="@+id/textviewLoginDesc" />
-
+<!--        <TextView-->
+<!--            android:id="@+id/textviewRegister"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="4dp"-->
+<!--            android:fontFamily="@font/poppins_bold"-->
+<!--            android:text="@string/textView_register"-->
+<!--            android:textColor="@color/primary"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/textviewLoginDesc"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/textviewLoginDesc"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/textviewLoginDesc" />-->
 
         <ProgressBar
             android:id="@+id/progressBar"

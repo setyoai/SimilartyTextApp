@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import com.setyo.similartytextapp.R
-import com.setyo.similartytextapp.data.remote.retrofit.ApiService
 import com.setyo.similartytextapp.databinding.FragmentPlagiarismBinding
-import com.setyo.similartytextapp.model.UserPreferences
-import com.setyo.similartytextapp.repository.UserRepository
 import com.setyo.similartytextapp.ui.ViewModelFactory
 
 class SimilartyFragment : Fragment() {

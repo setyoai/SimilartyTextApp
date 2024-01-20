@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.ui.login.LoginActivity
+import com.setyo.similartytextapp.ui.welcome.WelcomeActivity
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -19,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
 
         GlobalScope.launch {
             delay(VALUE_SPLASH)
-            LoginActivity.start(this@SplashActivity)
+            WelcomeActivity.start(this@SplashActivity)
             finish()
         }
     }

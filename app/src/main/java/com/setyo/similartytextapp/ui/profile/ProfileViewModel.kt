@@ -11,7 +11,6 @@ import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.repository.UserRepository
 import com.setyo.similartytextapp.ui.Event
 import kotlinx.coroutines.launch
-import okhttp3.MultipartBody
 
 class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
     val updateUserResponse : LiveData<UpdateUserResponse> = repository.updateUserResponse

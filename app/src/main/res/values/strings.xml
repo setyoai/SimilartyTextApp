@@ -2,15 +2,18 @@
     <string name="app_name">Similarty Text</string>
     <string name="image_logo">image_logo</string>
     <string name="textView_login">Login</string>
+    <string name="textView_login_as">Login Sebagai</string>
 
     <string name="inputText_username">NIM</string>
+    <string name="inputText_nidn">NIDN</string>
     <string name="inputText_password">Password</string>
     <string name="inputText_name">Name</string>
     <string name="inputText_address">Alamat</string>
     <string name="inputText_nohp">No Handphone</string>
     <string name="inputText_email">Email</string>
     <string name="inputText_id">ID</string>
-
+    <string name="title_welcome_page">Selamat datang di App Seminar Proposal!</string>
+    <string name="message_welcome_page">Menjadi Program Studi yang Unggul di bidang Sistem Informasi, Berbasis Kearifan Lokal serta Berdaya Saing Global</string>
     <string name="email_error">Masukkan alamat email yang valid!</string>
     <string name="password_error">Minimal 8 karakter password</string>
 
@@ -21,6 +24,8 @@
     <string name="button_edit">Edit Profile</string>
     <string name="button_save">Simpan</string>
     <string name="button_file">Pilih File</string>
+    <string name="button_mhs">Mahasiswa</string>
+    <string name="button_dosen">Dosen</string>
 
     <string name="textView_register">Register</string>
     <string name="login_desc">Belum Mempunyai Akun ?</string>
@@ -40,6 +45,7 @@
     <string name="initial_status">Status Pendaftaran Skripsi : </string>
     <string name="initial_ket">Keterangan : </string>
     <string name="initial_status_result">Hasil</string>
+    <string name="initial_status_waiting">Menunggu</string>
     <string name="profile_username">Nama Username</string>
 
     <string name="imageView_banner">banner</string>
