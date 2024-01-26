@@ -12,16 +12,27 @@
         tools:layout="@layout/fragment_home"/>
 
     <fragment
-        android:id="@+id/navigation_skripsi"
-        android:name="com.setyo.similartytextapp.ui.skripsi.SkripsiFragment"
-        android:label="@string/title_skripsi"
-        tools:layout="@layout/fragment_skripsi"/>
+        android:id="@+id/navigation_pendaftaran"
+        android:name="com.setyo.similartytextapp.ui.pendaftaran.PendaftaranFragment"
+        android:label="@string/title_register"
+        tools:layout="@layout/fragment_pendaftaran">
+        <action
+            android:id="@+id/action_pendaftaranFragment_to_skripsiFragment"
+            app:destination="@id/navigation_skripsi" />
+        <action
+            android:id="@+id/action_pendaftaranFragment_to_seminarFragment"
+            app:destination="@id/navigation_seminar" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_seminar"
-        android:name="com.setyo.similartytextapp.ui.seminar.SeminarFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_seminar"/>
+        android:id="@+id/navigation_penilaian"
+        android:name="com.setyo.similartytextapp.ui.penilaian.PenilaianFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_penilaian">
+        <action
+            android:id="@+id/action_penilaianFragment_to_updatePenilaianFragment"
+            app:destination="@id/navigation_updatepenilaian" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_similarity"
@@ -36,10 +47,25 @@
         tools:layout="@layout/fragment_profile"/>
 
     <fragment
-        android:id="@+id/navigation_penilaian"
-        android:name="com.setyo.similartytextapp.ui.penilaian.PenilaianFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_penilaian"/>
+        android:id="@+id/navigation_skripsi"
+        android:name="com.setyo.similartytextapp.ui.skripsi.SkripsiFragment"
+        android:label="@string/title_skripsi"
+        tools:layout="@layout/fragment_skripsi"/>
 
+    <fragment
+        android:id="@+id/navigation_seminar"
+        android:name="com.setyo.similartytextapp.ui.seminar.SeminarFragment"
+        android:label="@string/title_seminar"
+        tools:layout="@layout/fragment_seminar"/>
+
+    <fragment
+        android:id="@+id/navigation_updatepenilaian"
+        android:name="com.setyo.similartytextapp.ui.penilaian.UpdatePenilaianFragment"
+        android:label="@string/title_update_penilaian"
+        tools:layout="@layout/fragment_update_penilaian">
+        <action
+            android:id="@+id/action_updatePenilaianFragment_to_penilaianFragment"
+            app:destination="@id/navigation_penilaian" />
+    </fragment>
 
 </navigation>

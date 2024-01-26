@@ -6,19 +6,15 @@
         android:icon="@drawable/home"
         android:title="@string/title_home" />
     <item
-        android:id="@+id/navigation_skripsi"
-        android:icon="@drawable/app_registration"
-        android:title="@string/title_skripsi" />
-
-<!--    <item-->
-<!--        android:id="@+id/navigation_penilaian"-->
-<!--        android:icon="@drawable/edit_note"-->
-<!--        android:title="@string/title_skripsi" />-->
+        android:id="@+id/navigation_pendaftaran"
+        android:icon="@drawable/edit_note"
+        android:title="@string/title_register" />
 
     <item
-        android:id="@+id/navigation_seminar"
-        android:icon="@drawable/library_books"
-        android:title="@string/title_seminar" />
+        android:id="@+id/navigation_penilaian"
+        android:icon="@drawable/app_registration"
+        android:title="@string/title_penilian" />
+
 
     <item
         android:id="@+id/navigation_similarity"

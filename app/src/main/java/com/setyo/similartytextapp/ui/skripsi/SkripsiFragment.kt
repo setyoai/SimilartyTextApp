@@ -188,11 +188,15 @@ class SkripsiFragment : Fragment() {
     ) {
         dafsemproModel.uploadFileSkripsi(nim, krs, transkripNilai, slipPembayaran)
         dafsemproModel.dafSkripsiResponse.observe(viewLifecycleOwner) {
-            getResultSkripsi(
-                DafSkripsiModel(
-                    it.uploadResult?.idDafskripsi.toString()
+            if (!it.error) {
+//                moveFragment()
+            } else {
+                getResultSkripsi(
+                    DafSkripsiModel(
+                        it.uploadResult.idDafskripsi.toString()
+                    )
                 )
-            )
+            }
         }
         showToast()
     }
@@ -227,6 +231,7 @@ class SkripsiFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
 
     private fun allPermissionGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED

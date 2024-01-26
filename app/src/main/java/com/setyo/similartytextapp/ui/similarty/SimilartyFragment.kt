@@ -49,7 +49,7 @@ class SimilartyFragment : Fragment() {
 
     private fun calculateResult() {
         val str1 = binding.inputTextTitle.text.toString().uppercase().replace(" ", "")
-        val judulList = similartyViewModel.judulList.value
+        val judulList = similartyViewModel.judulList.value?.tbJudulskripsi
 
         if (judulList != null) {
             val ratcliff = AlgorithmRatcliffObershelp()
@@ -79,16 +79,17 @@ class SimilartyFragment : Fragment() {
             }
 
             // Display the top three theses
-            val result = topThreeTheses.joinToString(", ") {
+            val result = topThreeTheses.joinToString("\n") {
                 "${it.first} (${"%.2f".format(it.second)}%)"
             }
             val mostSimilarResult = mostSimilarTitle?.let {
                 "Judul paling mirip: ${it.first} (${String.format("%.2f", it.second)}%)"
             }
-
-            Log.d(TAG, "Most similar result: $mostSimilarResult")
             binding.textViewSimilar.text = getString(R.string.top_three_title, result)
             binding.textViewResult.text = mostSimilarResult
+        } else {
+            // Handle the case when judulList is null
+            Log.e(TAG, "judulList is null")
         }
     }
 
@@ -107,5 +108,4 @@ class SimilartyFragment : Fragment() {
     companion object {
         private const val TAG = "Similarty"
     }
-
 }

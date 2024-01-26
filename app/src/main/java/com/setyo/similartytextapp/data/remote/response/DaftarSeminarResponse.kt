@@ -16,6 +16,9 @@ data class DaftarSeminarResponse(
 
 data class UploadResultSkripsi(
 
+	@field:SerializedName("id_dafskripsi")
+	val idDafskripsi: String? = null,
+
 	@field:SerializedName("pengesahan_dafsempro")
 	val pengesahanDafsempro: String? = null,
 

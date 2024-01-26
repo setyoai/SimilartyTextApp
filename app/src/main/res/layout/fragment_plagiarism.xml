@@ -45,36 +45,57 @@
         style="@style/Widget.Material3.Button.IconButton.Filled"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/poppins_bold"
-        android:layout_marginBottom="16dp"
         android:text="@string/button_cek"
         app:icon="@drawable/lab_profilepx"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textFieldTitle" />
+
 
     <TextView
-        android:id="@+id/textViewSimilar"
-        android:layout_width="wrap_content"
+        android:id="@+id/ResultTextView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCalculate"
-        app:layout_constraintEnd_toEndOf="@+id/textFieldTitle"
-        app:layout_constraintStart_toStartOf="@+id/textFieldTitle"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldTitle"
-        tools:text="The similarity between str1 and str2 is 0%." />
-
-    <TextView
-        android:id="@+id/textViewResult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
         android:fontFamily="@font/poppins_bold"
-        android:textColor="@color/secondary"
-        app:layout_constraintEnd_toEndOf="@+id/textViewSimilar"
-        app:layout_constraintStart_toStartOf="@+id/textViewSimilar"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSimilar"
-        tools:text="The similarity between str1 and str2 is 0%." />
+        android:text="@string/initial_status_result"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCalculate" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ResultTextView">
+
+        <TextView
+            android:id="@+id/textViewSimilar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            tools:text="The similarity between str1 and str2 is 0%." />
+
+        <TextView
+            android:id="@+id/textViewResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/secondary"
+            tools:text="The similarity between str1 and str2 is 0%." />
+
+    </LinearLayout>
+
 
 <!--    <TextView-->
 <!--        android:id="@+id/textViewResult"-->

@@ -40,15 +40,15 @@ class CustomEditText: AppCompatEditText {
                 val input = s.toString()
                 when (inputType) {
                     EMAIL -> {
-                        if (!Patterns.EMAIL_ADDRESS.matcher(input).matches()) {
-                            error = context.getString(R.string.email_error)
-                            isError = true
+                        isError = if (input.length < 9) {
+                            setError(context.getString(R.string.email_error), null)
+                            true
                         } else {
-                            isError = false
+                            false
                         }
                     }
                     PASSWORD -> {
-                        isError = if (input.length < 8) {
+                        isError = if (input.length < 5) {
                             setError(context.getString(R.string.password_error), null)
                             true
                         } else {
@@ -56,22 +56,21 @@ class CustomEditText: AppCompatEditText {
                         }
                     }
                 }
-
             }
 
             override fun afterTextChanged(s: Editable) {
                 val input = s.toString()
                 when (inputType) {
                     EMAIL -> {
-                        if (!Patterns.EMAIL_ADDRESS.matcher(input).matches()) {
-                            error = context.getString(R.string.email_error)
-                            isError = true
+                        isError = if (input.length < 9) {
+                            setError(context.getString(R.string.email_error), null)
+                            true
                         } else {
-                            isError = false
+                            false
                         }
                     }
                     PASSWORD -> {
-                        isError = if (input.length < 6) {
+                        isError = if (input.length < 5) {
                             setError(context.getString(R.string.password_error), null)
                             true
                         } else {

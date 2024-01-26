@@ -9,13 +9,13 @@ import com.setyo.similartytextapp.data.remote.retrofit.ApiService
 import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.model.UserPreferences
 import com.setyo.similartytextapp.ui.Event
-import com.setyo.similartytextapp.ui.similarty.SimilartyModel
 import com.setyo.similartytextapp.data.remote.response.LoginResponse
 import com.setyo.similartytextapp.data.remote.response.RegisterResponse
 import com.setyo.similartytextapp.data.remote.response.UpdateUserResponse
 import com.setyo.similartytextapp.data.remote.response.UserResponse
 import com.setyo.similartytextapp.model.DafSkripsiModel
 import com.setyo.similartytextapp.model.DosenModel
+import com.setyo.similartytextapp.ui.similarty.SimilartyModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -27,14 +27,23 @@ class UserRepository (
     private val preferences: UserPreferences
 ) {
 
-    private val _judulList = MutableLiveData<List<SimilartyModel>>()
-    val judulList: LiveData<List<SimilartyModel>> get() = _judulList
+    private val _judulList = MutableLiveData<SimilartyModel>()
+    val judulList: LiveData<SimilartyModel>  = _judulList
 
     private val _registerResponse = MutableLiveData<RegisterResponse>()
     val registerResponse: LiveData<RegisterResponse> = _registerResponse
 
     private val _loginResponse = MutableLiveData<LoginResponse>()
     val loginResponse: LiveData<LoginResponse> = _loginResponse
+
+    private val _penilaianResponse = MutableLiveData<PenilaianDosenResponse>()
+    val penilaianResponse : LiveData<PenilaianDosenResponse> = _penilaianResponse
+
+    private val _updatePenilaianResponse = MutableLiveData<UpdatePenilaianResponse>()
+    val updatePenilaianResponse : MutableLiveData<UpdatePenilaianResponse> = _updatePenilaianResponse
+
+    private val _getDosenResponse = MutableLiveData<GetDosenResponse>()
+    val getDosenResponse: LiveData<GetDosenResponse> = _getDosenResponse
 
     private val _loginUserResponse = MutableLiveData<LoginUserResponse>()
     val loginUserResponse: LiveData<LoginUserResponse> = _loginUserResponse
@@ -149,6 +158,53 @@ class UserRepository (
         })
     }
 
+
+    fun getDataPenilaian(id: String) {
+        _isLoading.value = true
+        val client = apiService.getDataPenilaian(id)
+        client.enqueue(object : Callback<PenilaianDosenResponse> {
+            override fun onResponse(
+                call: Call<PenilaianDosenResponse>,
+                response: Response<PenilaianDosenResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                        val listPenilaian = response.body()?.detsemproData
+                        _penilaianResponse.value = listPenilaian?.let { PenilaianDosenResponse(it)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<PenilaianDosenResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun getUserDosen(id: String) {
+        _isLoading.value = true
+        val client = apiService.getUserDosen(id)
+        client.enqueue(object : Callback<GetDosenResponse> {
+            override fun onResponse(
+                call: Call<GetDosenResponse>,
+                response: Response<GetDosenResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _getDosenResponse.value = response.body()
+                } else {
+                    Log.e(TAG,"onFailure: ${response.message()}")
+                }
+            }
+            override fun onFailure(call: Call<GetDosenResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
     fun getUserDafSkripsi(id: String) {
         _isLoading.value = true
         val client = apiService.getUserDafSkripsi(id)
@@ -206,6 +262,7 @@ class UserRepository (
 
     fun uploadFileSeminar(
         id: RequestBody,
+        judul: RequestBody,
         transkripNilai: MultipartBody.Part,
         pengesahan: MultipartBody.Part,
 //        bukuBimbingan: MultipartBody.Part,
@@ -218,6 +275,7 @@ class UserRepository (
         _isLoading.value = true
         val client = apiService.uploadFile(
             id,
+            judul,
             transkripNilai,
             pengesahan,
 //            bukuBimbingan,
@@ -246,47 +304,22 @@ class UserRepository (
         })
     }
 
-//    fun getTitleData(id: String) {
-//        _isLoading.value = true
-//        val client = apiService.getUserData(id)
-//        client.enqueue(object : Callback<UserResponse> {
-//            override fun onResponse(
-//                call: Call<UserResponse>,
-//                response: Response<UserResponse>
-//            ) {
-//                _isLoading.value = false
-//                if (response.isSuccessful) {
-//                    _userResponse.value = response.body()
-//                } else {
-//                    Log.e(TAG,"onFailure: ${response.message()}")
-//                }
-//            }
-//            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-//                _isLoading.value = false
-//                _textToast.value = Event("Tidak Terhubung ke Internet")
-//                Log.e(TAG, "onFailure: ${t.message.toString()}")
-//            }
-//        })
-//    }
-
-
     fun getTitleData() {
         _isLoading.value = true
         val client = apiService.getTitledata()
-        client.enqueue(object : Callback<List<SimilartyModel>> {
+        client.enqueue(object : Callback<SimilartyModel> {
             override fun onResponse(
-                call: Call<List<SimilartyModel>>,
-                response: Response<List<SimilartyModel>>
+                call: Call<SimilartyModel>,
+                response: Response<SimilartyModel>
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    _judulList.value = response.body()
-                } else {
-                    Log.e(TAG, "onFailure: ${response.message()}")
+                    val listData = response.body()?.tbJudulskripsi
+                    _judulList.value = listData?.let { SimilartyModel(it) }
                 }
             }
 
-            override fun onFailure(call: Call<List<SimilartyModel>>, t: Throwable) {
+            override fun onFailure(call: Call<SimilartyModel>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }
@@ -335,6 +368,26 @@ class UserRepository (
                 }
             }
             override fun onFailure(call: Call<UpdateUserResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message.toString()}")  }
+        })
+    }
+
+    fun updateDataPenilaain( id: String, ketrev: String) {
+        _isLoading.value = true
+        val client = apiService.updateDataPenilaian(id, ketrev)
+        client.enqueue(object : Callback<UpdatePenilaianResponse> {
+            override fun onResponse(call: Call<UpdatePenilaianResponse>, response: Response<UpdatePenilaianResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _textToast.value = Event("Berhasil Update Penilaian")
+                    _updatePenilaianResponse.value = response.body()
+                } else {
+                    _textToast.value = Event("Gagal Update Penilaian")
+                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                }
+            }
+            override fun onFailure(call: Call<UpdatePenilaianResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }

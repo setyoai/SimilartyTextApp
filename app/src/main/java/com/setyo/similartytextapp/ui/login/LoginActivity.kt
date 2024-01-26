@@ -70,11 +70,11 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResponse.observe(this@LoginActivity) {
             getLoginUser(
                 UserModel(
-                    it.loginResult?.idMhs.toString(),
-                    it.loginResult?.nimMhs.toString(),
-                    it.loginResult?.namaMhs.toString(),
-                    it.loginResult?.token.toString(),
-                    it.loginResult?.role.toString(),
+                    it.loginResult.idMhs.toString(),
+                    it.loginResult.nimMhs.toString(),
+                    it.loginResult.namaMhs.toString(),
+                    it.loginResult.token.toString(),
+                    it.loginResult.role.toString(),
                     true
                 )
             )
@@ -89,6 +89,7 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResponse.observe(this@LoginActivity) {
             if (!it.error) {
                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 finish()
             }
         }

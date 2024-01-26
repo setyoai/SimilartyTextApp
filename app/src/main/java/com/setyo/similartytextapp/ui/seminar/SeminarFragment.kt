@@ -1,6 +1,7 @@
 package com.setyo.similartytextapp.ui.seminar
 
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,8 @@ import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
+import com.setyo.similartytextapp.R
+import com.setyo.similartytextapp.data.remote.response.DafskripsiData
 import com.setyo.similartytextapp.databinding.FragmentSeminarBinding
 import com.setyo.similartytextapp.helper.uriToFile
 import com.setyo.similartytextapp.ui.ViewModelFactory
@@ -236,7 +239,10 @@ class SeminarFragment : Fragment() {
         showLoading()
 
         // Observe user data using a ViewModel (dafsemproModel)
-        dafsemproModel.getUserResultSkripsi().observe(viewLifecycleOwner) {
+        dafsemproModel.getUser().observe(viewLifecycleOwner) {
+            setDafSkripsi(it.nim_mhs)
+        }
+        dafsemproModel.resultDafSkripsiResponse.observe(viewLifecycleOwner) {
             // Check if the getFile variable is not null
             if (
                 getFileTranskrip != null && getFilePengesahan != null
@@ -286,11 +292,14 @@ class SeminarFragment : Fragment() {
 //                val plagiasiMultipart: MultipartBody.Part = createFormDataPart(
 //                    originalFilePlagiasi, "plagiasi_dafsempro"
 //                )
-                val id = it.id_dafskripsi.toRequestBody("text/plain".toMediaType())
+                val id = it.dafskripsiData.idDafskripsi.toRequestBody("text/plain".toMediaType())
+                val title = binding.inputTextTitle.toString()
+                val judul = title.toRequestBody("text/plain".toMediaType())
 
                 // Call the uploadResponse function with the created MultipartBody.Parts
                 uploadResponse(
                     id,
+                    judul,
                     transkripMultipart,
                     pengesahanMultipart,
 //                    bukuBimbinganMultipart,
@@ -302,6 +311,10 @@ class SeminarFragment : Fragment() {
                 )
             }
         }
+    }
+
+    private fun setDafSkripsi(id: String) {
+        dafsemproModel.getDafSkripsi(id)
     }
 
     // Function to create MultipartBody.Part for a file
@@ -316,6 +329,7 @@ class SeminarFragment : Fragment() {
 
     private fun uploadResponse(
         id: RequestBody,
+        judul: RequestBody,
         transkripNilai: MultipartBody.Part,
         pengesahan: MultipartBody.Part,
 //        bukuBimbingan: MultipartBody.Part,
@@ -327,6 +341,7 @@ class SeminarFragment : Fragment() {
     ) {
         dafsemproModel.uploadFileSeminar(
             id,
+            judul,
             transkripNilai,
             pengesahan,
 //            bukuBimbingan,
@@ -361,7 +376,6 @@ class SeminarFragment : Fragment() {
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

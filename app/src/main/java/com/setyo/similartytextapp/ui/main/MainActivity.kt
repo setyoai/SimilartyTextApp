@@ -13,7 +13,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.databinding.ActivityMainBinding
 import com.setyo.similartytextapp.ui.ViewModelFactory
-import com.setyo.similartytextapp.ui.login.LoginActivity
 import com.setyo.similartytextapp.ui.welcome.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {
@@ -36,11 +35,10 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
-                R.id.navigation_skripsi,
-                R.id.navigation_seminar,
+                R.id.navigation_pendaftaran,
                 R.id.navigation_similarity,
+                R.id.navigation_penilaian,
                 R.id.navigation_profile
-
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -55,12 +53,11 @@ class MainActivity : AppCompatActivity() {
                 userRole = it.role
                 when (userRole) {
                     "mahasiswa" -> {
-
+                        menu.findItem(R.id.navigation_penilaian).isVisible = false
                     }
                     // Handle other roles as needed
                     else -> {
-                        menu.findItem(R.id.navigation_seminar).isVisible = false
-                        menu.findItem(R.id.navigation_skripsi).isVisible = false
+                        menu.findItem(R.id.navigation_pendaftaran).isVisible = false
                     }
                 }
             }
@@ -73,7 +70,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupUser() {
         mainViewModel.getUser().observe(this@MainActivity) {
-            mToken = it.token
             if (!it.isLogin) {
                 moveActivity()
             }

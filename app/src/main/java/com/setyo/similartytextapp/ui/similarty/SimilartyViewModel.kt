@@ -8,7 +8,7 @@ import com.setyo.similartytextapp.ui.Event
 import kotlinx.coroutines.launch
 
 class SimilartyViewModel(private val repository: UserRepository) : ViewModel()  {
-    val judulList: LiveData<List<SimilartyModel>> = repository.judulList
+    val judulList: LiveData<SimilartyModel> = repository.judulList
     val isLoading: LiveData<Boolean> = repository.isLoading
     val textToast: LiveData<Event<String>> = repository.textToast
 

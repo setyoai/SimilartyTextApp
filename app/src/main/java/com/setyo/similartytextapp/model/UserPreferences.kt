@@ -29,8 +29,9 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
     fun getDosen(): Flow<DosenModel> {
         return dataStore.data.map { preferences ->
             DosenModel(
-                id_user = preferences[ID_DOSEN] ?:"",
+                id_user = preferences[ID_USER] ?:"",
                 username_user = preferences[USERDOSEN_KEY] ?:"",
+                id_dosen = preferences[ID_DOSEN] ?:"",
                 token = preferences[TOKEN_KEY] ?:"",
                 role = preferences[ROLE_KEY] ?:"",
                 isLogin = preferences[STATE_KEY] ?: false
@@ -52,8 +53,9 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
 
     suspend fun getLoginDosen(dosen: DosenModel) {
         dataStore.edit { preferences ->
-            preferences[ID_DOSEN] = dosen.id_user
+            preferences[ID_USER] = dosen.id_user
             preferences[USERDOSEN_KEY] = dosen.username_user
+            preferences[ID_DOSEN] = dosen.id_dosen
             preferences[TOKEN_KEY] = dosen.token
             preferences[ROLE_KEY] = dosen.role
             preferences[STATE_KEY] = dosen.isLogin
@@ -76,13 +78,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
 
     suspend fun logoutUser() {
         dataStore.edit { preferences ->
-            preferences.remove(ID_KEY)
-            preferences.remove(USERNAME_KEY)
-            preferences.remove(NAME_KEY)
-            preferences.remove(TOKEN_KEY)
-            preferences.remove(ROLE_KEY)
-            preferences.remove(STATE_KEY)
-            // Tambahkan kunci lainnya yang ingin dihapus
+            preferences.clear()
         }
     }
 
@@ -98,7 +94,8 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         private var INSTANCE: UserPreferences? = null
 
         private val ID_KEY = stringPreferencesKey("id_mhs")
-        private val ID_DOSEN = stringPreferencesKey("id_user")
+        private val ID_USER = stringPreferencesKey("id_user")
+        private val ID_DOSEN = stringPreferencesKey("id_dosen")
         private val USERNAME_KEY = stringPreferencesKey("nim_mhs")
         private val USERDOSEN_KEY = stringPreferencesKey("username_mhs")
         private val NAME_KEY = stringPreferencesKey("nama_mhs")

@@ -5,56 +5,69 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.setyo.similartytextapp.R
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.setyo.similartytextapp.databinding.FragmentPenilaianBinding
+import com.setyo.similartytextapp.ui.ViewModelFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PenilaianFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PenilaianFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private var _binding: FragmentPenilaianBinding? = null
+    private val binding get() = _binding!!
+    private val penilaianViewModel by viewModels<PenilaianViewModel> {
+        ViewModelFactory.getInstance(requireContext())
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_penilaian, container, false)
+    ): View {
+        (activity as AppCompatActivity).supportActionBar?.hide()
+        _binding = FragmentPenilaianBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PenilaianFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PenilaianFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        var EXTRA_ID = "extra_id"
+        var EXTRA_NAME = "extra_name"
+        var EXTRA_NIM = "extra_nim"
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        showLoading()
+        penilaianViewModel.getDosen().observe(viewLifecycleOwner) {
+            getResult(it.id_dosen)
+        }
+        binding.penilaianViewList.adapter = PenilaianListAdapter(emptyList())
+        showRecyclerView()
+    }
+
+    private fun getResult(id: String) {
+        penilaianViewModel.getPenilaian(id)
+        penilaianViewModel.penilaianResponse.observe(viewLifecycleOwner) { penilaianResponse ->
+            binding.penilaianViewList.adapter = PenilaianListAdapter(penilaianResponse.detsemproData)
+        }
+    }
+
+    private fun showLoading() {
+        penilaianViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun showRecyclerView() {
+        binding.penilaianViewList.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+        }
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

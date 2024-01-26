@@ -20,7 +20,7 @@ data class ResultDafSkripsiResponse(
 data class DafskripsiData(
 
 	@field:SerializedName("id_dafskripsi")
-	val idDafskripsi: String? = null,
+	val idDafskripsi: String,
 
 	@field:SerializedName("status_dafskripsi")
 	val statusDafskripsi: String? = null,

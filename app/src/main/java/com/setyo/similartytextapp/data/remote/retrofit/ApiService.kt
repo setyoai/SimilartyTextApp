@@ -1,11 +1,11 @@
 package com.setyo.similartytextapp.data.remote.retrofit
 
 import com.setyo.similartytextapp.data.remote.response.*
-import com.setyo.similartytextapp.ui.similarty.SimilartyModel
 import com.setyo.similartytextapp.data.remote.response.LoginResponse
 import com.setyo.similartytextapp.data.remote.response.RegisterResponse
 import com.setyo.similartytextapp.data.remote.response.UpdateUserResponse
 import com.setyo.similartytextapp.data.remote.response.UserResponse
+import com.setyo.similartytextapp.ui.similarty.SimilartyModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -39,6 +39,7 @@ interface ApiService {
     @POST("dafsemprorest")
     fun uploadFile(
         @Part("id_dafskripsi") id: RequestBody,
+        @Part("judul_dafsempro") judul: RequestBody,
         @Part transkripNilai: MultipartBody.Part,
         @Part pengesahan: MultipartBody.Part,
 //        @Part bukuBimbingan: MultipartBody.Part,
@@ -54,13 +55,23 @@ interface ApiService {
         @Path("id") id: String,
     ): Call<UserResponse>
 
+    @GET("detsemprorest/{id}")
+    fun getDataPenilaian(
+        @Path("id") id: String,
+    ): Call<PenilaianDosenResponse>
+
+    @GET("userrest/{id}")
+    fun getUserDosen(
+        @Path("id") id: String,
+    ): Call<GetDosenResponse>
+
     @GET("dafskripsirest/{id}")
     fun getUserDafSkripsi(
         @Path("id") id: String,
     ): Call<ResultDafSkripsiResponse>
 
     @GET("judulrest")
-    fun getTitledata() : Call<List<SimilartyModel>>
+    fun getTitledata() : Call<SimilartyModel>
 //
 //    @Multipart
 //    @POST("update-user")
@@ -80,6 +91,13 @@ interface ApiService {
         @Field("nohp_mhs") nohp: String,
         @Field("email_mhs") email: String,
     ): Call<UpdateUserResponse>
+
+    @FormUrlEncoded
+    @PUT("detsemprorest/{id_detsempro}")
+    fun updateDataPenilaian(
+        @Path("id_detsempro") id: String,
+        @Field("ketrev_detsempro") ketrev: String,
+    ): Call<UpdatePenilaianResponse>
 
     @GET("userrest")
     fun loginUserDosen(

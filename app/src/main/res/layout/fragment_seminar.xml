@@ -23,6 +23,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textFieldTitle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="@string/inputText_cek_title"
+        style="?attr/textInputFilledStyle"
+        app:boxBackgroundColor="?attr/colorSurface"
+        app:boxStrokeColor="@color/secondary"
+        app:boxStrokeWidth="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seminarTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:inputType="text"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <ImageView
         android:id="@+id/imageViewTranskripNilai"
         android:layout_width="50dp"
@@ -30,7 +53,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="32dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seminarTextView"
+        app:layout_constraintTop_toBottomOf="@+id/textFieldTitle"
         app:srcCompat="@drawable/image" />
 
     <TextView

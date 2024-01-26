@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id ("androidx.navigation.safeargs")
 }
 
 android {
@@ -16,9 +17,8 @@ android {
 
         buildConfigField("String", "USER_TOKEN", "\"2F4zAdm1e1Nx1nB2jGrzPcq6OplMpT1WxE3i\"")
         buildConfigField("String", "API_URL", "\"http://192.168.0.107/seminar-proposal-exam/public/\"")
-//        buildConfigField("String", "API_URL", "\"http://192.168.136.44/seminar-proposal-exam/public/\"")
-//        buildConfigField("String", "API_URL", "\"http://10.21.0.213/seminar-proposal-exam/public/\"")
-
+//        buildConfigField("String", "API_URL", "\"http://10.21.2.207/seminar-proposal-exam/public/\"")
+//
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -83,7 +83,7 @@ dependencies {
     val nav_version = "2.7.6"
     implementation ("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation ("androidx.navigation:navigation-ui-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+    implementation ("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
 
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
 
@@ -92,4 +92,6 @@ dependencies {
 
     // Cropper
     implementation ("com.vanniktech:android-image-cropper:4.3.3")
+
+    implementation("androidx.cardview:cardview:1.0.0")
 }

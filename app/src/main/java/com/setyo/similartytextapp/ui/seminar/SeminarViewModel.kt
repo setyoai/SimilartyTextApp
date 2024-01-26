@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.setyo.similartytextapp.data.remote.response.DaftarSeminarResponse
+import com.setyo.similartytextapp.data.remote.response.ResultDafSkripsiResponse
 import com.setyo.similartytextapp.model.DafSkripsiModel
 import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.repository.UserRepository
@@ -16,9 +17,11 @@ class SeminarViewModel(private val repository: UserRepository): ViewModel() {
     val dafsemResponse: LiveData<DaftarSeminarResponse> = repository.dafsemResponse
     val isLoading: LiveData<Boolean> = repository.isLoading
     val textToast: LiveData<Event<String>> = repository.textToast
+    val resultDafSkripsiResponse: LiveData<ResultDafSkripsiResponse> = repository.resultDafSkripsiResponse
 
     fun uploadFileSeminar(
         id: RequestBody,
+        judul: RequestBody,
         transkripNilai: MultipartBody.Part,
         pengesahan: MultipartBody.Part,
 //        bukuBimbingan: MultipartBody.Part,
@@ -31,6 +34,7 @@ class SeminarViewModel(private val repository: UserRepository): ViewModel() {
         viewModelScope.launch {
             repository.uploadFileSeminar(
                 id,
+                judul,
                 transkripNilai,
                 pengesahan,
 //                bukuBimbingan,
@@ -47,8 +51,11 @@ class SeminarViewModel(private val repository: UserRepository): ViewModel() {
         return repository.getUser()
     }
 
-    fun getUserResultSkripsi(): LiveData<DafSkripsiModel> {
-        return repository.getUserResultSkripsi()
+    fun getDafSkripsi(id: String) {
+        viewModelScope.launch {
+            repository.getUserDafSkripsi(id)
+        }
     }
+
 
 }

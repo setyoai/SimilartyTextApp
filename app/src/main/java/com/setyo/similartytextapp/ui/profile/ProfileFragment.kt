@@ -2,6 +2,7 @@ package com.setyo.similartytextapp.ui.profile
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.canhub.cropper.*
 import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.data.remote.response.UserData
+import com.setyo.similartytextapp.data.remote.response.UserDetails
 import com.setyo.similartytextapp.databinding.FragmentProfileBinding
 import com.setyo.similartytextapp.helper.uriToFile
 import com.setyo.similartytextapp.ui.ViewModelFactory
@@ -61,12 +63,38 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupUser() {
-        profileViewModel.getUser().observe(viewLifecycleOwner) {
-            setUserData(it.id_mhs)
-        }
-        profileViewModel.userResponse.observe(viewLifecycleOwner) {
-            val userData = it.userData
-            getUserData(userData)
+        var userRole: String?
+        profileViewModel.getUser().observe(viewLifecycleOwner) { userData ->
+            userData?.let { mahasiswa ->
+                userRole = mahasiswa.role
+                when(userRole) {
+                    "mahasiswa" -> {
+                        binding.textViewName.setTextColor(Color.BLACK)
+                        binding.textViewUsername.setTextColor(Color.BLACK)
+                        binding.textViewNameDosen.visibility = View.GONE
+                        binding.textViewUsernameDosen.visibility = View.GONE
+                        profileViewModel.getUser().observe(viewLifecycleOwner) {
+                            setUserData(it.id_mhs)
+                        }
+                        profileViewModel.userResponse.observe(viewLifecycleOwner) {
+                            val userData = it.userData
+                            getUserData(userData)
+                        }
+                    } else -> {
+                    binding.textViewNameDosen.setTextColor(Color.BLACK)
+                    binding.textViewUsernameDosen.setTextColor(Color.BLACK)
+                        profileViewModel.getDosen().observe(viewLifecycleOwner) {
+                            setUserDosen(it.id_user)
+                        }
+                        profileViewModel.getDosenResponse.observe(viewLifecycleOwner) {
+                            val userData = it.userDetails
+                            getUserDosen(userData)
+                        }
+                    }
+
+                }
+
+            }
         }
     }
 
@@ -78,6 +106,17 @@ class ProfileFragment : Fragment() {
                 .into(imageViewAvatar)
            textViewName.text = userData.namaMhs
            textViewUsername.text =  userData.nimMhs
+        }
+    }
+
+    private fun getUserDosen(userDosen: UserDetails) {
+        binding.apply {
+            Glide.with(requireContext())
+                .load(userDosen.idUser)
+                .error(R.drawable.outline_account_circle_64)
+                .into(imageViewAvatar)
+            textViewNameDosen.text = userDosen.namaDosen
+            textViewUsernameDosen.text = userDosen.username
         }
     }
 
@@ -110,6 +149,10 @@ class ProfileFragment : Fragment() {
 
     private fun setUserData(id: String) {
         profileViewModel.getUserData(id)
+    }
+
+    private fun setUserDosen(id: String) {
+        profileViewModel.getUserDosen(id)
     }
 
 //    private fun updateUser() {

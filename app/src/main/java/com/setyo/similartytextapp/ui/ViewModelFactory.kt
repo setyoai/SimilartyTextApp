@@ -8,6 +8,8 @@ import com.setyo.similartytextapp.repository.UserRepository
 import com.setyo.similartytextapp.ui.home.HomeViewModel
 import com.setyo.similartytextapp.ui.login.LoginViewModel
 import com.setyo.similartytextapp.ui.main.MainViewModel
+import com.setyo.similartytextapp.ui.pendaftaran.PendaftaranViewModel
+import com.setyo.similartytextapp.ui.penilaian.PenilaianViewModel
 import com.setyo.similartytextapp.ui.profile.ProfileViewModel
 import com.setyo.similartytextapp.ui.register.RegisterViewModel
 import com.setyo.similartytextapp.ui.seminar.SeminarViewModel
@@ -28,6 +30,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(repository) as T
             }
+            modelClass.isAssignableFrom(PendaftaranViewModel::class.java) -> {
+                PendaftaranViewModel(repository) as T
+            }
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
                 ProfileViewModel(repository) as T
             }
@@ -42,6 +47,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(SimilartyViewModel::class.java) -> {
                 SimilartyViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(PenilaianViewModel::class.java) -> {
+                PenilaianViewModel(repository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

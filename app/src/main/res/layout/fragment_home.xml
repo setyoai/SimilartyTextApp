@@ -23,7 +23,19 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/initial_name"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorSurface"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/textViewHello" />
+
+    <TextView
+        android:id="@+id/textViewDosen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/initial_name"
+        android:textColor="?attr/colorSurface"
+        tools:visibility="visible"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/textViewHello" />
@@ -46,54 +58,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
-    <TextView
-        android:id="@+id/textViewStatusSkripsi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/initial_status"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <TextView
-        android:id="@+id/textViewResultSkripsi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_semibold"
-        android:layout_marginStart="8dp"
-        android:text="@string/initial_status_result"
-        android:textColor="@color/design_default_color_error"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewStatusSkripsi"
-        app:layout_constraintStart_toEndOf="@+id/textViewStatusSkripsi" />
-
-    <TextView
-        android:id="@+id/textViewStatusKet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16sp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/initial_ket"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/textViewStatusSkripsi"
-        app:layout_constraintTop_toBottomOf="@+id/textViewStatusSkripsi" />
-
-    <TextView
-        android:id="@+id/textViewResultKet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:layout_marginStart="8dp"
-        android:text="@string/initial_status_result"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewStatusKet"
-        app:layout_constraintStart_toEndOf="@+id/textViewStatusKet" />
-
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
