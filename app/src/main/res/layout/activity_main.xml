@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:labelVisibilityMode="auto"
         app:itemIconSize="32dp"
-        android:background="@color/white"
+        android:background="?attr/colorSurface"
         app:itemIconTint="@color/primary"
         app:itemTextColor="@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"

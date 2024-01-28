@@ -5,13 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.databinding.FragmentUpdatePenilaianBinding
 import com.setyo.similartytextapp.ui.ViewModelFactory
-
 
 class UpdatePenilaianFragment : Fragment() {
 
@@ -48,13 +48,21 @@ class UpdatePenilaianFragment : Fragment() {
 //    }
 
     private fun setupUser() {
-
         val dataNim = arguments?.getString(PenilaianFragment.EXTRA_NIM)
         val dataName = arguments?.getString(PenilaianFragment.EXTRA_NAME)
+        val dataTitle = arguments?.getString(PenilaianFragment.EXTRA_TITLE)
+        when (arguments?.getString(PenilaianFragment.EXTRA_LEVEL)) {
+            "Anggota Penguji" -> {
+                binding.textViewStatus.visibility = View.GONE
+                binding.radioGroupStatus.visibility = View.GONE
+                binding.radioGroupHasil.visibility = View.GONE
+                binding.textViewHasil.visibility = View.GONE
+            }
+        }
 
         binding.textViewNim.text = dataNim
         binding.textViewName.text = dataName
-
+        binding.textViewJudul.text = dataTitle
     }
 
     private fun updatePenilaian() {
@@ -64,14 +72,24 @@ class UpdatePenilaianFragment : Fragment() {
                     val dataId = arguments?.getString(PenilaianFragment.EXTRA_ID)
                     val id = dataId.toString()
                     val ketrev = inputTextKetRev.text.toString()
-                    updateResponse(id, ketrev)
+                    textViewStatus.text
+                    textViewHasil.text
+                    // Get the selected radio button's text from radioGroupStatus
+                    val selectedStatusId = radioGroupStatus.checkedRadioButtonId
+                    val statusRadioButton = radioGroupStatus.findViewById<RadioButton>(selectedStatusId)
+                    val status = statusRadioButton?.text.toString()
+                    // Get the selected radio button's text from radioGroupHasil
+                    val selectedHasilId = radioGroupHasil.checkedRadioButtonId
+                    val hasilRadioButton = radioGroupHasil.findViewById<RadioButton>(selectedHasilId)
+                    val hasil = hasilRadioButton?.text.toString()
+                    updateResponse(id, ketrev, status, hasil)
                 }
             }
         }
     }
 
-    private fun updateResponse(id: String, ketrev: String) {
-        penilaianViewModel.getUpdatePenilaain(id, ketrev)
+    private fun updateResponse(id: String, ketrev: String, status: String, hasil: String) {
+        penilaianViewModel.getUpdatePenilaain(id, ketrev, status, hasil)
         penilaianViewModel.updatePenilaianResponse.observe(viewLifecycleOwner) {
             if (!it.error) {
                 showToast()

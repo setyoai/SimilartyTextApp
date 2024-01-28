@@ -31,6 +31,9 @@ data class DetsemproDataItem(
 	@field:SerializedName("jam_sempro")
 	val jamSempro: String,
 
+	@field:SerializedName("judul_dafsempro")
+	val juduldafsempro: String,
+
 	@field:SerializedName("level_dosen")
 	val levelDosen: String,
 

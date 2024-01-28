@@ -5,6 +5,7 @@
         <item
             android:id="@+id/logout"
             android:title="@string/title_logout"
-            app:showAsAction="ifRoom" />
+            android:icon="@drawable/settings"
+            app:showAsAction="never" />
     </group>
 </menu>

@@ -57,6 +57,9 @@ class UserRepository (
     private val _dafsemResponse = MutableLiveData<DaftarSeminarResponse>()
     val dafsemResponse : LiveData<DaftarSeminarResponse> = _dafsemResponse
 
+    private val _dafSemproResponse = MutableLiveData<DafSemproResponse>()
+    val dafSemproResponse : LiveData<DafSemproResponse> = _dafSemproResponse
+
     private val _dafSkripsiResponse = MutableLiveData<DafSkripsiResponse>()
     val dafSkripsiResponse : LiveData<DafSkripsiResponse> = _dafSkripsiResponse
 
@@ -260,6 +263,30 @@ class UserRepository (
         })
     }
 
+
+    fun getDafSeminar(id: String) {
+        _isLoading.value = true
+        val client = apiService.getDafSempro(id)
+        client.enqueue(object : Callback<DafSemproResponse> {
+            override fun onResponse(
+                call: Call<DafSemproResponse>,
+                response: Response<DafSemproResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _dafSemproResponse.value = response.body()
+                } else {
+                    Log.e(TAG,"onFailure: ${response.message()}")
+                }
+            }
+            override fun onFailure(call: Call<DafSemproResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
     fun uploadFileSeminar(
         id: RequestBody,
         judul: RequestBody,
@@ -373,9 +400,9 @@ class UserRepository (
         })
     }
 
-    fun updateDataPenilaain( id: String, ketrev: String) {
+    fun updateDataPenilaain( id: String, ketrev: String, status: String, hasil: String) {
         _isLoading.value = true
-        val client = apiService.updateDataPenilaian(id, ketrev)
+        val client = apiService.updateDataPenilaian(id, ketrev, status, hasil)
         client.enqueue(object : Callback<UpdatePenilaianResponse> {
             override fun onResponse(call: Call<UpdatePenilaianResponse>, response: Response<UpdatePenilaianResponse>) {
                 _isLoading.value = false

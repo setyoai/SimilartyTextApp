@@ -77,18 +77,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNim" />
 
+    <TextView
+        android:id="@+id/textViewJudul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/inputText_title"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textFieldKetRev"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:hint="@string/inputText_ketrev"
-        app:boxStrokeColor="@color/primary"
+        style="?attr/textInputFilledStyle"
+        app:boxBackgroundColor="?attr/colorSurface"
+        app:boxStrokeColor="@color/secondary"
         app:boxStrokeWidth="2dp"
-        app:hintTextColor="@color/secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName">
+        app:layout_constraintTop_toBottomOf="@+id/textViewJudul">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputTextKetRev"
@@ -99,19 +116,102 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/textViewStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/textview_status"
+        android:textColor="@color/secondary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textFieldKetRev"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewStatus">
+
+        <RadioButton
+            android:id="@+id/radio_revisi_besar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/radio_revisi_besar" />
+
+        <RadioButton
+            android:id="@+id/radio_revisi_kecil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_revisi_kecil" />
+        <RadioButton
+            android:id="@+id/radio_revisi_kosong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_revisi_kosong" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textViewHasil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/textview_hasil"
+        android:textColor="@color/secondary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupStatus"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupHasil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHasil">
+
+        <RadioButton
+            android:id="@+id/radio_diterima"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/radio_hasil_diterima" />
+
+        <RadioButton
+            android:id="@+id/radio_ditolak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_hasil_ditolak" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/buttonSave"
         style="@style/Widget.Material3.Button.IconButton.Filled"
-        app:icon="@drawable/save"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/button_save"
+        app:icon="@drawable/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldKetRev"
-        app:layout_constraintVertical_bias="0.246" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupHasil"
+        app:layout_constraintVertical_bias="0.149" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

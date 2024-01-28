@@ -29,9 +29,9 @@ class PenilaianViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
-    fun getUpdatePenilaain(id: String, ketrev: String) {
+    fun getUpdatePenilaain(id: String, ketrev: String, status: String, hasil: String) {
         viewModelScope.launch {
-            repository.updateDataPenilaain(id, ketrev)
+            repository.updateDataPenilaain(id, ketrev, status, hasil)
         }
     }
 

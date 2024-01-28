@@ -58,10 +58,10 @@ class WelcomeActivity : AppCompatActivity() {
             repeatMode = ObjectAnimator.REVERSE
         }.start()
 
-        val login = ObjectAnimator.ofFloat(binding.loginMahasiswa, View.ALPHA, 1f).setDuration(100)
-        val signup = ObjectAnimator.ofFloat(binding.loginDosen, View.ALPHA, 1f).setDuration(100)
-        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(100)
-        val desc = ObjectAnimator.ofFloat(binding.descTextView, View.ALPHA, 1f).setDuration(100)
+        val login = ObjectAnimator.ofFloat(binding.loginMahasiswa, View.ALPHA, 1f).setDuration(200)
+        val signup = ObjectAnimator.ofFloat(binding.loginDosen, View.ALPHA, 1f).setDuration(200)
+        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(200)
+        val desc = ObjectAnimator.ofFloat(binding.descTextView, View.ALPHA, 1f).setDuration(200)
 
         val together = AnimatorSet().apply {
             playTogether(login, signup)

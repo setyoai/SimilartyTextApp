@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.data.remote.response.UserData
@@ -34,6 +35,14 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.fabScheduleSeminar.setOnClickListener {
+            view.findNavController().navigate(R.id.action_homeFragment_to_jadwalSeminar)
+        }
+    }
+
     private fun setupUser() {
         var userRole: String?
         homeViewModel.getDosen().observe(viewLifecycleOwner) { userData ->
@@ -43,6 +52,14 @@ class HomeFragment : Fragment() {
                     "mahasiswa" -> {
                         binding.textViewInitial.setTextColor(Color.BLACK)
                         binding.textViewDosen.visibility = View.GONE
+                        binding.fabMyStudent.visibility = View.GONE
+                        binding.textViewMyStudent.visibility = View.GONE
+                        binding.fabListRegissempro.visibility = View.GONE
+                        binding.textViewRegisSeminar.visibility = View.GONE
+                        binding.fabScheduleSeminar.visibility = View.GONE
+                        binding.textViewScheduleSeminar.visibility = View.GONE
+                        binding.fabResultSeminar.visibility = View.GONE
+                        binding.textViewResultSeminar.visibility = View.GONE
                         homeViewModel.getUser().observe(viewLifecycleOwner) {
                             setUserData(it.id_mhs)
                         }

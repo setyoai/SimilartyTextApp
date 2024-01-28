@@ -70,6 +70,11 @@ interface ApiService {
         @Path("id") id: String,
     ): Call<ResultDafSkripsiResponse>
 
+    @GET("dafsemprorest/{id}")
+    fun getDafSempro(
+        @Path("id") id: String,
+    ): Call<DafSemproResponse>
+
     @GET("judulrest")
     fun getTitledata() : Call<SimilartyModel>
 //
@@ -97,6 +102,8 @@ interface ApiService {
     fun updateDataPenilaian(
         @Path("id_detsempro") id: String,
         @Field("ketrev_detsempro") ketrev: String,
+        @Field("status_sempro") status: String,
+        @Field("hasil_sempro") hasil: String,
     ): Call<UpdatePenilaianResponse>
 
     @GET("userrest")

@@ -33,6 +33,8 @@ class PenilaianFragment : Fragment() {
         var EXTRA_ID = "extra_id"
         var EXTRA_NAME = "extra_name"
         var EXTRA_NIM = "extra_nim"
+        var EXTRA_TITLE = "extra_title"
+        var EXTRA_LEVEL = "extra_level"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -64,7 +66,6 @@ class PenilaianFragment : Fragment() {
             setHasFixedSize(true)
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

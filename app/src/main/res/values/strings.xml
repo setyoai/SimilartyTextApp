@@ -8,9 +8,10 @@
     <string name="inputText_nidn">NIDN</string>
     <string name="inputText_password">Password</string>
     <string name="inputText_name">Name</string>
+    <string name="inputText_title">Judul</string>
     <string name="inputText_room">Ruangan</string>
     <string name="inputText_time">Jam</string>
-    <string name="inputText_date">Tanggal</string>
+    <string name="inputText_date">01 Sep 2023</string>
     <string name="inputText_address">Alamat</string>
     <string name="inputText_nohp">No Handphone</string>
     <string name="inputText_email">Email</string>
@@ -31,6 +32,12 @@
     <string name="button_mhs">Mahasiswa</string>
     <string name="button_dosen">Dosen</string>
 
+    <string name="radio_revisi_kecil">Revisi Kecil</string>
+    <string name="radio_revisi_besar">Revisi Besar</string>
+    <string name="radio_revisi_kosong">Tidak Ada</string>
+    <string name="radio_hasil_diterima">Diterima</string>
+    <string name="radio_hasil_ditolak">Ditolak</string>
+
     <string name="textView_register">Register</string>
     <string name="login_desc">Belum Mempunyai Akun ?</string>
     <string name="register_desc">Sudah Mempunyai Akun ?</string>
@@ -48,8 +55,15 @@
     <string name="title_update_penilaian">Update Penilaian</string>
     <string name="profile_name">Nama Profile</string>
     <string name="initial_name">My Name</string>
+    <string name="initial_level_dosen">Level Dosen</string>
+    <string name="initial_menu">Menu</string>
     <string name="initial_hello">Hallo</string>
+    <string name="initial_my_student">Bimbingan Saya</string>
+    <string name="initial_regis_seminar">Pendaftar Proposal</string>
+    <string name="initial_schedule_seminar">Jadwal Seminar</string>
+    <string name="initial_result_seminar">Hasil Seminar</string>
     <string name="initial_status">Status Pendaftaran Skripsi : </string>
+    <string name="initial_status_seminar">Status Pendaftaran Seminar : </string>
     <string name="initial_ket">Keterangan : </string>
     <string name="initial_status_result">Hasil</string>
     <string name="initial_status_waiting">Menunggu</string>
@@ -60,6 +74,8 @@
     <string name="textview_seminar">Silahkan Upload File Seminar</string>
     <string name="textview_penilian">Silahkan Berikan Penilaian Seminar di Bawah Ini</string>
     <string name="textview_similarty">Silahkan Masukan Judul Skripsi Yang Ingin di Cek</string>
+    <string name="textview_status">Pilih Revisi Seminar</string>
+    <string name="textview_hasil">Pilih Hasil Seminar</string>
     <string name="inputText_cek_title">Masukan Judul</string>
     <string name="textview_name_krs">Kartu Hasil Studi</string>
     <string name="textview_name_transkripnilai">Transkrip Nilai</string>

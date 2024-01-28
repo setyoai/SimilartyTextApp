@@ -180,16 +180,8 @@ class ProfileFragment : Fragment() {
 //    }
 //
     private fun setupAction() {
-        binding.toolbarProfile.imageViewSetting.setOnClickListener{
-            showPopupMenu(binding.toolbarProfile.imageViewSetting)
-        }
-    }
-
-    private fun showPopupMenu(view: View) {
-        val popupMenu = PopupMenu(requireContext(), view)
-        popupMenu.inflate(R.menu.option_menu) // Ganti dengan ID menu yang sesuai
-        popupMenu.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
+        binding.topAppBar.setOnMenuItemClickListener {
+            when (it.itemId) {
                 R.id.logout -> {
                     // Handle logout menu item click
                     profileViewModel.logoutUser()
@@ -199,12 +191,7 @@ class ProfileFragment : Fragment() {
                 else -> false
             }
         }
-        popupMenu.show()
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun showToast() {
@@ -213,6 +200,11 @@ class ProfileFragment : Fragment() {
                 Toast.makeText(this.requireContext(), message, Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
         companion object {

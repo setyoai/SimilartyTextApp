@@ -25,6 +25,8 @@ class PenilaianListAdapter(private val detSempro: List<DetsemproDataItem>):Recyc
                 mBundle.putString(PenilaianFragment.EXTRA_ID, detSempro.idDetSempro)
                 mBundle.putString(PenilaianFragment.EXTRA_NIM, detSempro.nimDetsempro)
                 mBundle.putString(PenilaianFragment.EXTRA_NAME, detSempro.namaDetsempro)
+                mBundle.putString(PenilaianFragment.EXTRA_TITLE, detSempro.juduldafsempro)
+                mBundle.putString(PenilaianFragment.EXTRA_LEVEL, detSempro.levelDosen)
                 it.findNavController().navigate(R.id.action_penilaianFragment_to_updatePenilaianFragment, mBundle)
             }
         }
