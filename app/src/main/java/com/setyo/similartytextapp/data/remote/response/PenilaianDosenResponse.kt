@@ -19,6 +19,9 @@ data class DetsemproDataItem(
 	@field:SerializedName("tanggal_sempro")
 	val tanggalSempro: String,
 
+	@field:SerializedName("tanggal_dafsempro")
+	val tanggalDafsempro: String,
+
 	@field:SerializedName("nim_detsempro")
 	val nimDetsempro: String,
 
@@ -36,6 +39,12 @@ data class DetsemproDataItem(
 
 	@field:SerializedName("level_dosen")
 	val levelDosen: String,
+
+	@field:SerializedName("hasil_sempro")
+	val hasilSempro: String,
+
+	@field:SerializedName("status_dafsempro")
+	val statusDafsempro: String,
 
 	@field:SerializedName("nama_detsempro")
 	val namaDetsempro: String

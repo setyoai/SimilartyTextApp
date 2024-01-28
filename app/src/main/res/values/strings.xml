@@ -67,6 +67,8 @@
     <string name="initial_ket">Keterangan : </string>
     <string name="initial_status_result">Hasil</string>
     <string name="initial_status_waiting">Menunggu</string>
+    <string name="initial_status_accept">Diterima</string>
+    <string name="initial_status_rejected">Ditolak</string>
     <string name="profile_username">Nama Username</string>
 
     <string name="imageView_banner">banner</string>

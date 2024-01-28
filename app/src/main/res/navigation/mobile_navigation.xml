@@ -13,9 +13,22 @@
         <action
             android:id="@+id/action_homeFragment_to_jadwalSeminar"
             app:destination="@id/navigation_jadwal_seminar" />
-<!--        <action-->
-<!--            android:id="@+id/action_pendaftaranFragment_to_seminarFragment"-->
-<!--            app:destination="@id/navigation_seminar" />-->
+        <action
+            android:id="@+id/action_homeFragment_to_hasilSeminar"
+            app:destination="@id/navigation_hasil_seminar" />
+        <action
+            android:id="@+id/action_homeFragment_to_daftarSeminar"
+            app:destination="@id/navigation_daftar_seminar" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_daftar_seminar"
+        android:name="com.setyo.similartytextapp.ui.home.daftarseminar.DaftarSeminarFragment"
+        android:label="@string/initial_regis_seminar"
+        tools:layout="@layout/fragment_daftar_seminar">
+        <action
+            android:id="@+id/action_daftarFragment_to_homeFragment"
+            app:destination="@id/navigation_home" />
     </fragment>
 
     <fragment
@@ -28,6 +41,15 @@
             app:destination="@id/navigation_home" />
     </fragment>
 
+    <fragment
+        android:id="@+id/navigation_hasil_seminar"
+        android:name="com.setyo.similartytextapp.ui.home.hasilseminar.HasilSeminarFragment"
+        android:label="@string/initial_result_seminar"
+        tools:layout="@layout/fragment_hasil_seminar">
+        <action
+            android:id="@+id/action_hasilFragment_to_homeFragment"
+            app:destination="@id/navigation_home" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_pendaftaran"
         android:name="com.setyo.similartytextapp.ui.pendaftaran.PendaftaranFragment"

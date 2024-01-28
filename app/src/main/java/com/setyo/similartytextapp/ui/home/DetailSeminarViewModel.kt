@@ -1,19 +1,15 @@
-package com.setyo.similartytextapp.ui.home.jadwalseminar
+package com.setyo.similartytextapp.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.setyo.similartytextapp.data.remote.response.GetDosenResponse
 import com.setyo.similartytextapp.data.remote.response.PenilaianDosenResponse
-import com.setyo.similartytextapp.data.remote.response.UpdatePenilaianResponse
-import com.setyo.similartytextapp.data.remote.response.UserResponse
 import com.setyo.similartytextapp.model.DosenModel
-import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.repository.UserRepository
 import com.setyo.similartytextapp.ui.Event
 import kotlinx.coroutines.launch
 
-class JadwalSeminarViewModel(private val repository: UserRepository) : ViewModel() {
+class DetailSeminarViewModel(private val repository: UserRepository) : ViewModel() {
 
     val penilaianResponse: LiveData<PenilaianDosenResponse> = repository.penilaianResponse
     val isLoading: LiveData<Boolean> = repository.isLoading
