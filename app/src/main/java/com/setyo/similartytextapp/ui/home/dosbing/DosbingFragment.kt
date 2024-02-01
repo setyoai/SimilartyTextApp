@@ -1,4 +1,4 @@
-package com.setyo.similartytextapp.ui.home.daftarseminar
+package com.setyo.similartytextapp.ui.home.dosbing
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,15 +10,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.setyo.similartytextapp.R
-import com.setyo.similartytextapp.databinding.FragmentDaftarSeminarBinding
+import com.setyo.similartytextapp.databinding.FragmentBimbinganBinding
 import com.setyo.similartytextapp.ui.ViewModelFactory
-import com.setyo.similartytextapp.ui.home.dosbing.DosbingViewModel
 
-class DaftarSeminarFragment : Fragment() {
+class DosbingFragment : Fragment() {
 
-    private var _binding: FragmentDaftarSeminarBinding? = null
+    private var _binding: FragmentBimbinganBinding? = null
     private val binding get() = _binding!!
-    private val detailSeminarViewModel by viewModels<DosbingViewModel> {
+    private val dosbingViewModel by viewModels<DosbingViewModel> {
         ViewModelFactory.getInstance(requireContext())
     }
 
@@ -27,7 +26,7 @@ class DaftarSeminarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         (activity as AppCompatActivity).supportActionBar?.hide()
-        _binding = FragmentDaftarSeminarBinding.inflate(inflater, container, false)
+        _binding = FragmentBimbinganBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -35,32 +34,32 @@ class DaftarSeminarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showLoading()
-        binding.toolbarDaftarSeminar.imageViewBack.setOnClickListener {
-            view.findNavController().navigate(R.id.action_daftarFragment_to_homeFragment)
+        binding.toolbarDosbing.imageViewBack.setOnClickListener {
+            view.findNavController().navigate(R.id.action_dosbingFragment_to_homeFragment)
         }
-        detailSeminarViewModel.getDosen().observe(viewLifecycleOwner) {
+        dosbingViewModel.getDosen().observe(viewLifecycleOwner) {
             getResult(it.id_dosen)
         }
-        binding.daftarSeminarViewList.adapter = DaftarSeminarAdapter(emptyList())
+        binding.dosbingList.adapter = DosbingAdapter(emptyList())
         showRecyclerView()
 
     }
 
     private fun getResult(id: String) {
-        detailSeminarViewModel.getDosbing(id)
-        detailSeminarViewModel.dosbingResponse.observe(viewLifecycleOwner) {
-            binding.daftarSeminarViewList.adapter = DaftarSeminarAdapter(it.dosbingData)
+        dosbingViewModel.getDosbing(id)
+        dosbingViewModel.dosbingResponse.observe(viewLifecycleOwner) {
+            binding.dosbingList.adapter = DosbingAdapter(it.dosbingData)
         }
     }
 
     private fun showLoading() {
-        detailSeminarViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+        dosbingViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
     }
 
     private fun showRecyclerView() {
-        binding.daftarSeminarViewList.apply {
+        binding.dosbingList.apply {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
         }

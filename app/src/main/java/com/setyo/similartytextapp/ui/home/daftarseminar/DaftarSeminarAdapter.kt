@@ -5,31 +5,31 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.setyo.similartytextapp.R
-import com.setyo.similartytextapp.data.remote.response.DetsemproDataItem
+import com.setyo.similartytextapp.data.remote.response.DosbingDataItem
 import com.setyo.similartytextapp.databinding.ItemRowDaftarSeminarBinding
 
-class DaftarSeminarAdapter(private val detSempro: List<DetsemproDataItem>):RecyclerView.Adapter<DaftarSeminarAdapter.ListViewHolder>() {
+class DaftarSeminarAdapter(private val dafSempro: List<DosbingDataItem>):RecyclerView.Adapter<DaftarSeminarAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(private val binding: ItemRowDaftarSeminarBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind(detSempro: DetsemproDataItem) {
+        fun bind(dafSempro: DosbingDataItem) {
             binding.apply {
-                textViewNim.text = detSempro.nimDetsempro
-                textViewName.text = detSempro.namaDetsempro
-                when(detSempro.statusDafsempro) {
+                textViewNim.text = dafSempro.nimDosbing
+                textViewName.text = dafSempro.namaDosbing
+                when(dafSempro.statusDafsempro) {
                     "1" -> {
                         textViewStatus.setText(R.string.initial_status_accept)
                         textViewStatus.setTextColor(Color.GREEN)
                     }
                     "2" -> {
-                        textViewStatus.setBackgroundColor(R.string.initial_status_rejected)
+                        textViewStatus.setText(R.string.initial_status_rejected)
                         textViewStatus.setTextColor(Color.RED)
                     }
                     else -> {
-                        textViewStatus.setBackgroundColor(R.string.initial_status_waiting)
+                        textViewStatus.setText(R.string.initial_status_waiting)
                         textViewStatus.setTextColor(Color.YELLOW)
                     }
                 }
-                textViewDate.text = detSempro.tanggalDafsempro
+                textViewDate.text = dafSempro.tanggalDafsempro
             }
         }
     }
@@ -40,9 +40,9 @@ class DaftarSeminarAdapter(private val detSempro: List<DetsemproDataItem>):Recyc
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        holder.bind(detSempro[position])
+        holder.bind(dafSempro[position])
     }
 
-    override fun getItemCount(): Int = detSempro.size
+    override fun getItemCount(): Int = dafSempro.size
 
 }

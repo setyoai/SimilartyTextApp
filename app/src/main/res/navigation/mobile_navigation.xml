@@ -11,6 +11,12 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
         <action
+            android:id="@+id/action_homeFragment_to_status_pendaftaran"
+            app:destination="@id/navigation_status_pendaftaran" />
+        <action
+            android:id="@+id/action_homeFragment_to_dosbing"
+            app:destination="@id/navigation_dosbing" />
+        <action
             android:id="@+id/action_homeFragment_to_jadwalSeminar"
             app:destination="@id/navigation_jadwal_seminar" />
         <action
@@ -19,6 +25,26 @@
         <action
             android:id="@+id/action_homeFragment_to_daftarSeminar"
             app:destination="@id/navigation_daftar_seminar" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_status_pendaftaran"
+        android:name="com.setyo.similartytextapp.ui.pendaftaran.StatusPendaftaranFragment"
+        android:label="@string/initial_status_pendaftaran"
+        tools:layout="@layout/fragment_status_pendaftaran">
+    <action
+        android:id="@+id/action_statusPendaftaranFragment_to_homeFragment"
+        app:destination="@+id/navigation_home"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_dosbing"
+        android:name="com.setyo.similartytextapp.ui.home.dosbing.DosbingFragment"
+        android:label="@string/initial_my_student"
+        tools:layout="@layout/fragment_bimbingan">
+        <action
+            android:id="@+id/action_dosbingFragment_to_homeFragment"
+            app:destination="@id/navigation_home" />
     </fragment>
 
     <fragment

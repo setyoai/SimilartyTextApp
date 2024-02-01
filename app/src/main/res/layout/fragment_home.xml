@@ -74,6 +74,35 @@
             app:layout_constraintTop_toTopOf="@+id/guideline" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabStatusRegister"
+            style="?attr/floatingActionButtonLargeStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginTop="32dp"
+            android:contentDescription="@string/initial_status_pendaftaran"
+            app:backgroundTint="@color/secondary"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:srcCompat="@drawable/source_notes"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/textViewStatusRegister"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/initial_status_pendaftaran"
+            android:textAlignment="center"
+            android:textColor="?attr/colorSurface"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/fabStatusRegister"
+            app:layout_constraintStart_toStartOf="@+id/fabStatusRegister"
+            app:layout_constraintTop_toBottomOf="@+id/fabStatusRegister" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_my_student"
             style="?attr/floatingActionButtonLargeStyle"
             android:layout_width="wrap_content"
@@ -96,7 +125,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/initial_my_student"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorSurface"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/fab_my_student"
             app:layout_constraintStart_toStartOf="@+id/fab_my_student"

@@ -1,5 +1,6 @@
 package com.setyo.similartytextapp.ui.penilaian
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -17,6 +18,16 @@ class PenilaianListAdapter(private val detSempro: List<DetsemproDataItem>):Recyc
                 textViewNim.text = detSempro.nimDetsempro
                 textViewName.text = detSempro.namaDetsempro
                 textViewNameRoom.text = detSempro.namaRuangan
+                when(detSempro.ketrevDetsempro) {
+                    null -> {
+                        textViewStatus
+
+                    }
+                    else -> {
+                        textViewStatus.text = detSempro.ketrevDetsempro
+                        textViewStatus.setTextColor(Color.RED)
+                    }
+                }
                 textViewNameTime.text = detSempro.jamSempro
                 textViewNameDate.text = detSempro.tanggalSempro
             }

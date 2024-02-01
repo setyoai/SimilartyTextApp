@@ -38,52 +38,7 @@
                 android:text="@string/title_skripsi"/>
         </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:id="@+id/textViewStatusSkripsi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/initial_status"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/cardViewSkripsi"
-                app:layout_constraintTop_toBottomOf="@+id/cardViewSkripsi" />
 
-            <TextView
-                android:id="@+id/textViewResultSkripsi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_semibold"
-                android:layout_marginStart="8dp"
-                android:text="@string/initial_status_result"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewStatusSkripsi"
-                app:layout_constraintStart_toEndOf="@+id/textViewStatusSkripsi" />
-
-            <TextView
-                android:id="@+id/textViewStatusKet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/initial_ket"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/textViewStatusSkripsi"
-                app:layout_constraintTop_toBottomOf="@+id/textViewStatusSkripsi" />
-
-            <TextView
-                android:id="@+id/textViewResultKet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_regular"
-                android:layout_marginStart="8dp"
-                android:text="@string/initial_status_result"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewStatusKet"
-                app:layout_constraintStart_toEndOf="@+id/textViewStatusKet" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardViewSeminar"
@@ -93,7 +48,7 @@
         android:layout_height="80dp"
         android:layout_marginTop="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/textViewStatusKet">
+        app:layout_constraintTop_toBottomOf="@id/cardViewSkripsi">
 
         <TextView
             android:id="@+id/buttonSeminar"
@@ -105,51 +60,6 @@
             android:text="@string/title_seminar"/>
     </com.google.android.material.card.MaterialCardView>
 
-    <TextView
-        android:id="@+id/textViewStatusSeminar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/initial_status_seminar"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/cardViewSeminar"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewSeminar" />
 
-    <TextView
-        android:id="@+id/textViewResultSeminar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_semibold"
-        android:layout_marginStart="8dp"
-        android:text="@string/initial_status_result"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewStatusSeminar"
-        app:layout_constraintStart_toEndOf="@+id/textViewStatusSeminar" />
-
-    <TextView
-        android:id="@+id/textViewStatusKetSeminar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/initial_ket"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/textViewStatusSeminar"
-        app:layout_constraintTop_toBottomOf="@+id/textViewStatusSeminar" />
-
-    <TextView
-        android:id="@+id/textViewResultKetSem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:layout_marginStart="8dp"
-        android:text="@string/initial_status_result"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewStatusKetSeminar"
-        app:layout_constraintStart_toEndOf="@+id/textViewStatusKetSeminar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

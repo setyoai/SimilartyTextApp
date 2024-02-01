@@ -37,7 +37,12 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.fabStatusRegister.setOnClickListener {
+            view.findNavController().navigate(R.id.action_homeFragment_to_status_pendaftaran)
+        }
+        binding.fabMyStudent.setOnClickListener {
+            view.findNavController().navigate(R.id.action_homeFragment_to_dosbing)
+        }
         binding.fabListRegissempro.setOnClickListener {
             view.findNavController().navigate(R.id.action_homeFragment_to_daftarSeminar)
         }
@@ -51,12 +56,13 @@ class HomeFragment : Fragment() {
 
     private fun setupUser() {
         var userRole: String?
-        homeViewModel.getDosen().observe(viewLifecycleOwner) { userData ->
-            userData?.let { dosen ->
+        homeViewModel.getDosen().observe(viewLifecycleOwner) { userDataDosen ->
+            userDataDosen?.let { dosen ->
                 userRole = dosen.role
                 when (userRole) {
                     "mahasiswa" -> {
                         binding.textViewInitial.setTextColor(Color.BLACK)
+                        binding.textViewStatusRegister.setTextColor(Color.BLACK)
                         binding.textViewDosen.visibility = View.GONE
                         binding.fabMyStudent.visibility = View.GONE
                         binding.textViewMyStudent.visibility = View.GONE
@@ -76,12 +82,13 @@ class HomeFragment : Fragment() {
 
                     } else -> {
                         binding.textViewDosen.setTextColor(Color.BLACK)
+                        binding.textViewMyStudent.setTextColor(Color.BLACK)
                         homeViewModel.getDosen().observe(viewLifecycleOwner) {
                             setUserDosen(it.id_user)
                         }
                         homeViewModel.getDosenResponse.observe(viewLifecycleOwner) {
-                            val userData = it.userDetails
-                            getUserDosen(userData)
+                            val userDetail = it.userDetails
+                            getUserDosen(userDetail)
                         }
                     }
                 }

@@ -39,6 +39,9 @@ class UserRepository (
     private val _penilaianResponse = MutableLiveData<PenilaianDosenResponse>()
     val penilaianResponse : LiveData<PenilaianDosenResponse> = _penilaianResponse
 
+    private val _dosbingResponse = MutableLiveData<DosbingResponse>()
+    val dosbingResponse : LiveData<DosbingResponse> = _dosbingResponse
+
     private val _updatePenilaianResponse = MutableLiveData<UpdatePenilaianResponse>()
     val updatePenilaianResponse : MutableLiveData<UpdatePenilaianResponse> = _updatePenilaianResponse
 
@@ -161,7 +164,6 @@ class UserRepository (
         })
     }
 
-
     fun getDataPenilaian(id: String) {
         _isLoading.value = true
         val client = apiService.getDataPenilaian(id)
@@ -178,6 +180,29 @@ class UserRepository (
                 }
             }
             override fun onFailure(call: Call<PenilaianDosenResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun getDataDosbing(id: String) {
+        _isLoading.value = true
+        val client = apiService.getDataDosbing(id)
+        client.enqueue(object : Callback<DosbingResponse> {
+            override fun onResponse(
+                call: Call<DosbingResponse>,
+                response: Response<DosbingResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    val listPenilaian = response.body()?.dosbingData
+                    _dosbingResponse.value = listPenilaian?.let { DosbingResponse(it)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<DosbingResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
                 Log.e(TAG, "onFailure: ${t.message.toString()}")

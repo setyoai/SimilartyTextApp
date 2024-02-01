@@ -17,5 +17,11 @@ data class DosbingDataItem(
 	val namaDosbing: String,
 
 	@field:SerializedName("level_dosen")
-	val levelDosen: String
+	val levelDosen: String,
+
+	@field:SerializedName("status_dafsempro")
+	val statusDafsempro: String,
+
+	@field:SerializedName("tanggal_dafsempro")
+	val tanggalDafsempro: String,
 )

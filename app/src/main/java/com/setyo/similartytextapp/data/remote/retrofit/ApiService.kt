@@ -60,6 +60,11 @@ interface ApiService {
         @Path("id") id: String,
     ): Call<PenilaianDosenResponse>
 
+    @GET("dosbingrest/{id}")
+    fun getDataDosbing(
+        @Path("id") id: String,
+    ): Call<DosbingResponse>
+
     @GET("userrest/{id}")
     fun getUserDosen(
         @Path("id") id: String,

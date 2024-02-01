@@ -63,65 +63,49 @@ class PendaftaranFragment : Fragment() {
         pendafraranModel.resultDafSkripsiResponse.observe(viewLifecycleOwner) {
             setDafSempro(it.dafskripsiData.idDafskripsi)
         }
-        pendafraranModel.dafsemResponse.observe(viewLifecycleOwner) {
-            val dafsemproData= it.dafsemproData
-            getResultSempro(dafsemproData)
-        }
+//        pendafraranModel.dafsemResponse.observe(viewLifecycleOwner) {
+//            val dafsemproData= it.dafsemproData
+//            getResultSempro(dafsemproData)
+//        }
     }
 
     private fun getResult(resultData: DafskripsiData) {
         binding.apply {
-            textViewResultSkripsi.text = resultData.statusDafskripsi
             when (resultData.statusDafskripsi) {
                 "1" -> {
-                    textViewResultSkripsi.text = "Berhasil"
-                    textViewResultSkripsi.setTextColor(Color.GREEN) // Set the color to green for success
                 }
                 "2" -> {
-                    textViewResultSkripsi.text = "Ditolak"
-                    textViewResultSkripsi.setTextColor(Color.RED) // Set the color to red for rejection
                     cardViewSeminar.visibility = View.GONE
-                    textViewStatusKetSeminar.visibility = View.GONE
-                    textViewStatusSeminar.visibility = View.GONE
-                    textViewResultSeminar.visibility = View.GONE
-                    textViewResultKetSem.visibility = View.GONE
                 }
                 else -> {
                     // Set a default value or handle other cases if needed
-                    textViewResultSkripsi.text = getString(R.string.initial_status_waiting)
-                    textViewResultSkripsi.setTextColor(Color.BLACK) // Set a default color if needed
                     cardViewSeminar.visibility = View.GONE
-                    textViewStatusKetSeminar.visibility = View.GONE
-                    textViewStatusSeminar.visibility = View.GONE
-                    textViewResultSeminar.visibility = View.GONE
-                    textViewResultKetSem.visibility = View.GONE
                 }
             }
-            textViewResultKet.text = resultData.keteranganDafskripsi
         }
     }
 
-    private fun getResultSempro(dafsemproData: DafsemproData) {
-        binding.apply {
-            textViewResultSeminar.text = dafsemproData.statusDafsempro
-            when (dafsemproData.statusDafsempro) {
-                "1" -> {
-                    textViewResultSeminar.text = "Berhasil"
-                    textViewResultSeminar.setTextColor(Color.GREEN) // Set the color to green for success
-                }
-                "2" -> {
-                    textViewResultSeminar.text = "Ditolak"
-                    textViewResultSeminar.setTextColor(Color.RED) // Set the color to red for rejection
-                }
-                else -> {
-                    // Set a default value or handle other cases if needed
-                    textViewResultSeminar.text = getString(R.string.initial_status_waiting)
-                    textViewResultSeminar.setTextColor(Color.BLACK) // Set a default color if needed
-                }
-            }
-            textViewResultKetSem.text = dafsemproData.keteranganDafsempro
-        }
-    }
+//    private fun getResultSempro(dafsemproData: DafsemproData) {
+//        binding.apply {
+//            textViewResultSeminar.text = dafsemproData.statusDafsempro
+//            when (dafsemproData.statusDafsempro) {
+//                "1" -> {
+//                    textViewResultSeminar.text = "Berhasil"
+//                    textViewResultSeminar.setTextColor(Color.GREEN) // Set the color to green for success
+//                }
+//                "2" -> {
+//                    textViewResultSeminar.text = "Ditolak"
+//                    textViewResultSeminar.setTextColor(Color.RED) // Set the color to red for rejection
+//                }
+//                else -> {
+//                    // Set a default value or handle other cases if needed
+//                    textViewResultSeminar.text = getString(R.string.initial_status_waiting)
+//                    textViewResultSeminar.setTextColor(Color.BLACK) // Set a default color if needed
+//                }
+//            }
+//            textViewResultKetSem.text = dafsemproData.keteranganDafsempro
+//        }
+//    }
 
     private fun setDafSkripsi(id: String) {
         pendafraranModel.getDafSkripsi(id)

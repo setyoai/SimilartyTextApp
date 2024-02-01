@@ -7,6 +7,7 @@ import com.setyo.similartytextapp.di.Injection
 import com.setyo.similartytextapp.repository.UserRepository
 import com.setyo.similartytextapp.ui.home.HomeViewModel
 import com.setyo.similartytextapp.ui.home.DetailSeminarViewModel
+import com.setyo.similartytextapp.ui.home.dosbing.DosbingViewModel
 import com.setyo.similartytextapp.ui.login.LoginViewModel
 import com.setyo.similartytextapp.ui.main.MainViewModel
 import com.setyo.similartytextapp.ui.pendaftaran.PendaftaranViewModel
@@ -39,6 +40,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(DosbingViewModel::class.java) -> {
+                DosbingViewModel(repository) as T
             }
             modelClass.isAssignableFrom(DetailSeminarViewModel::class.java) -> {
                 DetailSeminarViewModel(repository) as T

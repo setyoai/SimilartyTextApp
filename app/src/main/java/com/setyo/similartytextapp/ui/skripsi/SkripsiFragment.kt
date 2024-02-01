@@ -13,14 +13,17 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
+import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.databinding.FragmentSkripsiBinding
 import com.setyo.similartytextapp.helper.uriToFile
 import com.setyo.similartytextapp.model.DafSkripsiModel
 import com.setyo.similartytextapp.ui.ViewModelFactory
+import com.setyo.similartytextapp.ui.home.HomeFragmentDirections
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -189,7 +192,7 @@ class SkripsiFragment : Fragment() {
         dafsemproModel.uploadFileSkripsi(nim, krs, transkripNilai, slipPembayaran)
         dafsemproModel.dafSkripsiResponse.observe(viewLifecycleOwner) {
             if (!it.error) {
-//                moveFragment()
+                moveFragment()
             } else {
                 getResultSkripsi(
                     DafSkripsiModel(
@@ -207,7 +210,8 @@ class SkripsiFragment : Fragment() {
 
 
     private fun moveFragment() {
-
+//        val action = HomeFragmentDirections.actionHomeFragmentToStatusPendaftaran()
+//        view?.findNavController()?.navigate(action)
     }
 
 
