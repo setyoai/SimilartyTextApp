@@ -15,7 +15,6 @@
         android:icon="@drawable/app_registration"
         android:title="@string/title_penilian" />
 
-
     <item
         android:id="@+id/navigation_similarity"
         android:enabled="true"

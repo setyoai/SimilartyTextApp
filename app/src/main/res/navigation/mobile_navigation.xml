@@ -14,6 +14,9 @@
             android:id="@+id/action_homeFragment_to_status_pendaftaran"
             app:destination="@id/navigation_status_pendaftaran" />
         <action
+            android:id="@+id/action_homeFragment_to_bimbingan"
+            app:destination="@id/navigation_bimbingan" />
+        <action
             android:id="@+id/action_homeFragment_to_dosbing"
             app:destination="@id/navigation_dosbing" />
         <action
@@ -36,6 +39,26 @@
         android:id="@+id/action_statusPendaftaranFragment_to_homeFragment"
         app:destination="@+id/navigation_home"/>
     </fragment>
+
+    <activity
+        android:id="@+id/navigation_bimbingan"
+        android:name="com.setyo.similartytextapp.ui.home.bimbingan.BimbinganActivity"
+        android:label="@string/initial_my_student"
+        tools:layout="@layout/activity_bimbingan">
+        <!--        <action-->
+        <!--            android:id="@+id/action_bimbingan_dosen1_to_bimbingan"-->
+        <!--            app:destination="@id/navigation_bimbingan" />-->
+    </activity>
+
+    <activity
+        android:id="@+id/navigation_bimbingan_dosen1"
+        android:name="com.setyo.similartytextapp.ui.home.bimbingan.BimbinganMhsActivity"
+        android:label="activity_bimbingan_dosen1"
+        tools:layout="@layout/activity_bimbingan_dosen1">
+<!--        <action-->
+<!--            android:id="@+id/action_bimbingan_dosen1_to_bimbingan"-->
+<!--            app:destination="@id/navigation_bimbingan" />-->
+    </activity>
 
     <fragment
         android:id="@+id/navigation_dosbing"
@@ -115,13 +138,21 @@
         android:id="@+id/navigation_skripsi"
         android:name="com.setyo.similartytextapp.ui.skripsi.SkripsiFragment"
         android:label="@string/title_skripsi"
-        tools:layout="@layout/fragment_skripsi"/>
+        tools:layout="@layout/fragment_skripsi">
+        <action
+            android:id="@+id/action_skripsiFragment_to_pendaftaranFragment"
+            app:destination="@id/navigation_pendaftaran" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_seminar"
         android:name="com.setyo.similartytextapp.ui.seminar.SeminarFragment"
         android:label="@string/title_seminar"
-        tools:layout="@layout/fragment_seminar"/>
+        tools:layout="@layout/fragment_seminar">
+        <action
+            android:id="@+id/action_seminarFragment_to_pendaftaranFragment"
+            app:destination="@id/navigation_pendaftaran" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_updatepenilaian"

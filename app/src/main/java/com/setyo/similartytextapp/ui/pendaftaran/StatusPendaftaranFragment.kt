@@ -25,8 +25,6 @@ class StatusPendaftaranFragment : Fragment() {
         ViewModelFactory.getInstance(requireContext())
     }
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

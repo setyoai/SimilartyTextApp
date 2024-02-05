@@ -68,7 +68,9 @@ class SkripsiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.toolbarSkripsi.imageViewBack.setOnClickListener {
+            view.findNavController().navigate(R.id.action_skripsiFragment_to_pendaftaranFragment)
+        }
         binding.apply {
             imageViewKrs.setOnClickListener { openGallery(cropKrsResultLauncher) }
             imageViewTranskripNilai.setOnClickListener { openGallery(cropTranskripResultLauncher) }
@@ -213,7 +215,6 @@ class SkripsiFragment : Fragment() {
 //        val action = HomeFragmentDirections.actionHomeFragmentToStatusPendaftaran()
 //        view?.findNavController()?.navigate(action)
     }
-
 
 
     private fun showToast() {

@@ -24,4 +24,16 @@ data class DosbingDataItem(
 
 	@field:SerializedName("tanggal_dafsempro")
 	val tanggalDafsempro: String,
+
+	@field:SerializedName("tanggal_sempro")
+	val tanggalSempro: String,
+
+	@field:SerializedName("jam_sempro")
+	val jamSempro: String,
+
+	@field:SerializedName("hasil_sempro")
+	val hasilSempro: String,
+
+	@field:SerializedName("nama_ruangan")
+	val namaRuangan: String,
 )

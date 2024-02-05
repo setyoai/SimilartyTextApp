@@ -5,16 +5,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.setyo.similartytextapp.data.remote.response.DetsemproDataItem
+import com.setyo.similartytextapp.data.remote.response.DosbingDataItem
 import com.setyo.similartytextapp.databinding.ItemRowHasilSeminarBinding
 
-class HasilSeminarAdapter(private val detSempro: List<DetsemproDataItem>):RecyclerView.Adapter<HasilSeminarAdapter.ListViewHolder>() {
+class HasilSeminarAdapter(private val detSempro: List<DosbingDataItem>):RecyclerView.Adapter<HasilSeminarAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(private val binding: ItemRowHasilSeminarBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind(detSempro: DetsemproDataItem) {
+        fun bind(detSempro: DosbingDataItem) {
             binding.apply {
                 textViewDate.text = detSempro.tanggalSempro
-                textViewNim.text = detSempro.nimDetsempro
-                textViewName.text = detSempro.namaDetsempro
+                textViewNim.text = detSempro.nimDosbing
+                textViewName.text = detSempro.namaDosbing
 //                when(detSempro.hasilSempro) {
 //                    "Diterima" -> {
 //                        cardViewResult.setBackgroundColor(Color.GREEN)

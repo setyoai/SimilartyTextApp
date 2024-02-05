@@ -52,7 +52,13 @@ class UpdatePenilaianFragment : Fragment() {
         val dataName = arguments?.getString(PenilaianFragment.EXTRA_NAME)
         val dataTitle = arguments?.getString(PenilaianFragment.EXTRA_TITLE)
         when (arguments?.getString(PenilaianFragment.EXTRA_LEVEL)) {
-            "Anggota Penguji" -> {
+            "Anggota Penguji 1" -> {
+                binding.textViewStatus.visibility = View.GONE
+                binding.radioGroupStatus.visibility = View.GONE
+                binding.radioGroupHasil.visibility = View.GONE
+                binding.textViewHasil.visibility = View.GONE
+            }
+            "Anggota Penguji 2" -> {
                 binding.textViewStatus.visibility = View.GONE
                 binding.radioGroupStatus.visibility = View.GONE
                 binding.radioGroupHasil.visibility = View.GONE

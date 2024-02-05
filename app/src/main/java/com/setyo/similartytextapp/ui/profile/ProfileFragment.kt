@@ -191,7 +191,6 @@ class ProfileFragment : Fragment() {
                 else -> false
             }
         }
-
     }
 
     private fun showToast() {
@@ -210,6 +209,5 @@ class ProfileFragment : Fragment() {
         companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
-
     }
 }

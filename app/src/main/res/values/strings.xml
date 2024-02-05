@@ -5,6 +5,8 @@
     <string name="textView_login_as">Login Sebagai</string>
 
     <string name="inputText_username">NIM</string>
+    <string name="inputText_ket_bimbingan">Keterangan Bimbingan</string>
+    <string name="inputText_ket_balasan">Keterangan Balasan Bimbingan</string>
     <string name="inputText_nidn">NIDN</string>
     <string name="inputText_password">Password</string>
     <string name="inputText_name">Name</string>
@@ -59,6 +61,8 @@
     <string name="initial_menu">Menu</string>
     <string name="initial_hello">Hallo</string>
     <string name="initial_my_student">Bimbingan Saya</string>
+    <string name="initial_dosen1">Pembimbing Utama</string>
+    <string name="initial_dosen2">Pembimbing Pendamping</string>
     <string name="initial_regis_seminar">Pendaftar Proposal</string>
     <string name="initial_schedule_seminar">Jadwal Seminar</string>
     <string name="initial_result_seminar">Hasil Seminar</string>
@@ -74,10 +78,11 @@
 
     <string name="imageView_banner">banner</string>
     <string name="textview_skripsi">Silahkan Upload File Pendaftaran Skripsi</string>
-    <string name="textview_seminar">Silahkan Upload File Seminar</string>
+    <string name="textview_seminar">Silahkan Upload File Pendaftaran Seminar</string>
     <string name="textview_penilian">Silahkan Berikan Penilaian Seminar di Bawah Ini</string>
     <string name="textview_similarty">Silahkan Masukan Judul Skripsi Yang Ingin di Cek</string>
     <string name="textview_status">Pilih Revisi Seminar</string>
+    <string name="textview_tanggal_bimbingan">1-28 16:43</string>
     <string name="textview_hasil">Pilih Hasil Seminar</string>
     <string name="inputText_cek_title">Masukan Judul</string>
     <string name="textview_name_krs">Kartu Hasil Studi</string>

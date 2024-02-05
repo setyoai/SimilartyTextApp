@@ -44,13 +44,12 @@ class HasilSeminarFragment : Fragment() {
         }
         binding.jadwalViewList.adapter = HasilSeminarAdapter(emptyList())
         showRecyclerView()
-
     }
 
     private fun getResult(id: String) {
-        jadwalSeminarViewModel.getPenilaian(id)
-        jadwalSeminarViewModel.penilaianResponse.observe(viewLifecycleOwner) {
-            binding.jadwalViewList.adapter = HasilSeminarAdapter(it.detsemproData)
+        jadwalSeminarViewModel.getDosbing(id)
+        jadwalSeminarViewModel.dosbingResponse.observe(viewLifecycleOwner) {
+            binding.jadwalViewList.adapter = HasilSeminarAdapter(it.dosbingData)
         }
     }
 

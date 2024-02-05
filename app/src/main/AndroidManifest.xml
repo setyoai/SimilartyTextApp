@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -27,11 +27,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.home.bimbingan.BimbinganActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SimilartyTextApp.NoActionBar" />
+        <activity
             android:name=".ui.login.LoginUserActivity"
             android:exported="false"
-            android:theme="@style/Theme.SimilartyTextApp.NoActionBar"/>
+            android:theme="@style/Theme.SimilartyTextApp.NoActionBar" />
         <activity
             android:name=".ui.profile.UpdateProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SimilartyTextApp.NoActionBar" />
+        <activity
+            android:name=".ui.home.bimbingan.BimbinganMhsActivity"
             android:exported="false"
             android:theme="@style/Theme.SimilartyTextApp.NoActionBar" />
         <activity
@@ -70,4 +78,5 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
+
 </manifest>

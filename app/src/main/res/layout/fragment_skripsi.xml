@@ -6,22 +6,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.skripsi.SkripsiFragment">
 
-    <TextView
-        android:id="@+id/seminarTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:textSize="16sp"
-        android:text="@string/textview_skripsi"
-        android:textColor="@color/primary"
-        android:textAlignment="center"
+    <include
+        android:id="@+id/toolbarSkripsi"
+        layout="@layout/toolbar_skripsi"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/seminarTextView"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="32dp"-->
+<!--        android:layout_marginEnd="32dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:fontFamily="@font/poppins_bold"-->
+<!--        android:textSize="16sp"-->
+<!--        android:text="@string/textview_skripsi"-->
+<!--        android:textColor="@color/primary"-->
+<!--        android:textAlignment="center"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <ImageView
         android:id="@+id/imageViewKrs"
@@ -30,7 +37,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginStart="32dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seminarTextView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarSkripsi"
         app:srcCompat="@drawable/image" />
 
     <TextView
@@ -100,16 +107,17 @@
 
     <Button
         android:id="@+id/buttonUpload"
+        style="@style/Widget.Material3.Button.IconButton.Filled"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        style="@style/Widget.Material3.Button.IconButton.Filled"
-        app:icon="@drawable/upload"
         android:layout_marginBottom="64dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/button_upload"
+        app:icon="@drawable/upload"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameSlipTextView" />
 
     <ProgressBar
         android:id="@+id/progressBar"

@@ -89,6 +89,7 @@
             android:layout_height="wrap_content"
             style="@style/Widget.Material3.Button.IconButton.Filled"
             android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
             android:text="@string/button_login"
             android:fontFamily="@font/poppins_bold"
             app:layout_constraintBottom_toBottomOf="parent"

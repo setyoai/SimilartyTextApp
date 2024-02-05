@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_pendaftaran,
-                R.id.navigation_similarity,
                 R.id.navigation_penilaian,
+                R.id.navigation_similarity,
                 R.id.navigation_profile
             )
         )

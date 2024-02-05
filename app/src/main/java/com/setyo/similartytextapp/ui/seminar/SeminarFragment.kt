@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageView
@@ -92,7 +93,9 @@ class SeminarFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.toolbarSeminar.imageViewBack.setOnClickListener {
+            view.findNavController().navigate(R.id.action_seminarFragment_to_pendaftaranFragment)
+        }
         binding.apply {
             imageViewTranskripNilai.setOnClickListener { openGallery(cropTranskripResultLauncher) }
             imageViewPengesahan.setOnClickListener { openGallery(cropPengesahanResultLauncher) }
@@ -293,7 +296,7 @@ class SeminarFragment : Fragment() {
 //                    originalFilePlagiasi, "plagiasi_dafsempro"
 //                )
                 val id = it.dafskripsiData.idDafskripsi.toRequestBody("text/plain".toMediaType())
-                val title = binding.inputTextTitle.toString()
+                val title = binding.inputTextTitle.text.toString()
                 val judul = title.toRequestBody("text/plain".toMediaType())
 
                 // Call the uploadResponse function with the created MultipartBody.Parts

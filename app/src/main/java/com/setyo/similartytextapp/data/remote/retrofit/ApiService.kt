@@ -50,6 +50,17 @@ interface ApiService {
 //        @Part plagiasi: MultipartBody.Part,
     ): Call<DaftarSeminarResponse>
 
+    @Multipart
+    @POST("bimbinganrest")
+    fun bimbinganMhs(
+        @Part("dosbingid_bimbingan") dosbingid: RequestBody,
+        @Part("mhsnim_bimbingan") mhsnim: RequestBody,
+//        @Part("bab_bimbingan") bab: RequestBody,
+        @Part("ket_bimbingan") ket: RequestBody,
+//        @Part file: MultipartBody.Part,
+        @Part("dosenid_bimbingan") dosenid: RequestBody,
+    ): Call<CreateBimbinganResponse>
+
     @GET("mahasiswarest/{id}")
     fun getUserData(
         @Path("id") id: String,
@@ -60,10 +71,20 @@ interface ApiService {
         @Path("id") id: String,
     ): Call<PenilaianDosenResponse>
 
+    @GET("bimbinganrest/{id}")
+    fun getDataBimbingan(
+        @Path("id") id: String,
+    ): Call<BimbinganResponse>
+
     @GET("dosbingrest/{id}")
     fun getDataDosbing(
         @Path("id") id: String,
     ): Call<DosbingResponse>
+
+    @GET("dosbingapi/{id}")
+    fun getDataMhsDosbing(
+        @Path("id") id: String,
+    ): Call<DosbingMhsResponse>
 
     @GET("userrest/{id}")
     fun getUserDosen(

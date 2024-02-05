@@ -40,6 +40,9 @@ class HomeFragment : Fragment() {
         binding.fabStatusRegister.setOnClickListener {
             view.findNavController().navigate(R.id.action_homeFragment_to_status_pendaftaran)
         }
+        binding.fabListBimbingan.setOnClickListener {
+            view.findNavController().navigate(R.id.action_homeFragment_to_bimbingan)
+        }
         binding.fabMyStudent.setOnClickListener {
             view.findNavController().navigate(R.id.action_homeFragment_to_dosbing)
         }
@@ -61,6 +64,7 @@ class HomeFragment : Fragment() {
                 userRole = dosen.role
                 when (userRole) {
                     "mahasiswa" -> {
+                        binding.textViewBimbingan.setTextColor(Color.BLACK)
                         binding.textViewInitial.setTextColor(Color.BLACK)
                         binding.textViewStatusRegister.setTextColor(Color.BLACK)
                         binding.textViewDosen.visibility = View.GONE
@@ -83,6 +87,7 @@ class HomeFragment : Fragment() {
                     } else -> {
                         binding.textViewDosen.setTextColor(Color.BLACK)
                         binding.textViewMyStudent.setTextColor(Color.BLACK)
+                        binding.textViewRegisSeminar.setTextColor(Color.BLACK)
                         homeViewModel.getDosen().observe(viewLifecycleOwner) {
                             setUserDosen(it.id_user)
                         }

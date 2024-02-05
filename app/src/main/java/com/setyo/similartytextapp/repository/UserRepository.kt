@@ -42,6 +42,15 @@ class UserRepository (
     private val _dosbingResponse = MutableLiveData<DosbingResponse>()
     val dosbingResponse : LiveData<DosbingResponse> = _dosbingResponse
 
+    private val _dosbingMhsResponse = MutableLiveData<DosbingMhsResponse>()
+    val dosbingMhsResponse : LiveData<DosbingMhsResponse> = _dosbingMhsResponse
+
+    private val _createBimbinganResponse = MutableLiveData<CreateBimbinganResponse>()
+    val createBimbinganResponse : LiveData<CreateBimbinganResponse> = _createBimbinganResponse
+
+    private val _bimbinganResponse = MutableLiveData<BimbinganResponse>()
+    val bimbinganResponse : LiveData<BimbinganResponse> = _bimbinganResponse
+
     private val _updatePenilaianResponse = MutableLiveData<UpdatePenilaianResponse>()
     val updatePenilaianResponse : MutableLiveData<UpdatePenilaianResponse> = _updatePenilaianResponse
 
@@ -164,6 +173,30 @@ class UserRepository (
         })
     }
 
+    fun getDataBimbingan(id: String) {
+        _isLoading.value = true
+        val client = apiService.getDataBimbingan(id)
+        client.enqueue(object : Callback<BimbinganResponse> {
+            override fun onResponse(
+                call: Call<BimbinganResponse>,
+                response: Response<BimbinganResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    val listBimbingan = response.body()?.bimbinganData
+                    _bimbinganResponse.value = listBimbingan?.let {
+                        BimbinganResponse(it)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<BimbinganResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
     fun getDataPenilaian(id: String) {
         _isLoading.value = true
         val client = apiService.getDataPenilaian(id)
@@ -175,7 +208,8 @@ class UserRepository (
                 _isLoading.value = false
                 if (response.isSuccessful) {
                         val listPenilaian = response.body()?.detsemproData
-                        _penilaianResponse.value = listPenilaian?.let { PenilaianDosenResponse(it)
+                        _penilaianResponse.value = listPenilaian?.let {
+                            PenilaianDosenResponse(it)
                     }
                 }
             }
@@ -198,11 +232,35 @@ class UserRepository (
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     val listPenilaian = response.body()?.dosbingData
-                    _dosbingResponse.value = listPenilaian?.let { DosbingResponse(it)
+                    _dosbingResponse.value = listPenilaian?.let {
+                        DosbingResponse(it)
                     }
                 }
             }
             override fun onFailure(call: Call<DosbingResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun getDataMhsDosbing(id: String) {
+        _isLoading.value = true
+        val client = apiService.getDataMhsDosbing(id)
+        client.enqueue(object : Callback<DosbingMhsResponse> {
+            override fun onResponse(
+                call: Call<DosbingMhsResponse>,
+                response: Response<DosbingMhsResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _dosbingMhsResponse.value = response.body()
+                } else {
+                    Log.e(TAG,"onFailure: ${response.message()}")
+                }
+            }
+            override fun onFailure(call: Call<DosbingMhsResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
@@ -349,6 +407,35 @@ class UserRepository (
                 }
             }
             override fun onFailure(call: Call<DaftarSeminarResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Bisa dicoba kembali")
+                Log.e(this@UserRepository.javaClass.simpleName, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun bimbinganMhs(
+        dosbingid: RequestBody,
+        mhsnim: RequestBody,
+//        bab: RequestBody,
+        ket: RequestBody,
+//        file: MultipartBody.Part,
+        dosenid: RequestBody
+    ) {
+        _isLoading.value = true
+        val client = apiService.bimbinganMhs( dosbingid, mhsnim, ket, dosenid)
+        client.enqueue(object : Callback<CreateBimbinganResponse> {
+            override fun onResponse(call: Call<CreateBimbinganResponse>, response: Response<CreateBimbinganResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _textToast.value = Event("Berhasil Mengirim")
+                    _createBimbinganResponse.value = response.body()
+                } else {
+                    _textToast.value = Event("Gagal Mengirim")
+                    Log.e(this@UserRepository.javaClass.simpleName,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                }
+            }
+            override fun onFailure(call: Call<CreateBimbinganResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Bisa dicoba kembali")
                 Log.e(this@UserRepository.javaClass.simpleName, "onFailure: ${t.message.toString()}")
