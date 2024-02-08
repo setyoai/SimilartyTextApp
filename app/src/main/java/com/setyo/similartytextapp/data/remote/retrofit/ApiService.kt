@@ -71,10 +71,21 @@ interface ApiService {
         @Path("id") id: String,
     ): Call<PenilaianDosenResponse>
 
-    @GET("bimbinganrest/{id}")
+    @GET("bimbinganrest/show/{dosbingid_bimbingan}/{dosenid_bimbingan}")
     fun getDataBimbingan(
-        @Path("id") id: String,
+        @Path("dosbingid_bimbingan") dosbingid: String,
+        @Path("dosenid_bimbingan") dosenid: String,
     ): Call<BimbinganResponse>
+
+    @GET("bimbingandosenrest/{id}")
+    fun getDataDosenBimbingan(
+        @Path("id") id: String,
+    ): Call<BimbinganDosenResponse>
+
+    @GET("updatebimbingandosenrest/{id}")
+    fun getDataUpdateDosenBimbingan(
+        @Path("id") id: String,
+    ): Call<GetUpdateBimbinganResponse>
 
     @GET("dosbingrest/{id}")
     fun getDataDosbing(
@@ -131,6 +142,13 @@ interface ApiService {
         @Field("status_sempro") status: String,
         @Field("hasil_sempro") hasil: String,
     ): Call<UpdatePenilaianResponse>
+
+    @FormUrlEncoded
+    @PUT("bimbinganrest/{id_bimbingan}")
+    fun updateDataBimbingan(
+        @Path("id_bimbingan") id: String,
+        @Field("balasanket_bimbingan") balasanket: String,
+    ): Call<UpdateBimbinganResponse>
 
     @GET("userrest")
     fun loginUserDosen(

@@ -63,6 +63,7 @@
     <string name="initial_my_student">Bimbingan Saya</string>
     <string name="initial_dosen1">Pembimbing Utama</string>
     <string name="initial_dosen2">Pembimbing Pendamping</string>
+    <string name="initial_name_mhs">Nama Mahasiswa</string>
     <string name="initial_regis_seminar">Pendaftar Proposal</string>
     <string name="initial_schedule_seminar">Jadwal Seminar</string>
     <string name="initial_result_seminar">Hasil Seminar</string>

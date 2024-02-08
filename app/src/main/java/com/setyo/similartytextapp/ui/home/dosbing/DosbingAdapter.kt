@@ -1,32 +1,29 @@
 package com.setyo.similartytextapp.ui.home.dosbing
 
-import android.graphics.Color
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.setyo.similartytextapp.R
-import com.setyo.similartytextapp.data.remote.response.DetsemproDataItem
-import com.setyo.similartytextapp.data.remote.response.DosbingDataItem
+import com.setyo.similartytextapp.data.remote.response.BimbinganDosenDataItem
 import com.setyo.similartytextapp.databinding.ItemRowBimbinganBinding
-import com.setyo.similartytextapp.databinding.ItemRowHasilSeminarBinding
 
-class DosbingAdapter(private val dosbing: List<DosbingDataItem>):RecyclerView.Adapter<DosbingAdapter.ListViewHolder>() {
+class DosbingAdapter(private val dosbing: List<BimbinganDosenDataItem>):RecyclerView.Adapter<DosbingAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(private val binding: ItemRowBimbinganBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind(dosbing: DosbingDataItem) {
+        fun bind(dosbing: BimbinganDosenDataItem) {
             binding.apply {
-                textViewNim.text = dosbing.nimDosbing
-                textViewName.text = dosbing.namaDosbing
-                when(dosbing.levelDosen) {
-                    "Anggota Dosbing 1" -> {
-                        textViewLevel.setText("Pembimbing Utama")
-                    }
-                    else -> {
-                        textViewLevel.setText("Pembimbing Pendamping")
-                    }
-                }
+                textViewName.text = dosbing.namaBimbingan
+                textViewKet.text = dosbing.ketBimbingan
+                textViewDate.text = dosbing.tanggalBimbingan
+            }
+            binding.mahasiswaBimbingan.setOnClickListener {
+                val intent = Intent(itemView.context, BimbinganDosenActivity::class.java)
+                intent.putExtra(BimbinganDosenActivity.EXTRA_BIMBINGAN_ID, dosbing.idbimbingan)
+                intent.putExtra(BimbinganDosenActivity.EXTRA_NAME_MHS, dosbing.namaBimbingan)
+                itemView.context.startActivity(intent)
             }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {

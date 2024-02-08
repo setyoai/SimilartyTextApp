@@ -59,10 +59,17 @@ class BimbinganActivity : AppCompatActivity() {
             textViewDosen2.text = dosbingMhsData.nama2Dosbing
         }
         binding.cardViewPembimbingUtama.setOnClickListener {
-            val intent = Intent(this@BimbinganActivity, BimbinganMhsActivity::class.java)
-            intent.putExtra(BimbinganMhsActivity.EXTRA_NAME_DOSEN, dosbingMhsData.nama1Dosbing)
-            intent.putExtra(BimbinganMhsActivity.EXTRA_DOSBING_ID, dosbingMhsData.dosbingId)
-            intent.putExtra(BimbinganMhsActivity.EXTRA_DOSEN1_ID, dosbingMhsData.dosen1Dosbing)
+            val intent = Intent(this@BimbinganActivity, BimbinganDosen1Activity::class.java)
+            intent.putExtra(BimbinganDosen1Activity.EXTRA_NAME_DOSEN1, dosbingMhsData.nama1Dosbing)
+            intent.putExtra(BimbinganDosen1Activity.EXTRA_DOSBING_ID, dosbingMhsData.dosbingId)
+            intent.putExtra(BimbinganDosen1Activity.EXTRA_DOSEN1_ID, dosbingMhsData.dosen1Dosbing)
+            startActivity(intent)
+        }
+        binding.cardViewPendamping.setOnClickListener {
+            val intent = Intent(this@BimbinganActivity, BimbinganDosen2Activity::class.java)
+            intent.putExtra(BimbinganDosen2Activity.EXTRA_NAME_DOSEN2, dosbingMhsData.nama2Dosbing)
+            intent.putExtra(BimbinganDosen2Activity.EXTRA_DOSBING_ID, dosbingMhsData.dosbingId)
+            intent.putExtra(BimbinganDosen2Activity.EXTRA_DOSEN2_ID, dosbingMhsData.dosen2Dosbing)
             startActivity(intent)
         }
     }

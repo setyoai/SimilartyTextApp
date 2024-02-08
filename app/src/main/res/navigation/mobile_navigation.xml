@@ -52,7 +52,7 @@
 
     <activity
         android:id="@+id/navigation_bimbingan_dosen1"
-        android:name="com.setyo.similartytextapp.ui.home.bimbingan.BimbinganMhsActivity"
+        android:name="com.setyo.similartytextapp.ui.home.bimbingan.BimbinganDosen1Activity"
         android:label="activity_bimbingan_dosen1"
         tools:layout="@layout/activity_bimbingan_dosen1">
 <!--        <action-->
@@ -60,15 +60,15 @@
 <!--            app:destination="@id/navigation_bimbingan" />-->
     </activity>
 
-    <fragment
+    <activity
         android:id="@+id/navigation_dosbing"
-        android:name="com.setyo.similartytextapp.ui.home.dosbing.DosbingFragment"
+        android:name="com.setyo.similartytextapp.ui.home.dosbing.DosbingActivity"
         android:label="@string/initial_my_student"
-        tools:layout="@layout/fragment_bimbingan">
-        <action
-            android:id="@+id/action_dosbingFragment_to_homeFragment"
-            app:destination="@id/navigation_home" />
-    </fragment>
+        tools:layout="@layout/activity_dosbing">
+<!--        <action-->
+<!--            android:id="@+id/action_dosbingFragment_to_homeFragment"-->
+<!--            app:destination="@id/navigation_home" />-->
+    </activity>
 
     <fragment
         android:id="@+id/navigation_daftar_seminar"

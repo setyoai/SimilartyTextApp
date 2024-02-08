@@ -33,7 +33,7 @@ class UpdatePenilaianFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupUser()
-       updatePenilaian()
+        updatePenilaian()
     }
 
     private fun setupViewModel() {

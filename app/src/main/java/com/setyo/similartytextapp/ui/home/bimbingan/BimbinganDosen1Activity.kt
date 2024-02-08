@@ -14,7 +14,7 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
-class BimbinganMhsActivity : AppCompatActivity() {
+class BimbinganDosen1Activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBimbinganDosen1Binding
     private var getFile: File? = null
@@ -26,22 +26,21 @@ class BimbinganMhsActivity : AppCompatActivity() {
         binding = ActivityBimbinganDosen1Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupView()
         setupViewModel()
-        bimbinganViewModel.getUser().observe(this) {
-            getResultBimbingan(it.nim_mhs)
-        }
-
-        binding.bimbinganViewList.adapter = BimbinganDosen1ListAdapter(emptyList())
+        setupView()
+        binding.bimbinganViewList.adapter = BimbinganDosenListAdapter(emptyList())
         showRecyclerView()
 
     }
 
     private fun setupView() {
         binding.apply {
-            val name = intent.getStringExtra(EXTRA_NAME_DOSEN)
+            val name = intent.getStringExtra(EXTRA_NAME_DOSEN1)
+            val dosbingid: String = intent.getStringExtra(EXTRA_DOSBING_ID) ?: ""
+            val dosenid: String = intent.getStringExtra(EXTRA_DOSEN1_ID) ?: ""
+            getResultBimbingan(dosbingid, dosenid)
             toolbarBimbingan.imageViewBack.setOnClickListener {
-                val intent = Intent(this@BimbinganMhsActivity, BimbinganActivity::class.java)
+                val intent = Intent(this@BimbinganDosen1Activity, BimbinganActivity::class.java)
                 startActivity(intent)
             }
             toolbarBimbingan.textViewTitleBar.text = name
@@ -50,7 +49,7 @@ class BimbinganMhsActivity : AppCompatActivity() {
     }
 
     private fun sendBimbingan() {
-        bimbinganViewModel.getUser().observe(this@BimbinganMhsActivity) { userData ->
+        bimbinganViewModel.getUser().observe(this@BimbinganDosen1Activity) { userData ->
             val dosbingId: String? = intent.getStringExtra(EXTRA_DOSBING_ID)
             val mhsNim: String? = userData?.nim_mhs
             val textKet: String = binding.toolbarBimbinganKet.inputTextSendBimbingan.text.toString()
@@ -103,16 +102,16 @@ class BimbinganMhsActivity : AppCompatActivity() {
         factory = ViewModelFactory.getInstance(this)
     }
 
-    private fun getResultBimbingan(id: String) {
-        bimbinganViewModel.getDataBimbingan(id)
+    private fun getResultBimbingan(dosbingid: String, dosenid: String) {
+        bimbinganViewModel.getDataBimbingan(dosbingid, dosenid)
         bimbinganViewModel.bimbinganResponse.observe(this) {
-            binding.bimbinganViewList.adapter = BimbinganDosen1ListAdapter(it.bimbinganData ?: emptyList())
+            binding.bimbinganViewList.adapter = BimbinganDosenListAdapter(it.bimbinganData ?: emptyList())
         }
     }
 
     private fun showRecyclerView() {
         binding.bimbinganViewList.apply {
-            layoutManager = LinearLayoutManager(this@BimbinganMhsActivity)
+            layoutManager = LinearLayoutManager(this@BimbinganDosen1Activity)
             setHasFixedSize(true)
         }
     }
@@ -133,7 +132,7 @@ class BimbinganMhsActivity : AppCompatActivity() {
 
 
     companion object {
-        const val EXTRA_NAME_DOSEN = "extra_name_dosen"
+        const val EXTRA_NAME_DOSEN1 = "extra_name_dosen1"
         const val EXTRA_DOSBING_ID = "extra_dosbing_id"
         const val EXTRA_DOSEN1_ID = "extra_dosen1_id"
     }

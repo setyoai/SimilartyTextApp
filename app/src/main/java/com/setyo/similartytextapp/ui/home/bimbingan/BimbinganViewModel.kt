@@ -44,9 +44,9 @@ class BimbinganViewModel(private val repository: UserRepository): ViewModel() {
         }
     }
 
-    fun getDataBimbingan(id: String) {
+    fun getDataBimbingan(dosbingid: String, dosenid: String) {
         viewModelScope.launch {
-            repository.getDataBimbingan(id)
+            repository.getDataBimbingan(dosbingid, dosenid)
         }
     }
 

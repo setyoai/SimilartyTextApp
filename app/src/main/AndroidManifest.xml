@@ -39,7 +39,19 @@
             android:exported="false"
             android:theme="@style/Theme.SimilartyTextApp.NoActionBar" />
         <activity
-            android:name=".ui.home.bimbingan.BimbinganMhsActivity"
+            android:name=".ui.home.dosbing.DosbingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SimilartyTextApp.NoActionBar" />
+        <activity
+            android:name=".ui.home.bimbingan.BimbinganDosen1Activity"
+            android:exported="false"
+            android:theme="@style/Theme.SimilartyTextApp.NoActionBar" />
+        <activity
+            android:name=".ui.home.bimbingan.BimbinganDosen2Activity"
+            android:exported="false"
+            android:theme="@style/Theme.SimilartyTextApp.NoActionBar" />
+        <activity
+            android:name=".ui.home.dosbing.BimbinganDosenActivity"
             android:exported="false"
             android:theme="@style/Theme.SimilartyTextApp.NoActionBar" />
         <activity

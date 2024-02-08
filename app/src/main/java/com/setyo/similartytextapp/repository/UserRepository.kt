@@ -51,6 +51,15 @@ class UserRepository (
     private val _bimbinganResponse = MutableLiveData<BimbinganResponse>()
     val bimbinganResponse : LiveData<BimbinganResponse> = _bimbinganResponse
 
+    private val _bimbinganDosenResponse = MutableLiveData<BimbinganDosenResponse>()
+    val bimbinganDosenResponse : LiveData<BimbinganDosenResponse> = _bimbinganDosenResponse
+
+    private val _getUpdatebimbinganResponse = MutableLiveData<GetUpdateBimbinganResponse>()
+    val getUpdatebimbinganResponse : LiveData<GetUpdateBimbinganResponse> = _getUpdatebimbinganResponse
+
+    private val _updatebimbinganResponse = MutableLiveData<UpdateBimbinganResponse>()
+    val updatebimbinganResponse : LiveData<UpdateBimbinganResponse> = _updatebimbinganResponse
+
     private val _updatePenilaianResponse = MutableLiveData<UpdatePenilaianResponse>()
     val updatePenilaianResponse : MutableLiveData<UpdatePenilaianResponse> = _updatePenilaianResponse
 
@@ -173,9 +182,9 @@ class UserRepository (
         })
     }
 
-    fun getDataBimbingan(id: String) {
+    fun getDataBimbingan(dosbingid: String, dosenid: String) {
         _isLoading.value = true
-        val client = apiService.getDataBimbingan(id)
+        val client = apiService.getDataBimbingan(dosbingid, dosenid)
         client.enqueue(object : Callback<BimbinganResponse> {
             override fun onResponse(
                 call: Call<BimbinganResponse>,
@@ -190,6 +199,54 @@ class UserRepository (
                 }
             }
             override fun onFailure(call: Call<BimbinganResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun getDataDosenBimbingan(id: String) {
+        _isLoading.value = true
+        val client = apiService.getDataDosenBimbingan(id)
+        client.enqueue(object : Callback<BimbinganDosenResponse> {
+            override fun onResponse(
+                call: Call<BimbinganDosenResponse>,
+                response: Response<BimbinganDosenResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    val listDosenBimbingan = response.body()?.bimbinganDosenData
+                    _bimbinganDosenResponse.value = listDosenBimbingan?.let {
+                        BimbinganDosenResponse(it)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<BimbinganDosenResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun getDataUpdateDosbing(id: String) {
+        _isLoading.value = true
+        val client = apiService.getDataUpdateDosenBimbingan(id)
+        client.enqueue(object : Callback<GetUpdateBimbinganResponse> {
+            override fun onResponse(
+                call: Call<GetUpdateBimbinganResponse>,
+                response: Response<GetUpdateBimbinganResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    val listUpdateBimbingan = response.body()?.updateBimbingandosenData
+                    _getUpdatebimbinganResponse.value = listUpdateBimbingan?.let {
+                        GetUpdateBimbinganResponse(it)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<GetUpdateBimbinganResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
@@ -509,6 +566,27 @@ class UserRepository (
             override fun onFailure(call: Call<UpdateUserResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}")  }
+        })
+    }
+
+    fun updateDataBimbingan(id: String, balasanket: String) {
+        _isLoading.value = true
+        val client = apiService.updateDataBimbingan(id, balasanket)
+        client.enqueue(object : Callback<UpdateBimbinganResponse> {
+            override fun onResponse(call: Call<UpdateBimbinganResponse>, response: Response<UpdateBimbinganResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _textToast.value = Event("Berhasil Kirim Balasan Bimbingan")
+                    _updatebimbinganResponse.value = response.body()
+                } else {
+                    _textToast.value = Event("Gagal Kirim Balasan Bimbingan")
+                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                }
+            }
+            override fun onFailure(call: Call<UpdateBimbinganResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
         })
     }
 

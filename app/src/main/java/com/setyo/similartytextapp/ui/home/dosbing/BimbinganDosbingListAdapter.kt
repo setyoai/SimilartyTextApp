@@ -1,21 +1,22 @@
-package com.setyo.similartytextapp.ui.home.bimbingan
+package com.setyo.similartytextapp.ui.home.dosbing
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.setyo.similartytextapp.data.remote.response.BimbinganDataItem
-import com.setyo.similartytextapp.databinding.ItemMhsBimbinganBinding
+import com.setyo.similartytextapp.data.remote.response.UpdateBimbingandosenDataItem
+import com.setyo.similartytextapp.databinding.ItemDosenBimbinganBinding
 
-class BimbinganDosen1ListAdapter(
-    private val listBimbingan: List<BimbinganDataItem?>
-) : RecyclerView.Adapter<BimbinganDosen1ListAdapter.ListViewHolder>() {
+class BimbinganDosbingListAdapter(
+    private val listBimbingan: List<UpdateBimbingandosenDataItem?>
+) : RecyclerView.Adapter<BimbinganDosbingListAdapter.ListViewHolder>() {
 
-    inner class ListViewHolder(private val binding: ItemMhsBimbinganBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind(listBimbingan: BimbinganDataItem) {
+    inner class ListViewHolder(private val binding: ItemDosenBimbinganBinding):RecyclerView.ViewHolder(binding.root) {
+        fun bind(listBimbingan: UpdateBimbingandosenDataItem) {
             binding.apply {
                 if (listBimbingan.balasanketBimbingan == null) {
                     cardViewBimbingan.visibility = View.GONE
+                    textViewTanggalBalasan.visibility = View.GONE
                 }
                 textViewTanggal.text = listBimbingan.tanggalBimbingan
                 textViewKet.text = listBimbingan.ketBimbingan
@@ -26,7 +27,7 @@ class BimbinganDosen1ListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val binding = ItemMhsBimbinganBinding.inflate(LayoutInflater.from(parent.context),parent, false)
+        val binding = ItemDosenBimbinganBinding.inflate(LayoutInflater.from(parent.context),parent, false)
         return ListViewHolder(binding)
     }
 

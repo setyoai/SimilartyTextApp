@@ -35,9 +35,9 @@ class DaftarSeminarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showLoading()
-        binding.toolbarDaftarSeminar.imageViewBack.setOnClickListener {
-            view.findNavController().navigate(R.id.action_daftarFragment_to_homeFragment)
-        }
+//        binding.toolbarDaftarSeminar.imageViewBack.setOnClickListener {
+//            view.findNavController().navigate(R.id.action_daftarFragment_to_homeFragment)
+//        }
         detailSeminarViewModel.getDosen().observe(viewLifecycleOwner) {
             getResult(it.id_dosen)
         }
