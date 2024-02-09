@@ -39,6 +39,9 @@ class UserRepository (
     private val _penilaianResponse = MutableLiveData<PenilaianDosenResponse>()
     val penilaianResponse : LiveData<PenilaianDosenResponse> = _penilaianResponse
 
+    private val _detPenilaianResponse = MutableLiveData<DetPenilaianResponse>()
+    val detPenilaianResponse : LiveData<DetPenilaianResponse> = _detPenilaianResponse
+
     private val _dosbingResponse = MutableLiveData<DosbingResponse>()
     val dosbingResponse : LiveData<DosbingResponse> = _dosbingResponse
 
@@ -254,6 +257,30 @@ class UserRepository (
         })
     }
 
+    fun getDetPenilaian(id: String) {
+        _isLoading.value = true
+        val client = apiService.getDataDetPenilaian(id)
+        client.enqueue(object : Callback<DetPenilaianResponse> {
+            override fun onResponse(
+                call: Call<DetPenilaianResponse>,
+                response: Response<DetPenilaianResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                        val detPenilaian = response.body()?.detpenilaianData
+                        _detPenilaianResponse.value = detPenilaian?.let {
+                            DetPenilaianResponse(it)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<DetPenilaianResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
     fun getDataPenilaian(id: String) {
         _isLoading.value = true
         val client = apiService.getDataPenilaian(id)
@@ -264,9 +291,9 @@ class UserRepository (
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                        val listPenilaian = response.body()?.detsemproData
-                        _penilaianResponse.value = listPenilaian?.let {
-                            PenilaianDosenResponse(it)
+                    val listPenilaian = response.body()?.detsemproData
+                    _penilaianResponse.value = listPenilaian?.let {
+                        PenilaianDosenResponse(it)
                     }
                 }
             }
@@ -590,9 +617,29 @@ class UserRepository (
         })
     }
 
-    fun updateDataPenilaain( id: String, ketrev: String, status: String, hasil: String) {
+    fun updateDataPenilaain(
+        id: String,
+        judul: String,
+        latarBelakang: String,
+        rumusanMasalah: String,
+        batasanMasalah: String,
+        tujuan: String,
+        manfaat: String,
+        tinjauanPustaka: String,
+        metodologi: String,
+        kerangkaPemikiran: String,
+        jadwalKegiatan: String,
+        riwayatPenelitian: String,
+        daftarPustaka: String,
+        status: String,
+        hasil: String
+    ) {
         _isLoading.value = true
-        val client = apiService.updateDataPenilaian(id, ketrev, status, hasil)
+        val client = apiService.updateDataPenilaian(
+            id, judul, latarBelakang, rumusanMasalah, batasanMasalah, tujuan, manfaat,
+            tinjauanPustaka, metodologi, kerangkaPemikiran, jadwalKegiatan, riwayatPenelitian,
+            daftarPustaka, status, hasil
+        )
         client.enqueue(object : Callback<UpdatePenilaianResponse> {
             override fun onResponse(call: Call<UpdatePenilaianResponse>, response: Response<UpdatePenilaianResponse>) {
                 _isLoading.value = false

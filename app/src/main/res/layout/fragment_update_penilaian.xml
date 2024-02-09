@@ -1,217 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginEnd="64dp"
-        android:textAlignment="center"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/title_update_penilaian"
-        android:textColor="@color/primary"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldId"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        app:boxStrokeColor="@color/primary"
-        app:boxStrokeWidth="2dp"
-        android:visibility="gone"
-        android:hint="@string/inputText_id"
-        app:hintTextColor="@color/secondary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputTextId"
+        <TextView
+            android:id="@+id/textViewUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:inputType="text" />
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="64dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/title_update_penilaian"
+            android:textColor="@color/primary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textFieldId"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:boxStrokeColor="@color/primary"
+            app:boxStrokeWidth="2dp"
+            android:visibility="gone"
+            android:hint="@string/inputText_id"
+            app:hintTextColor="@color/secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent">
 
-    <TextView
-        android:id="@+id/textViewNim"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/inputText_username"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUpdate"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputTextId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="text" />
 
-    <TextView
-        android:id="@+id/textViewName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/inputText_name"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNim" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/textViewJudul"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/inputText_title"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+            <TextView
+                android:id="@+id/textViewNim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="48dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/inputText_username"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewUpdate" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textFieldKetRev"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:hint="@string/inputText_ketrev"
-        style="?attr/textInputFilledStyle"
-        app:boxBackgroundColor="?attr/colorSurface"
-        app:boxStrokeColor="@color/secondary"
-        app:boxStrokeWidth="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewJudul">
+            <TextView
+                android:id="@+id/textViewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="48dp"
+                android:layout_marginStart="32dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/inputText_name"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewNim"
+                app:layout_constraintStart_toEndOf="@+id/textViewNim"
+                app:layout_constraintTop_toTopOf="@+id/textViewNim" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputTextKetRev"
+        <TextView
+            android:id="@+id/textViewJudul"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:inputType="text" />
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="48dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/inputText_title"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <include
+                android:id="@+id/toolbarInputPenilaian"
+                layout="@layout/toolbar_penilaian_seminar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewJudul" />
 
-    <TextView
-        android:id="@+id/textViewStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="@string/textview_status"
-        android:textColor="@color/secondary"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldKetRev"/>
-
-    <RadioGroup
-        android:id="@+id/radioGroupStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewStatus">
-
-        <RadioButton
-            android:id="@+id/radio_revisi_besar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/radio_revisi_besar" />
-
-        <RadioButton
-            android:id="@+id/radio_revisi_kecil"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/buttonSave"
+            style="@style/Widget.Material3.Button.IconButton.Filled"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="@string/radio_revisi_kecil" />
-        <RadioButton
-            android:id="@+id/radio_revisi_kosong"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/radio_revisi_kosong" />
-    </RadioGroup>
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/button_save"
+            app:icon="@drawable/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarInputPenilaian"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.149" />
 
-    <TextView
-        android:id="@+id/textViewHasil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="@string/textview_hasil"
-        android:textColor="@color/secondary"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupStatus"/>
-
-    <RadioGroup
-        android:id="@+id/radioGroupHasil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHasil">
-
-        <RadioButton
-            android:id="@+id/radio_diterima"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/radio_hasil_diterima" />
-
-        <RadioButton
-            android:id="@+id/radio_ditolak"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/radio_hasil_ditolak" />
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/buttonSave"
-        style="@style/Widget.Material3.Button.IconButton.Filled"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/button_save"
-        app:icon="@drawable/save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupHasil"
-        app:layout_constraintVertical_bias="0.149" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

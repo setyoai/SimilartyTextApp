@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.setyo.similartytextapp.databinding.FragmentPenilaianBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.setyo.similartytextapp.R
+import com.setyo.similartytextapp.databinding.FragmentViewPenilaianBinding
 import com.setyo.similartytextapp.ui.ViewModelFactory
 
-class PenilaianFragment : Fragment() {
+class DetailPenilaianFragment : Fragment() {
 
-    private var _binding: FragmentPenilaianBinding? = null
+    private var _binding: FragmentViewPenilaianBinding? = null
     private val binding get() = _binding!!
     private val penilaianViewModel by viewModels<PenilaianViewModel> {
         ViewModelFactory.getInstance(requireContext())
@@ -24,34 +27,43 @@ class PenilaianFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         (activity as AppCompatActivity).supportActionBar?.hide()
-        _binding = FragmentPenilaianBinding.inflate(inflater, container, false)
+        _binding = FragmentViewPenilaianBinding.inflate(inflater, container, false)
 
         return binding.root
     }
 
     companion object {
-        var EXTRA_ID = "extra_id"
+        var EXTRA_ID_SEMPRO = "extra_id_sempro"
         var EXTRA_NAME = "extra_name"
         var EXTRA_NIM = "extra_nim"
-        var EXTRA_TITLE = "extra_title"
-        var EXTRA_LEVEL = "extra_level"
-        var EXTRA_ID_SEMPRO = "extra_id_sempro"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showLoading()
-        penilaianViewModel.getDosen().observe(viewLifecycleOwner) {
-            getResult(it.id_dosen)
-        }
-        binding.penilaianViewList.adapter = PenilaianListAdapter(emptyList())
+        setupView()
+        binding.viewPenilaianList.adapter = DetailPenilaianListAdapter(emptyList())
         showRecyclerView()
     }
 
+    private fun setupView() {
+        val dataNim = arguments?.getString(PenilaianFragment.EXTRA_NIM)
+        val dataName = arguments?.getString(PenilaianFragment.EXTRA_NAME)
+        binding.apply {
+            textViewNim.text = dataNim
+            textViewName.text = dataName
+        }
+        val idSempro: String = arguments?.getString(PenilaianFragment.EXTRA_ID_SEMPRO) ?: ""
+        getResult(idSempro)
+        binding.toolbarViewPenilaian.imageViewBack.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_updatePenilaianFragment_to_penilaianFragment)
+        }
+    }
+
     private fun getResult(id: String) {
-        penilaianViewModel.getPenilaian(id)
-        penilaianViewModel.penilaianResponse.observe(viewLifecycleOwner) { penilaianResponse ->
-            binding.penilaianViewList.adapter = PenilaianListAdapter(penilaianResponse.detsemproData)
+        penilaianViewModel.getDetPenilaian(id)
+        penilaianViewModel.detPenilaianResponse.observe(viewLifecycleOwner) {
+            binding.viewPenilaianList.adapter = DetailPenilaianListAdapter(it.detpenilaianData)
         }
     }
 
@@ -62,7 +74,7 @@ class PenilaianFragment : Fragment() {
     }
 
     private fun showRecyclerView() {
-        binding.penilaianViewList.apply {
+        binding.viewPenilaianList.apply {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
         }

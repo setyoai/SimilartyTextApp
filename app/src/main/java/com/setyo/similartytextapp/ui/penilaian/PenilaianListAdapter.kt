@@ -40,6 +40,13 @@ class PenilaianListAdapter(private val detSempro: List<DetsemproDataItem>):Recyc
                 mBundle.putString(PenilaianFragment.EXTRA_LEVEL, detSempro.levelDosen)
                 it.findNavController().navigate(R.id.action_penilaianFragment_to_updatePenilaianFragment, mBundle)
             }
+            binding.cardViewPenilaian.setOnClickListener {
+                val mBundle = Bundle()
+                mBundle.putString(DetailPenilaianFragment.EXTRA_ID_SEMPRO, detSempro.idSempro)
+                mBundle.putString(PenilaianFragment.EXTRA_NIM, detSempro.nimDetsempro)
+                mBundle.putString(PenilaianFragment.EXTRA_NAME, detSempro.namaDetsempro)
+                it.findNavController().navigate(R.id.action_penilaianFragment_to_detailPenilaianFragment, mBundle)
+            }
         }
     }
 

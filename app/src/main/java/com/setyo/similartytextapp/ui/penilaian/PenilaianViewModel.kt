@@ -3,6 +3,7 @@ package com.setyo.similartytextapp.ui.penilaian
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.setyo.similartytextapp.data.remote.response.DetPenilaianResponse
 import com.setyo.similartytextapp.data.remote.response.DetsemproDataItem
 import com.setyo.similartytextapp.data.remote.response.GetDosenResponse
 import com.setyo.similartytextapp.data.remote.response.PenilaianDosenResponse
@@ -19,6 +20,7 @@ import kotlinx.coroutines.launch
 
 class PenilaianViewModel(private val repository: UserRepository) : ViewModel() {
     val penilaianResponse: LiveData<PenilaianDosenResponse> = repository.penilaianResponse
+    val detPenilaianResponse: LiveData<DetPenilaianResponse> = repository.detPenilaianResponse
     val updatePenilaianResponse: LiveData<UpdatePenilaianResponse> = repository.updatePenilaianResponse
     val isLoading: LiveData<Boolean> = repository.isLoading
     val textToast: LiveData<Event<String>> = repository.textToast
@@ -29,9 +31,35 @@ class PenilaianViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
-    fun getUpdatePenilaain(id: String, ketrev: String, status: String, hasil: String) {
+    fun getDetPenilaian(id: String) {
         viewModelScope.launch {
-            repository.updateDataPenilaain(id, ketrev, status, hasil)
+            repository.getDetPenilaian(id)
+        }
+    }
+
+    fun getUpdatePenilaain(
+        id: String,
+        judul: String,
+        latarBelakang: String,
+        rumusanMasalah: String,
+        batasanMasalah: String,
+        tujuan: String,
+        manfaat: String,
+        tinjauanPustaka: String,
+        metodologi: String,
+        kerangkaPemikiran: String,
+        jadwalKegiatan: String,
+        riwayatPenelitian: String,
+        daftarPustaka: String,
+        status: String,
+        hasil: String
+    ) {
+        viewModelScope.launch {
+            repository.updateDataPenilaain(
+                id, judul, latarBelakang, rumusanMasalah, batasanMasalah, tujuan, manfaat,
+                tinjauanPustaka, metodologi, kerangkaPemikiran, jadwalKegiatan, riwayatPenelitian,
+                daftarPustaka, status, hasil
+            )
         }
     }
 

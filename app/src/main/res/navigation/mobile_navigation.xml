@@ -120,6 +120,9 @@
         <action
             android:id="@+id/action_penilaianFragment_to_updatePenilaianFragment"
             app:destination="@id/navigation_updatepenilaian" />
+        <action
+            android:id="@+id/action_penilaianFragment_to_detailPenilaianFragment"
+            app:destination="@id/navigation_detailpenilaian" />
     </fragment>
 
     <fragment
@@ -159,6 +162,16 @@
         android:name="com.setyo.similartytextapp.ui.penilaian.UpdatePenilaianFragment"
         android:label="@string/title_update_penilaian"
         tools:layout="@layout/fragment_update_penilaian">
+        <action
+            android:id="@+id/action_updatePenilaianFragment_to_penilaianFragment"
+            app:destination="@id/navigation_penilaian" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_detailpenilaian"
+        android:name="com.setyo.similartytextapp.ui.penilaian.DetailPenilaianFragment"
+        android:label="@string/title_view_penilaian"
+        tools:layout="@layout/fragment_view_penilaian">
         <action
             android:id="@+id/action_updatePenilaianFragment_to_penilaianFragment"
             app:destination="@id/navigation_penilaian" />

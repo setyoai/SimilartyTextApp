@@ -12,7 +12,7 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/textview_similarty"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/textFieldTitle"
         app:layout_constraintStart_toStartOf="@+id/textFieldTitle"
         app:layout_constraintTop_toTopOf="parent" />

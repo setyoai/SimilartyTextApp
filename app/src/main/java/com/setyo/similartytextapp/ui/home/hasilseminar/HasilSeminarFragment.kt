@@ -11,7 +11,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.databinding.FragmentHasilSeminarBinding
-import com.setyo.similartytextapp.databinding.FragmentJadwalSeminarBinding
 import com.setyo.similartytextapp.ui.ViewModelFactory
 import com.setyo.similartytextapp.ui.home.DetailSeminarViewModel
 

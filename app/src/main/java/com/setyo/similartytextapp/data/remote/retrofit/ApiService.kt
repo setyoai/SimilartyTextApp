@@ -71,6 +71,11 @@ interface ApiService {
         @Path("id") id: String,
     ): Call<PenilaianDosenResponse>
 
+    @GET("penilaianrest/{id}")
+    fun getDataDetPenilaian(
+        @Path("id") id: String,
+    ): Call<DetPenilaianResponse>
+
     @GET("bimbinganrest/show/{dosbingid_bimbingan}/{dosenid_bimbingan}")
     fun getDataBimbingan(
         @Path("dosbingid_bimbingan") dosbingid: String,
@@ -138,7 +143,18 @@ interface ApiService {
     @PUT("detsemprorest/{id_detsempro}")
     fun updateDataPenilaian(
         @Path("id_detsempro") id: String,
-        @Field("ketrev_detsempro") ketrev: String,
+        @Field("judul") judul: String,
+        @Field("latar_belakang") latarBelakang: String,
+        @Field("rumusan_masalah") rumusanMasalah: String,
+        @Field("batasan_masalah") batasanMasalah: String,
+        @Field("tujuan") tujuan: String,
+        @Field("manfaat") manfaat: String,
+        @Field("tinjauan-pustaka") tinjauanPustaka: String,
+        @Field("metodologi") metodologi: String,
+        @Field("kerangka_pemikiran") kerangkaPemikiran: String,
+        @Field("jadwal_kegiatan") jadwalKegiatan: String,
+        @Field("riwayat_penilitian") riwayatPenelitian: String,
+        @Field("daftar_pustaka") daftarPustaka: String,
         @Field("status_sempro") status: String,
         @Field("hasil_sempro") hasil: String,
     ): Call<UpdatePenilaianResponse>
@@ -147,7 +163,7 @@ interface ApiService {
     @PUT("bimbinganrest/{id_bimbingan}")
     fun updateDataBimbingan(
         @Path("id_bimbingan") id: String,
-        @Field("balasanket_bimbingan") balasanket: String,
+        @Field ("balasanket_bimbingan") balasanket: String,
     ): Call<UpdateBimbinganResponse>
 
     @GET("userrest")

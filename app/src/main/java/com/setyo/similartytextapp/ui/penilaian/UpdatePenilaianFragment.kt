@@ -53,16 +53,16 @@ class UpdatePenilaianFragment : Fragment() {
         val dataTitle = arguments?.getString(PenilaianFragment.EXTRA_TITLE)
         when (arguments?.getString(PenilaianFragment.EXTRA_LEVEL)) {
             "Anggota Penguji 1" -> {
-                binding.textViewStatus.visibility = View.GONE
-                binding.radioGroupStatus.visibility = View.GONE
-                binding.radioGroupHasil.visibility = View.GONE
-                binding.textViewHasil.visibility = View.GONE
+                binding.toolbarInputPenilaian.textViewStatus.visibility = View.GONE
+                binding.toolbarInputPenilaian.radioGroupStatus.visibility = View.GONE
+                binding.toolbarInputPenilaian.radioGroupHasil.visibility = View.GONE
+                binding.toolbarInputPenilaian.textViewHasil.visibility = View.GONE
             }
             "Anggota Penguji 2" -> {
-                binding.textViewStatus.visibility = View.GONE
-                binding.radioGroupStatus.visibility = View.GONE
-                binding.radioGroupHasil.visibility = View.GONE
-                binding.textViewHasil.visibility = View.GONE
+                binding.toolbarInputPenilaian.textViewStatus.visibility = View.GONE
+                binding.toolbarInputPenilaian.radioGroupStatus.visibility = View.GONE
+                binding.toolbarInputPenilaian.radioGroupHasil.visibility = View.GONE
+                binding.toolbarInputPenilaian.textViewHasil.visibility = View.GONE
             }
         }
 
@@ -77,25 +77,60 @@ class UpdatePenilaianFragment : Fragment() {
                 penilaianViewModel.penilaianResponse.observe(viewLifecycleOwner) {
                     val dataId = arguments?.getString(PenilaianFragment.EXTRA_ID)
                     val id = dataId.toString()
-                    val ketrev = inputTextKetRev.text.toString()
-                    textViewStatus.text
-                    textViewHasil.text
+//                    val judul = toolbarInputPenilaian.inputTextJudul.text.toString()
+//                    val latarBelakang = toolbarInputPenilaian.inputTextLatar.text.toString()
+//                    val rumusanMasalah = toolbarInputPenilaian.inputTextRumusan.text.toString()
+                    val batasanMasalah = toolbarInputPenilaian.inputTextBatasan.text.toString()
+                    val tujuan = toolbarInputPenilaian.inputTextTujuan.text.toString()
+                    val manfaat = toolbarInputPenilaian.inputTextManfaat.text.toString()
+                    val tinjauanPustaka = toolbarInputPenilaian.inputTextTinjauan.text.toString()
+                    val metodologi = toolbarInputPenilaian.inputTextMetodologi.text.toString()
+                    val kerangkaPemikiran = toolbarInputPenilaian.inputTextKerangka.text.toString()
+                    val jadwalKegiatan = toolbarInputPenilaian.inputTextJadwal.text.toString()
+                    val riwayatPenelitian = toolbarInputPenilaian.inputTextRiwayat.text.toString()
+                    val daftarPustaka = toolbarInputPenilaian.inputTextDaftar.text.toString()
+                    toolbarInputPenilaian.textViewStatus.text
+                    toolbarInputPenilaian.textViewHasil.text
                     // Get the selected radio button's text from radioGroupStatus
-                    val selectedStatusId = radioGroupStatus.checkedRadioButtonId
-                    val statusRadioButton = radioGroupStatus.findViewById<RadioButton>(selectedStatusId)
+                    val selectedStatusId = toolbarInputPenilaian.radioGroupStatus.checkedRadioButtonId
+                    val statusRadioButton = toolbarInputPenilaian.radioGroupStatus.findViewById<RadioButton>(selectedStatusId)
                     val status = statusRadioButton?.text.toString()
                     // Get the selected radio button's text from radioGroupHasil
-                    val selectedHasilId = radioGroupHasil.checkedRadioButtonId
-                    val hasilRadioButton = radioGroupHasil.findViewById<RadioButton>(selectedHasilId)
+                    val selectedHasilId = toolbarInputPenilaian.radioGroupHasil.checkedRadioButtonId
+                    val hasilRadioButton = toolbarInputPenilaian.radioGroupHasil.findViewById<RadioButton>(selectedHasilId)
                     val hasil = hasilRadioButton?.text.toString()
-                    updateResponse(id, ketrev, status, hasil)
+//                    updateResponse(
+//                        id, judul, latarBelakang, rumusanMasalah, batasanMasalah, tujuan, manfaat,
+//                        tinjauanPustaka, metodologi, kerangkaPemikiran, jadwalKegiatan, riwayatPenelitian,
+//                        daftarPustaka, status, hasil
+//                    )
                 }
             }
         }
     }
 
-    private fun updateResponse(id: String, ketrev: String, status: String, hasil: String) {
-        penilaianViewModel.getUpdatePenilaain(id, ketrev, status, hasil)
+    private fun updateResponse(
+        id: String,
+        judul: String,
+        latarBelakang: String,
+        rumusanMasalah: String,
+        batasanMasalah: String,
+        tujuan: String,
+        manfaat: String,
+        tinjauanPustaka: String,
+        metodologi: String,
+        kerangkaPemikiran: String,
+        jadwalKegiatan: String,
+        riwayatPenelitian: String,
+        daftarPustaka: String,
+        status: String,
+        hasil: String
+    ) {
+        penilaianViewModel.getUpdatePenilaain(
+            id, judul, latarBelakang, rumusanMasalah, batasanMasalah, tujuan, manfaat,
+            tinjauanPustaka, metodologi, kerangkaPemikiran, jadwalKegiatan, riwayatPenelitian,
+            daftarPustaka, status, hasil
+        )
         penilaianViewModel.updatePenilaianResponse.observe(viewLifecycleOwner) {
             if (!it.error) {
                 showToast()
