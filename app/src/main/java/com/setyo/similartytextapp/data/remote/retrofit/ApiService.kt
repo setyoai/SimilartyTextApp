@@ -5,7 +5,6 @@ import com.setyo.similartytextapp.data.remote.response.LoginResponse
 import com.setyo.similartytextapp.data.remote.response.RegisterResponse
 import com.setyo.similartytextapp.data.remote.response.UpdateUserResponse
 import com.setyo.similartytextapp.data.remote.response.UserResponse
-import com.setyo.similartytextapp.ui.similarty.SimilartyModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -118,7 +117,9 @@ interface ApiService {
     ): Call<DafSemproResponse>
 
     @GET("judulrest")
-    fun getTitledata() : Call<SimilartyModel>
+    fun getSimilartydata(
+        @Query("judul_skripsi") judul: String,
+    ) : Call<SimilartyResponse>
 //
 //    @Multipart
 //    @POST("update-user")

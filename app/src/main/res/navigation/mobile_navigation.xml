@@ -127,9 +127,13 @@
 
     <fragment
         android:id="@+id/navigation_similarity"
-        android:name="com.setyo.similartytextapp.ui.similarty.SimilartyFragment"
+        android:name="com.setyo.similartytextapp.ui.similarity.SimilarityFragment"
         android:label="@string/title_similarity"
-        tools:layout="@layout/fragment_plagiarism"/>
+        tools:layout="@layout/fragment_similarity">
+        <action
+            android:id="@+id/action_similarityFragment_to_detailSimilarityFragment"
+            app:destination="@id/navigation_detailsimilarity" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
@@ -175,6 +179,16 @@
         <action
             android:id="@+id/action_updatePenilaianFragment_to_penilaianFragment"
             app:destination="@id/navigation_penilaian" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_detailsimilarity"
+        android:name="com.setyo.similartytextapp.ui.similarity.DetailSimilarityFragment"
+        android:label="@string/title_detail_similarity"
+        tools:layout="@layout/fragment_detail_similarity">
+        <action
+            android:id="@+id/action_detailSimilarityFragment_to_similarityFragment"
+            app:destination="@id/navigation_similarity" />
     </fragment>
 
 </navigation>

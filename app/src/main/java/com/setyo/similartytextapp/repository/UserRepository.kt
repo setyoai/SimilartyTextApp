@@ -15,7 +15,6 @@ import com.setyo.similartytextapp.data.remote.response.UpdateUserResponse
 import com.setyo.similartytextapp.data.remote.response.UserResponse
 import com.setyo.similartytextapp.model.DafSkripsiModel
 import com.setyo.similartytextapp.model.DosenModel
-import com.setyo.similartytextapp.ui.similarty.SimilartyModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -27,8 +26,8 @@ class UserRepository (
     private val preferences: UserPreferences
 ) {
 
-    private val _judulList = MutableLiveData<SimilartyModel>()
-    val judulList: LiveData<SimilartyModel>  = _judulList
+    private val _similartyResponse = MutableLiveData<SimilartyResponse>()
+    val similartyResponse: LiveData<SimilartyResponse>  = _similartyResponse
 
     private val _registerResponse = MutableLiveData<RegisterResponse>()
     val registerResponse: LiveData<RegisterResponse> = _registerResponse
@@ -527,22 +526,22 @@ class UserRepository (
         })
     }
 
-    fun getTitleData() {
+    fun getSimilartyData(judul: String) {
         _isLoading.value = true
-        val client = apiService.getTitledata()
-        client.enqueue(object : Callback<SimilartyModel> {
+        val client = apiService.getSimilartydata(judul)
+        client.enqueue(object : Callback<SimilartyResponse> {
             override fun onResponse(
-                call: Call<SimilartyModel>,
-                response: Response<SimilartyModel>
+                call: Call<SimilartyResponse>,
+                response: Response<SimilartyResponse>
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                    val listData = response.body()?.tbJudulskripsi
-                    _judulList.value = listData?.let { SimilartyModel(it) }
+                    val listSimilartyData = response.body()?.topThreeTitles
+                    _similartyResponse.value = listSimilartyData?.let { SimilartyResponse(it) }
                 }
             }
 
-            override fun onFailure(call: Call<SimilartyModel>, t: Throwable) {
+            override fun onFailure(call: Call<SimilartyResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
             }

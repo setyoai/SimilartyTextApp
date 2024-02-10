@@ -77,9 +77,9 @@ class UpdatePenilaianFragment : Fragment() {
                 penilaianViewModel.penilaianResponse.observe(viewLifecycleOwner) {
                     val dataId = arguments?.getString(PenilaianFragment.EXTRA_ID)
                     val id = dataId.toString()
-//                    val judul = toolbarInputPenilaian.inputTextJudul.text.toString()
-//                    val latarBelakang = toolbarInputPenilaian.inputTextLatar.text.toString()
-//                    val rumusanMasalah = toolbarInputPenilaian.inputTextRumusan.text.toString()
+                    val judul = toolbarInputPenilaian.inputTextJudul.text.toString()
+                    val latarBelakang = toolbarInputPenilaian.inputTextLatar.text.toString()
+                    val rumusanMasalah = toolbarInputPenilaian.inputTextRumusan.text.toString()
                     val batasanMasalah = toolbarInputPenilaian.inputTextBatasan.text.toString()
                     val tujuan = toolbarInputPenilaian.inputTextTujuan.text.toString()
                     val manfaat = toolbarInputPenilaian.inputTextManfaat.text.toString()
@@ -99,11 +99,11 @@ class UpdatePenilaianFragment : Fragment() {
                     val selectedHasilId = toolbarInputPenilaian.radioGroupHasil.checkedRadioButtonId
                     val hasilRadioButton = toolbarInputPenilaian.radioGroupHasil.findViewById<RadioButton>(selectedHasilId)
                     val hasil = hasilRadioButton?.text.toString()
-//                    updateResponse(
-//                        id, judul, latarBelakang, rumusanMasalah, batasanMasalah, tujuan, manfaat,
-//                        tinjauanPustaka, metodologi, kerangkaPemikiran, jadwalKegiatan, riwayatPenelitian,
-//                        daftarPustaka, status, hasil
-//                    )
+                    updateResponse(
+                        id, judul, latarBelakang, rumusanMasalah, batasanMasalah, tujuan, manfaat,
+                        tinjauanPustaka, metodologi, kerangkaPemikiran, jadwalKegiatan, riwayatPenelitian,
+                        daftarPustaka, status, hasil
+                    )
                 }
             }
         }

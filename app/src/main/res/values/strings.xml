@@ -56,11 +56,14 @@
     <string name="title_update">Update Profile</string>
     <string name="title_update_penilaian">Update Penilaian</string>
     <string name="title_view_penilaian">Tampilan Penilaian</string>
+    <string name="title_detail_similarity">Detail Similarity</string>
     <string name="profile_name">Nama Profile</string>
     <string name="initial_name">My Name</string>
     <string name="initial_level_dosen">Level Dosen</string>
     <string name="initial_menu">Menu</string>
     <string name="initial_hello">Hallo</string>
+    <string name="initial_title_percent">%</string>
+    <string name="initial_title_similarty">aplikasi digitalisasi administrasi desa untuk kemudahan layanan administrasi desa menggunakan whatsa</string>
     <string name="initial_my_student">Bimbingan Saya</string>
     <string name="initial_dosen1">Pembimbing Utama</string>
     <string name="initial_dosen2">Pembimbing Pendamping</string>
@@ -77,8 +80,13 @@
     <string name="initial_status_accept">Diterima</string>
     <string name="initial_status_rejected">Ditolak</string>
     <string name="profile_username">Nama Username</string>
-
     <string name="imageView_banner">banner</string>
+    <string name="textview_detail_nim">NIM :</string>
+    <string name="textview_detail_ket_nim">Keterangan NIM</string>
+    <string name="textview_detail_nama">Nama :</string>
+    <string name="textview_detail_ket_nama">Keterangan Nama</string>
+    <string name="textview_detail_title">Judul Skripsi :</string>
+    <string name="textview_detail_ket_title">Keterangan Judul</string>
     <string name="textview_role_penguji">Role Penguji</string>
     <string name="textview_nama_penguji">Nama Penguji</string>
     <string name="textview_judul">Judul</string>
@@ -89,13 +97,13 @@
     <string name="textview_ket_rumusan_masalah">Ket Rumusan Masalah</string>
     <string name="textview_batasan_masalah">Batasan Masalah  </string>
     <string name="textview_ket_batasan_masalah">Ket Batasan Masalah</string>
-    <string name="textview_tujuan">Tujuan  </string>
+    <string name="textview_tujuan">Tujuan</string>
     <string name="textview_ket_tujuan">Ket Tujuan</string>
-    <string name="textview_manfaat">Manfaat  </string>
+    <string name="textview_manfaat">Manfaat</string>
     <string name="textview_ket_manfaat">Ket Manfaat</string>
-    <string name="textview_tinjauan_pustaka">Tinjauan Pustaka  </string>
+    <string name="textview_tinjauan_pustaka">Tinjauan Pustaka</string>
     <string name="textview_ket_tinjauan_pustaka">Ket Tinjauan Pustaka</string>
-    <string name="textview_metodologi">Metodologi  </string>
+    <string name="textview_metodologi">Metodologi</string>
     <string name="textview_ket_metodologi">Ket Metodologi</string>
     <string name="textview_kerangka_pemikiran">Keranganka Pemikirian  </string>
     <string name="textview_ket_kerangka_pemikiran">Ket Keranganka Pemikirian</string>
@@ -111,6 +119,7 @@
     <string name="textview_similarty">Silahkan Masukan Judul Skripsi Yang Ingin di Cek</string>
     <string name="textview_status">Pilih Revisi Seminar</string>
     <string name="textview_tanggal_bimbingan">1-28 16:43</string>
+    <string name="textview_number">1.</string>
     <string name="textview_hasil">Pilih Hasil Seminar</string>
     <string name="inputText_cek_title">Masukan Judul</string>
     <string name="textview_name_krs">Kartu Hasil Studi</string>

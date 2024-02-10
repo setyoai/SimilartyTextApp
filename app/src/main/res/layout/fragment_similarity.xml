@@ -68,44 +68,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonCalculate" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/similartyList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ResultTextView">
+        app:layout_constraintTop_toBottomOf="@+id/ResultTextView"
+        tools:listitem="@layout/item_row_similarty" />
 
-        <TextView
-            android:id="@+id/textViewSimilar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            tools:text="The similarity between str1 and str2 is 0%." />
-
-        <TextView
-            android:id="@+id/textViewResult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins_bold"
-            android:textColor="@color/secondary"
-            tools:text="The similarity between str1 and str2 is 0%." />
-
-    </LinearLayout>
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textViewResult"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="18sp"-->
-<!--        android:textStyle="bold"-->
-<!--        android:textColor="@android:color/black"-->
-<!--        tools:text="The similarity between str1 and str2 is 0%." />-->
 
     <ProgressBar
         android:id="@+id/progressBar"

@@ -10,6 +10,7 @@ import com.setyo.similartytextapp.data.remote.response.BimbinganResult
 import com.setyo.similartytextapp.data.remote.response.UpdateBimbingan
 import com.setyo.similartytextapp.databinding.ActivityBimbinganDosbingBinding
 import com.setyo.similartytextapp.ui.ViewModelFactory
+import com.setyo.similartytextapp.ui.similarity.SimilarityAdapter
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -69,9 +70,7 @@ class BimbinganDosenActivity : AppCompatActivity() {
     }
 
     private fun getBimbinganResult(updateBimbigan: UpdateBimbingan) {
-        binding.apply {
 
-        }
     }
 
 
