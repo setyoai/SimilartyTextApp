@@ -18,16 +18,16 @@ class PenilaianListAdapter(private val detSempro: List<DetsemproDataItem>):Recyc
                 textViewNim.text = detSempro.nimDetsempro
                 textViewName.text = detSempro.namaDetsempro
                 textViewNameRoom.text = detSempro.namaRuangan
-                when(detSempro.ketrevDetsempro) {
-                    null -> {
-                        textViewStatus
-
-                    }
-                    else -> {
-                        textViewStatus.text = detSempro.ketrevDetsempro
-                        textViewStatus.setTextColor(Color.RED)
-                    }
-                }
+//                when(detSempro.ketrevDetsempro) {
+//                    null -> {
+//                        textViewStatus
+//
+//                    }
+//                    else -> {
+//                        textViewStatus.text = detSempro.ketrevDetsempro
+//                        textViewStatus.setTextColor(Color.RED)
+//                    }
+//                }
                 textViewNameTime.text = detSempro.jamSempro
                 textViewNameDate.text = detSempro.tanggalSempro
             }
@@ -40,7 +40,7 @@ class PenilaianListAdapter(private val detSempro: List<DetsemproDataItem>):Recyc
                 mBundle.putString(PenilaianFragment.EXTRA_LEVEL, detSempro.levelDosen)
                 it.findNavController().navigate(R.id.action_penilaianFragment_to_updatePenilaianFragment, mBundle)
             }
-            binding.cardViewPenilaian.setOnClickListener {
+            binding.fabDetailPenilaian.setOnClickListener {
                 val mBundle = Bundle()
                 mBundle.putString(DetailPenilaianFragment.EXTRA_ID_SEMPRO, detSempro.idSempro)
                 mBundle.putString(PenilaianFragment.EXTRA_NIM, detSempro.nimDetsempro)

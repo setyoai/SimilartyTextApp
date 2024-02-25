@@ -37,6 +37,15 @@ data class DetsemproDataItem(
 	@field:SerializedName("judul_dafsempro")
 	val juduldafsempro: String,
 
+	@field:SerializedName("ketua_penguji")
+	val ketuaPenguji: String,
+
+	@field:SerializedName("anggota_penguji1")
+	val anggotaPenguji1: String,
+
+	@field:SerializedName("anggota_penguji2")
+	val anggotaPenguji2: String,
+
 	@field:SerializedName("level_dosen")
 	val levelDosen: String,
 
