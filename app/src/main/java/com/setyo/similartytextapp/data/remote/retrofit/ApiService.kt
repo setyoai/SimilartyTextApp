@@ -75,6 +75,11 @@ interface ApiService {
         @Path("id") id: String,
     ): Call<DetPenilaianResponse>
 
+    @GET("mahasiswasemprorest/show/{id_dafsempro}")
+    fun getResultSeminarMhs(
+        @Path("id_dafsempro") id: String,
+    ): Call<ResultSeminarMhsResponse>
+
     @GET("bimbinganrest/show/{dosbingid_bimbingan}/{dosenid_bimbingan}")
     fun getDataBimbingan(
         @Path("dosbingid_bimbingan") dosbingid: String,
