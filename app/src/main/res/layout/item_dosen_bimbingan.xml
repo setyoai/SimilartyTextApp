@@ -19,11 +19,12 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardViewStudent"
         style="?attr/materialCardViewElevatedStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         app:cardBackgroundColor="@color/gray"
         app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline17"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewTanggal">
 
@@ -52,6 +53,7 @@
         android:id="@+id/textViewTanggalBalasan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/textview_tanggal_bimbingan"
@@ -62,12 +64,13 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardViewBimbingan"
         style="?attr/materialCardViewElevatedStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        app:cardBackgroundColor="@color/green"
         android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="@color/green"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline16"
         app:layout_constraintTop_toBottomOf="@+id/textViewTanggalBalasan">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,5 +94,19 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="50dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="350dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

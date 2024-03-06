@@ -23,24 +23,28 @@
 
         <TextView
             android:id="@+id/textViewInitial"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textAlignment="textStart"
             android:fontFamily="@font/poppins_bold"
             android:text="@string/initial_name"
-            android:textColor="?attr/colorSurface"
+            android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewAvatar"
             app:layout_constraintStart_toStartOf="@+id/textViewHello" />
 
         <TextView
             android:id="@+id/textViewDosen"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_bold"
+            android:textAlignment="textStart"
             android:text="@string/initial_name"
             android:textColor="?attr/colorSurface"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="@+id/textViewInitial"
             app:layout_constraintStart_toStartOf="@+id/textViewHello"
             tools:visibility="visible" />
 
@@ -190,6 +194,35 @@
             app:layout_constraintTop_toBottomOf="@+id/fab_list_regissempro" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabResultSeminarMhs"
+            style="?attr/floatingActionButtonLargeStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginTop="78dp"
+            android:contentDescription="@string/initial_result_seminar"
+            app:backgroundTint="@color/secondary"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/fabStatusRegister"
+            app:srcCompat="@drawable/summarize"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/textViewResultSeminarMhs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/initial_result_seminar"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/fabResultSeminarMhs"
+            app:layout_constraintStart_toStartOf="@+id/fabResultSeminarMhs"
+            app:layout_constraintTop_toBottomOf="@+id/fabResultSeminarMhs" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_schedule_seminar"
             style="?attr/floatingActionButtonLargeStyle"
             android:layout_width="wrap_content"
@@ -212,7 +245,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/initial_schedule_seminar"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/fab_schedule_seminar"
             app:layout_constraintStart_toStartOf="@+id/fab_schedule_seminar"

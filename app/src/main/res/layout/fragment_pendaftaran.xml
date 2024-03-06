@@ -2,75 +2,63 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="32dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
-        <TextView
-            android:id="@+id/textViewName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/title_register"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-<!--        <TextView-->
-<!--            android:id="@+id/textViewName"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/poppins_bold"-->
-<!--            android:text="@string/title_register"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="20sp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardViewSkripsi"
-            style="?attr/materialCardViewElevatedStyle"
-            app:cardBackgroundColor="@color/primary"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginTop="64dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/textViewName">
-
-            <TextView
-                android:id="@+id/buttonSkripsi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/title_skripsi"/>
-        </com.google.android.material.card.MaterialCardView>
-
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardViewSeminar"
-        style="?attr/materialCardViewElevatedStyle"
-        app:cardBackgroundColor="@color/primary"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="48dp"
+    <include
+        android:id="@+id/toolbarRegister"
+        layout="@layout/toolbar_register"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardViewSkripsi">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/buttonSeminar"
-            android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/textview_name_choice"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarRegister" />
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10dp"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewName">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/title_seminar"/>
-    </com.google.android.material.card.MaterialCardView>
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
+            <Button
+                android:id="@+id/buttonSkripsi"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/title_skripsi"
+                app:cardBackgroundColor="@color/primary" />
 
-
+            <Button
+                android:id="@+id/buttonSeminar"
+                style="@style/Widget.Material3.Button.IconButton.Filled"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/title_seminar"
+                app:cardBackgroundColor="@color/primary" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

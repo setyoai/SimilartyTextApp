@@ -86,7 +86,20 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
         <Button
-            android:id="@+id/buttonEdit"
+            android:id="@+id/mhsEditProfile"
+            style="@style/Widget.Material3.Button.IconButton.Filled"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/button_edit"
+            app:icon="@drawable/edit"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewAvatar"
+            app:layout_constraintStart_toStartOf="@+id/imageViewAvatar"
+            app:layout_constraintTop_toBottomOf="@+id/textViewUsername" />
+
+        <Button
+            android:id="@+id/dosenEditProfile"
             style="@style/Widget.Material3.Button.IconButton.Filled"
             android:layout_width="150dp"
             android:layout_height="wrap_content"

@@ -45,10 +45,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
+                android:layout_marginStart="4dp"
                 android:text="@string/textview_detail_ket_nim"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewNim"
-                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintStart_toEndOf="@+id/textViewNim"
                 app:layout_constraintTop_toTopOf="@+id/textViewNim" />
 
             <TextView
@@ -66,11 +66,11 @@
                 android:id="@+id/textViewKetName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="@string/textview_detail_ket_nama"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewName"
-                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintStart_toEndOf="@+id/textViewName"
                 app:layout_constraintTop_toTopOf="@+id/textViewName" />
 
             <TextView
@@ -89,18 +89,57 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semibold"
+                android:layout_marginStart="4dp"
                 android:text="@string/textview_detail_ket_title"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintStart_toEndOf="@+id/textViewTitle"
                 app:layout_constraintTop_toTopOf="@+id/textViewTitle" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline1"
+            <TextView
+                android:id="@+id/textViewDosen1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="100dp" />
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/textview_detail_dosen1"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewKetTitle" />
+
+            <TextView
+                android:id="@+id/textViewKetDosen1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginStart="4dp"
+                android:text="@string/textview_detail_ket_dosen1"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textViewDosen1"
+                app:layout_constraintTop_toTopOf="@+id/textViewDosen1" />
+
+            <TextView
+                android:id="@+id/textViewDosen2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/textview_detail_dosen2"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewKetDosen1" />
+
+            <TextView
+                android:id="@+id/textViewKetDosen2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_marginStart="4dp"
+                android:text="@string/textview_detail_ket_dosen2"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textViewDosen2"
+                app:layout_constraintTop_toTopOf="@+id/textViewDosen2" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

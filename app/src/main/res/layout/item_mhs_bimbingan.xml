@@ -19,19 +19,19 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardViewStudent"
         style="?attr/materialCardViewElevatedStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         app:cardBackgroundColor="@color/green"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline16"
         app:layout_constraintTop_toBottomOf="@id/textViewTanggal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:padding="16dp">
 
             <TextView
@@ -63,11 +63,12 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardViewBimbingan"
         style="?attr/materialCardViewElevatedStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         app:cardBackgroundColor="@color/gray"
         app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline17"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTanggalBalasan">
 
@@ -92,5 +93,19 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="380dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

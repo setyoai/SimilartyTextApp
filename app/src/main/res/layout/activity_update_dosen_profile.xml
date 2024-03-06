@@ -39,7 +39,7 @@
         android:id="@+id/textFieldUsername"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="@string/inputText_username"
+        android:hint="@string/inputText_nidn"
         app:boxStrokeWidth="2dp"
         app:hintTextColor="@color/secondary"
         app:boxStrokeColor="@color/primary"
