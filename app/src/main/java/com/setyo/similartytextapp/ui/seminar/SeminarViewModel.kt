@@ -24,12 +24,12 @@ class SeminarViewModel(private val repository: UserRepository): ViewModel() {
         judul: RequestBody,
         transkripNilai: MultipartBody.Part,
         pengesahan: MultipartBody.Part,
-//        bukuBimbingan: MultipartBody.Part,
-//        kwKomputer: MultipartBody.Part,
-//        kwInggris: MultipartBody.Part,
-//        kwKewirausahaan: MultipartBody.Part,
-//        slipPembayaran: MultipartBody.Part,
-//        plagiasi: MultipartBody.Part,
+        bukuBimbingan: MultipartBody.Part,
+        kwKomputer: MultipartBody.Part,
+        kwInggris: MultipartBody.Part,
+        kwKewirausahaan: MultipartBody.Part,
+        slipPembayaran: MultipartBody.Part,
+        plagiasi: MultipartBody.Part,
     ) {
         viewModelScope.launch {
             repository.uploadFileSeminar(
@@ -37,12 +37,12 @@ class SeminarViewModel(private val repository: UserRepository): ViewModel() {
                 judul,
                 transkripNilai,
                 pengesahan,
-//                bukuBimbingan,
-//                kwKomputer,
-//                kwInggris,
-//                kwKewirausahaan,
-//                slipPembayaran,
-//                plagiasi
+                bukuBimbingan,
+                kwKomputer,
+                kwInggris,
+                kwKewirausahaan,
+                slipPembayaran,
+                plagiasi
             )
         }
     }

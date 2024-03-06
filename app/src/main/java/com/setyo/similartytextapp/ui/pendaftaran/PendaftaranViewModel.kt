@@ -31,6 +31,4 @@ class PendaftaranViewModel(private val repository: UserRepository) : ViewModel()
     fun getUser(): LiveData<UserModel> {
         return repository.getUser()
     }
-
-
 }

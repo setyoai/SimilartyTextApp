@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.setyo.similartytextapp.R
 import com.setyo.similartytextapp.databinding.FragmentUpdatePenilaianBinding
@@ -32,6 +33,7 @@ class UpdatePenilaianFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
+        setupView()
         setupUser()
         updatePenilaian()
     }
@@ -40,12 +42,11 @@ class UpdatePenilaianFragment : Fragment() {
         factory = ViewModelFactory.getInstance(requireContext())
     }
 
-//    private fun setupView() {
-//        binding.toolbarUpdateProfile.imageViewBack.setOnClickListener {
-//            // Handle the back button click
-//            requireActivity().onBackPressed()
-//        }
-//    }
+    private fun setupView() {
+        binding.toolbarUpdatePenilaian.imageViewBack.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_updatePenilaianFragment_to_penilaianFragment)
+        }
+    }
 
     private fun setupUser() {
         val dataNim = arguments?.getString(PenilaianFragment.EXTRA_NIM)

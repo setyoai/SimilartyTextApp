@@ -4,11 +4,14 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.setyo.similartytextapp.model.UserModel
 import com.setyo.similartytextapp.model.UserPreferences
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import java.io.IOException
 
 class UserPreferences private constructor(private val dataStore: DataStore<Preferences>) {
 
@@ -89,6 +92,26 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
     }
 
 
+    suspend fun saveLoginState(isLogin:Boolean){
+        dataStore.edit { preferences ->
+            preferences[LOGIN_STATE] = isLogin
+        }
+    }
+    suspend fun getLoginState():Flow<Boolean>{
+        return dataStore.data
+            .catch {exception ->
+                if(exception is IOException){
+                    emit(emptyPreferences())
+                }else{
+                    throw exception
+                }
+            }.map {preferences ->
+                val loginState = preferences[LOGIN_STATE] ?:false
+                loginState
+
+            }
+
+    }
     companion object {
         @Volatile
         private var INSTANCE: UserPreferences? = null
@@ -102,6 +125,7 @@ class UserPreferences private constructor(private val dataStore: DataStore<Prefe
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val ROLE_KEY = stringPreferencesKey("role")
         private val STATE_KEY = booleanPreferencesKey("state")
+        private val LOGIN_STATE = booleanPreferencesKey("login_state")
 
         private val ID_DAFSKRIPSI = stringPreferencesKey("id_dafskripsi")
 

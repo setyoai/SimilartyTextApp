@@ -43,6 +43,9 @@ class HomeFragment : Fragment() {
         binding.fabListBimbingan.setOnClickListener {
             view.findNavController().navigate(R.id.action_homeFragment_to_bimbingan)
         }
+        binding.fabResultSeminarMhs.setOnClickListener {
+            view.findNavController().navigate(R.id.action_homeFragment_to_hasilSeminarMhs)
+        }
         binding.fabMyStudent.setOnClickListener {
             view.findNavController().navigate(R.id.action_homeFragment_to_dosbing)
         }
@@ -67,6 +70,7 @@ class HomeFragment : Fragment() {
                         binding.textViewBimbingan.setTextColor(Color.BLACK)
                         binding.textViewInitial.setTextColor(Color.BLACK)
                         binding.textViewStatusRegister.setTextColor(Color.BLACK)
+                        binding.textViewResultSeminarMhs.setTextColor(Color.BLACK)
                         binding.textViewDosen.visibility = View.GONE
                         binding.fabMyStudent.visibility = View.GONE
                         binding.textViewMyStudent.visibility = View.GONE
@@ -88,6 +92,7 @@ class HomeFragment : Fragment() {
                         binding.textViewDosen.setTextColor(Color.BLACK)
                         binding.textViewMyStudent.setTextColor(Color.BLACK)
                         binding.textViewRegisSeminar.setTextColor(Color.BLACK)
+                        binding.textViewScheduleSeminar.setTextColor(Color.BLACK)
                         homeViewModel.getDosen().observe(viewLifecycleOwner) {
                             setUserDosen(it.id_user)
                         }

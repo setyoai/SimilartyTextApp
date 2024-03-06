@@ -40,13 +40,19 @@ class DetailSimilarityFragment : Fragment() {
         val dataNim = arguments?.getString(EXTRA_NIM)
         val dataName = arguments?.getString(EXTRA_NAME)
         val dataTitle = arguments?.getString(EXTRA_TITLE)
+        val dataDosen1 = arguments?.getString(EXTRA_DOSEN1_ID)
+        val dataDosen2 = arguments?.getString(EXTRA_DOSEN2_ID)
         binding.apply {
             textViewName
             textViewNim
             textViewTitle
+            textViewDosen1
+            textViewDosen2
             textViewKetNim.text = dataNim
             textViewKetName.text = dataName
             textViewKetTitle.text = dataTitle
+            textViewKetDosen1.text = dataDosen1
+            textViewKetDosen2.text = dataDosen2
         }
         binding.toolbarDetailSimilarity.imageViewBack.setOnClickListener {
             it.findNavController().navigate(R.id.action_detailSimilarityFragment_to_similarityFragment)
@@ -62,5 +68,8 @@ class DetailSimilarityFragment : Fragment() {
         var EXTRA_NAME = "extra_name"
         var EXTRA_NIM = "extra_nim"
         var EXTRA_TITLE = "extra_title"
+        var EXTRA_DOSEN1_ID = "extra_dosen1_id"
+        var EXTRA_DOSEN2_ID = "extra_dosen2_id"
+
     }
 }

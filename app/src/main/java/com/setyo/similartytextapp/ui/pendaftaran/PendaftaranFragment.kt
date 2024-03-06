@@ -39,10 +39,10 @@ class PendaftaranFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.cardViewSkripsi.setOnClickListener {
+        binding.buttonSkripsi.setOnClickListener {
             view.findNavController().navigate(R.id.action_pendaftaranFragment_to_skripsiFragment)
         }
-        binding.cardViewSeminar.setOnClickListener {
+        binding.buttonSeminar.setOnClickListener {
             view.findNavController().navigate(R.id.action_pendaftaranFragment_to_seminarFragment)
         }
     }
@@ -64,11 +64,11 @@ class PendaftaranFragment : Fragment() {
 
                 }
                 "2" -> {
-                    cardViewSeminar.visibility = View.GONE
+                    buttonSeminar.visibility = View.GONE
                 }
                 else -> {
                     // Set a default value or handle other cases if needed
-                    cardViewSeminar.visibility = View.GONE
+                    buttonSeminar.visibility = View.GONE
                 }
             }
         }

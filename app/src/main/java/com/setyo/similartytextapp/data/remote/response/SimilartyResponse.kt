@@ -16,6 +16,12 @@ data class TopThreeTitlesItem(
 	@field:SerializedName("nomor_urut")
 	val nomerUrut: String,
 
+	@field:SerializedName("dosen1_dosbing")
+	val dosen1Dosbing: String,
+
+	@field:SerializedName("dosen2_dosbing")
+	val dosen2Dosbing: String,
+
 	@field:SerializedName("tahun_skripsi")
 	val tahunSkripsi: String,
 

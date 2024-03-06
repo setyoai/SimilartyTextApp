@@ -15,19 +15,20 @@ import com.setyo.similartytextapp.data.remote.response.UpdateUserResponse
 import com.setyo.similartytextapp.data.remote.response.UserResponse
 import com.setyo.similartytextapp.model.DafSkripsiModel
 import com.setyo.similartytextapp.model.DosenModel
+import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserRepository (
+class UserRepository(
     private val apiService: ApiService,
     private val preferences: UserPreferences
 ) {
 
     private val _similartyResponse = MutableLiveData<SimilartyResponse>()
-    val similartyResponse: LiveData<SimilartyResponse>  = _similartyResponse
+    val similartyResponse: LiveData<SimilartyResponse> = _similartyResponse
 
     private val _registerResponse = MutableLiveData<RegisterResponse>()
     val registerResponse: LiveData<RegisterResponse> = _registerResponse
@@ -36,34 +37,38 @@ class UserRepository (
     val loginResponse: LiveData<LoginResponse> = _loginResponse
 
     private val _penilaianResponse = MutableLiveData<PenilaianDosenResponse>()
-    val penilaianResponse : LiveData<PenilaianDosenResponse> = _penilaianResponse
+    val penilaianResponse: LiveData<PenilaianDosenResponse> = _penilaianResponse
 
     private val _detPenilaianResponse = MutableLiveData<DetPenilaianResponse>()
-    val detPenilaianResponse : LiveData<DetPenilaianResponse> = _detPenilaianResponse
+    val detPenilaianResponse: LiveData<DetPenilaianResponse> = _detPenilaianResponse
 
     private val _dosbingResponse = MutableLiveData<DosbingResponse>()
-    val dosbingResponse : LiveData<DosbingResponse> = _dosbingResponse
+    val dosbingResponse: LiveData<DosbingResponse> = _dosbingResponse
 
     private val _dosbingMhsResponse = MutableLiveData<DosbingMhsResponse>()
-    val dosbingMhsResponse : LiveData<DosbingMhsResponse> = _dosbingMhsResponse
+    val dosbingMhsResponse: LiveData<DosbingMhsResponse> = _dosbingMhsResponse
 
     private val _createBimbinganResponse = MutableLiveData<CreateBimbinganResponse>()
-    val createBimbinganResponse : LiveData<CreateBimbinganResponse> = _createBimbinganResponse
+    val createBimbinganResponse: LiveData<CreateBimbinganResponse> = _createBimbinganResponse
 
     private val _bimbinganResponse = MutableLiveData<BimbinganResponse>()
-    val bimbinganResponse : LiveData<BimbinganResponse> = _bimbinganResponse
+    val bimbinganResponse: LiveData<BimbinganResponse> = _bimbinganResponse
 
     private val _bimbinganDosenResponse = MutableLiveData<BimbinganDosenResponse>()
-    val bimbinganDosenResponse : LiveData<BimbinganDosenResponse> = _bimbinganDosenResponse
+    val bimbinganDosenResponse: LiveData<BimbinganDosenResponse> = _bimbinganDosenResponse
+
+    private val _resultSeminarMhsResponse = MutableLiveData<ResultSeminarMhsResponse>()
+    val resultSeminarMhsResponse: LiveData<ResultSeminarMhsResponse> = _resultSeminarMhsResponse
 
     private val _getUpdatebimbinganResponse = MutableLiveData<GetUpdateBimbinganResponse>()
-    val getUpdatebimbinganResponse : LiveData<GetUpdateBimbinganResponse> = _getUpdatebimbinganResponse
+    val getUpdatebimbinganResponse: LiveData<GetUpdateBimbinganResponse> =
+        _getUpdatebimbinganResponse
 
     private val _updatebimbinganResponse = MutableLiveData<UpdateBimbinganResponse>()
-    val updatebimbinganResponse : LiveData<UpdateBimbinganResponse> = _updatebimbinganResponse
+    val updatebimbinganResponse: LiveData<UpdateBimbinganResponse> = _updatebimbinganResponse
 
     private val _updatePenilaianResponse = MutableLiveData<UpdatePenilaianResponse>()
-    val updatePenilaianResponse : MutableLiveData<UpdatePenilaianResponse> = _updatePenilaianResponse
+    val updatePenilaianResponse: MutableLiveData<UpdatePenilaianResponse> = _updatePenilaianResponse
 
     private val _getDosenResponse = MutableLiveData<GetDosenResponse>()
     val getDosenResponse: LiveData<GetDosenResponse> = _getDosenResponse
@@ -72,22 +77,25 @@ class UserRepository (
     val loginUserResponse: LiveData<LoginUserResponse> = _loginUserResponse
 
     private val _userResponse = MutableLiveData<UserResponse>()
-    val userResponse : LiveData<UserResponse> = _userResponse
+    val userResponse: LiveData<UserResponse> = _userResponse
+
+    private val _dosenResponse = MutableLiveData<DosenResponse>()
+    val dosenResponse: LiveData<DosenResponse> = _dosenResponse
 
     private val _resultDafSkripsiResponse = MutableLiveData<ResultDafSkripsiResponse>()
-    val resultDafSkripsiResponse : LiveData<ResultDafSkripsiResponse> = _resultDafSkripsiResponse
+    val resultDafSkripsiResponse: LiveData<ResultDafSkripsiResponse> = _resultDafSkripsiResponse
 
     private val _dafsemResponse = MutableLiveData<DaftarSeminarResponse>()
-    val dafsemResponse : LiveData<DaftarSeminarResponse> = _dafsemResponse
+    val dafsemResponse: LiveData<DaftarSeminarResponse> = _dafsemResponse
 
     private val _dafSemproResponse = MutableLiveData<DafSemproResponse>()
-    val dafSemproResponse : LiveData<DafSemproResponse> = _dafSemproResponse
+    val dafSemproResponse: LiveData<DafSemproResponse> = _dafSemproResponse
 
     private val _dafSkripsiResponse = MutableLiveData<DafSkripsiResponse>()
-    val dafSkripsiResponse : LiveData<DafSkripsiResponse> = _dafSkripsiResponse
+    val dafSkripsiResponse: LiveData<DafSkripsiResponse> = _dafSkripsiResponse
 
     private val _updateUserResponse = MutableLiveData<UpdateUserResponse>()
-    val updateUserResponse : LiveData<UpdateUserResponse> = _updateUserResponse
+    val updateUserResponse: LiveData<UpdateUserResponse> = _updateUserResponse
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -95,20 +103,28 @@ class UserRepository (
     private val _textToast = MutableLiveData<Event<String>>()
     val textToast: LiveData<Event<String>> = _textToast
 
+
     fun registerUser(username: String, password: String, name: String) {
         _isLoading.value = true
         val client = apiService.registerUser(username, password, name)
         client.enqueue(object : Callback<RegisterResponse> {
-            override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
+            override fun onResponse(
+                call: Call<RegisterResponse>,
+                response: Response<RegisterResponse>
+            ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _textToast.value = Event("Selamat Anda Berhasil Registrasi")
                     _registerResponse.value = response.body()
                 } else {
                     _textToast.value = Event("Akun Sudah Pernah Dibuat")
-                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                    Log.e(
+                        TAG,
+                        "onFailure: ${response.message()}, ${response.body()?.message.toString()}"
+                    )
                 }
             }
+
             override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
@@ -117,7 +133,7 @@ class UserRepository (
         })
     }
 
-    fun loginUser(username: String, password: String) {
+     fun loginUser(username: String, password: String) {
         _isLoading.value = true
         val client = apiService.loginUser(username, password)
         client.enqueue(object : Callback<LoginResponse> {
@@ -128,9 +144,13 @@ class UserRepository (
                     _loginResponse.value = response.body()
                 } else {
                     _textToast.value = Event("Username atau password salah!")
-                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                    Log.e(
+                        TAG,
+                        "onFailure: ${response.message()}, ${response.body()?.message.toString()}"
+                    )
                 }
             }
+
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
@@ -143,16 +163,23 @@ class UserRepository (
         _isLoading.value = true
         val client = apiService.loginUserDosen(username, password)
         client.enqueue(object : Callback<LoginUserResponse> {
-            override fun onResponse(call: Call<LoginUserResponse>, response: Response<LoginUserResponse>) {
+            override fun onResponse(
+                call: Call<LoginUserResponse>,
+                response: Response<LoginUserResponse>
+            ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _textToast.value = Event("Login Berhasil")
                     _loginUserResponse.value = response.body()
                 } else {
                     _textToast.value = Event("Username atau password salah!")
-                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                    Log.e(
+                        TAG,
+                        "onFailure: ${response.message()}, ${response.body()?.message.toString()}"
+                    )
                 }
             }
+
             override fun onFailure(call: Call<LoginUserResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
@@ -173,10 +200,35 @@ class UserRepository (
                 if (response.isSuccessful) {
                     _userResponse.value = response.body()
                 } else {
-                    Log.e(TAG,"onFailure: ${response.message()}")
+                    Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
+
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun getDosen(id: String) {
+        _isLoading.value = true
+        val client = apiService.getDosen(id)
+        client.enqueue(object : Callback<DosenResponse> {
+            override fun onResponse(
+                call: Call<DosenResponse>,
+                response: Response<DosenResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _dosenResponse.value = response.body()
+                } else {
+                    Log.e(TAG, "onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<DosenResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
@@ -200,6 +252,7 @@ class UserRepository (
                     }
                 }
             }
+
             override fun onFailure(call: Call<BimbinganResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
@@ -224,6 +277,7 @@ class UserRepository (
                     }
                 }
             }
+
             override fun onFailure(call: Call<BimbinganDosenResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
@@ -248,6 +302,7 @@ class UserRepository (
                     }
                 }
             }
+
             override fun onFailure(call: Call<GetUpdateBimbinganResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
@@ -266,12 +321,13 @@ class UserRepository (
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
-                        val detPenilaian = response.body()?.detpenilaianData
-                        _detPenilaianResponse.value = detPenilaian?.let {
-                            DetPenilaianResponse(it)
+                    val detPenilaian = response.body()?.detpenilaianData
+                    _detPenilaianResponse.value = detPenilaian?.let {
+                        DetPenilaianResponse(it)
                     }
                 }
             }
+
             override fun onFailure(call: Call<DetPenilaianResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
@@ -296,6 +352,7 @@ class UserRepository (
                     }
                 }
             }
+
             override fun onFailure(call: Call<PenilaianDosenResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
@@ -320,6 +377,7 @@ class UserRepository (
                     }
                 }
             }
+
             override fun onFailure(call: Call<DosbingResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
@@ -340,9 +398,10 @@ class UserRepository (
                 if (response.isSuccessful) {
                     _dosbingMhsResponse.value = response.body()
                 } else {
-                    Log.e(TAG,"onFailure: ${response.message()}")
+                    Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
+
             override fun onFailure(call: Call<DosbingMhsResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
@@ -363,9 +422,10 @@ class UserRepository (
                 if (response.isSuccessful) {
                     _getDosenResponse.value = response.body()
                 } else {
-                    Log.e(TAG,"onFailure: ${response.message()}")
+                    Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
+
             override fun onFailure(call: Call<GetDosenResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
@@ -386,9 +446,10 @@ class UserRepository (
                 if (response.isSuccessful) {
                     _resultDafSkripsiResponse.value = response.body()
                 } else {
-                    Log.e(TAG,"onFailure: ${response.message()}")
+                    Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
+
             override fun onFailure(call: Call<ResultDafSkripsiResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
@@ -411,20 +472,30 @@ class UserRepository (
             slipPembayaran,
         )
         client.enqueue(object : Callback<DafSkripsiResponse> {
-            override fun onResponse(call: Call<DafSkripsiResponse>, response: Response<DafSkripsiResponse>) {
+            override fun onResponse(
+                call: Call<DafSkripsiResponse>,
+                response: Response<DafSkripsiResponse>
+            ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _textToast.value = Event("Berhasil Upload File")
                     _dafSkripsiResponse.value = response.body()
                 } else {
                     _textToast.value = Event("Gagal Upload File")
-                    Log.e(this@UserRepository.javaClass.simpleName,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                    Log.e(
+                        this@UserRepository.javaClass.simpleName,
+                        "onFailure: ${response.message()}, ${response.body()?.message.toString()}"
+                    )
                 }
             }
+
             override fun onFailure(call: Call<DafSkripsiResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Bisa dicoba kembali")
-                Log.e(this@UserRepository.javaClass.simpleName, "onFailure: ${t.message.toString()}")
+                Log.e(
+                    this@UserRepository.javaClass.simpleName,
+                    "onFailure: ${t.message.toString()}"
+                )
             }
         })
     }
@@ -442,9 +513,10 @@ class UserRepository (
                 if (response.isSuccessful) {
                     _dafSemproResponse.value = response.body()
                 } else {
-                    Log.e(TAG,"onFailure: ${response.message()}")
+                    Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
+
             override fun onFailure(call: Call<DafSemproResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Tidak Terhubung ke Internet")
@@ -458,12 +530,12 @@ class UserRepository (
         judul: RequestBody,
         transkripNilai: MultipartBody.Part,
         pengesahan: MultipartBody.Part,
-//        bukuBimbingan: MultipartBody.Part,
-//        kwKomputer: MultipartBody.Part,
-//        kwInggris: MultipartBody.Part,
-//        kwKewirausahaan: MultipartBody.Part,
-//        slipPembayaran: MultipartBody.Part,
-//        plagiasi: MultipartBody.Part,
+        bukuBimbingan: MultipartBody.Part,
+        kwKomputer: MultipartBody.Part,
+        kwInggris: MultipartBody.Part,
+        kwKewirausahaan: MultipartBody.Part,
+        slipPembayaran: MultipartBody.Part,
+        plagiasi: MultipartBody.Part,
     ) {
         _isLoading.value = true
         val client = apiService.uploadFile(
@@ -471,28 +543,38 @@ class UserRepository (
             judul,
             transkripNilai,
             pengesahan,
-//            bukuBimbingan,
-//            kwKomputer,
-//            kwInggris,
-//            kwKewirausahaan,
-//            slipPembayaran,
-//            plagiasi
+            bukuBimbingan,
+            kwKomputer,
+            kwInggris,
+            kwKewirausahaan,
+            slipPembayaran,
+            plagiasi
         )
         client.enqueue(object : Callback<DaftarSeminarResponse> {
-            override fun onResponse(call: Call<DaftarSeminarResponse>, response: Response<DaftarSeminarResponse>) {
+            override fun onResponse(
+                call: Call<DaftarSeminarResponse>,
+                response: Response<DaftarSeminarResponse>
+            ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _textToast.value = Event("Berhasil Upload File")
                     _dafsemResponse.value = response.body()
                 } else {
-                    _textToast.value = Event("Gagal Upload File")
-                    Log.e(this@UserRepository.javaClass.simpleName,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                    _textToast.value = Event("Berhasil Upload File")
+                    Log.e(
+                        this@UserRepository.javaClass.simpleName,
+                        "onFailure: ${response.message()}, ${response.body()?.message.toString()}"
+                    )
                 }
             }
+
             override fun onFailure(call: Call<DaftarSeminarResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Bisa dicoba kembali")
-                Log.e(this@UserRepository.javaClass.simpleName, "onFailure: ${t.message.toString()}")
+                Log.e(
+                    this@UserRepository.javaClass.simpleName,
+                    "onFailure: ${t.message.toString()}"
+                )
             }
         })
     }
@@ -506,29 +588,63 @@ class UserRepository (
         dosenid: RequestBody
     ) {
         _isLoading.value = true
-        val client = apiService.bimbinganMhs( dosbingid, mhsnim, ket, dosenid)
+        val client = apiService.bimbinganMhs(dosbingid, mhsnim, ket, dosenid)
         client.enqueue(object : Callback<CreateBimbinganResponse> {
-            override fun onResponse(call: Call<CreateBimbinganResponse>, response: Response<CreateBimbinganResponse>) {
+            override fun onResponse(
+                call: Call<CreateBimbinganResponse>,
+                response: Response<CreateBimbinganResponse>
+            ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _textToast.value = Event("Berhasil Mengirim")
                     _createBimbinganResponse.value = response.body()
                 } else {
-                    _textToast.value = Event("Gagal Mengirim")
-                    Log.e(this@UserRepository.javaClass.simpleName,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                    _textToast.value = Event("Tunggu Status Pendaftaran ")
+                    Log.e(
+                        this@UserRepository.javaClass.simpleName,
+                        "onFailure: ${response.message()}, ${response.body()?.message.toString()}"
+                    )
                 }
             }
+
             override fun onFailure(call: Call<CreateBimbinganResponse>, t: Throwable) {
                 _isLoading.value = false
                 _textToast.value = Event("Bisa dicoba kembali")
-                Log.e(this@UserRepository.javaClass.simpleName, "onFailure: ${t.message.toString()}")
+                Log.e(
+                    this@UserRepository.javaClass.simpleName,
+                    "onFailure: ${t.message.toString()}"
+                )
             }
         })
     }
 
-    fun getSimilartyData(judul: String) {
+    fun getResultSeminarMhs(id: String) {
         _isLoading.value = true
-        val client = apiService.getSimilartydata(judul)
+        val client = apiService.getResultSeminarMhs(id)
+        client.enqueue(object : Callback<ResultSeminarMhsResponse> {
+            override fun onResponse(
+                call: Call<ResultSeminarMhsResponse>,
+                response: Response<ResultSeminarMhsResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _resultSeminarMhsResponse.value = response.body()
+                } else {
+                    Log.e(TAG, "onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ResultSeminarMhsResponse>, t: Throwable) {
+                _isLoading.value = false
+                _textToast.value = Event("Tidak Terhubung ke Internet")
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun getSimilartyData(judul: String, id_user: String) {
+        _isLoading.value = true
+        val client = apiService.getSimilartydata(judul, id_user)
         client.enqueue(object : Callback<SimilartyResponse> {
             override fun onResponse(
                 call: Call<SimilartyResponse>,
@@ -549,8 +665,7 @@ class UserRepository (
     }
 
 
-
-//    fun updateUser(token: String, avatar_image:MultipartBody.Part) {
+    //    fun updateUser(token: String, avatar_image:MultipartBody.Part) {
 //        _isLoading.value = true
 //        val client = apiService.updateUser(token, avatar_image)
 //        client.enqueue(object : Callback<UpdateUserResponse> {
@@ -579,19 +694,27 @@ class UserRepository (
         _isLoading.value = true
         val client = apiService.updateDataUser(id, username, password, name, address, nohp, email)
         client.enqueue(object : Callback<UpdateUserResponse> {
-            override fun onResponse(call: Call<UpdateUserResponse>, response: Response<UpdateUserResponse>) {
+            override fun onResponse(
+                call: Call<UpdateUserResponse>,
+                response: Response<UpdateUserResponse>
+            ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _textToast.value = Event("Berhasil Update Profile")
                     _updateUserResponse.value = response.body()
                 } else {
                     _textToast.value = Event("Gagal Update Profile")
-                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                    Log.e(
+                        TAG,
+                        "onFailure: ${response.message()}, ${response.body()?.message.toString()}"
+                    )
                 }
             }
+
             override fun onFailure(call: Call<UpdateUserResponse>, t: Throwable) {
                 _isLoading.value = false
-                Log.e(TAG, "onFailure: ${t.message.toString()}")  }
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+            }
         })
     }
 
@@ -599,16 +722,23 @@ class UserRepository (
         _isLoading.value = true
         val client = apiService.updateDataBimbingan(id, balasanket)
         client.enqueue(object : Callback<UpdateBimbinganResponse> {
-            override fun onResponse(call: Call<UpdateBimbinganResponse>, response: Response<UpdateBimbinganResponse>) {
+            override fun onResponse(
+                call: Call<UpdateBimbinganResponse>,
+                response: Response<UpdateBimbinganResponse>
+            ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _textToast.value = Event("Berhasil Kirim Balasan Bimbingan")
                     _updatebimbinganResponse.value = response.body()
                 } else {
                     _textToast.value = Event("Gagal Kirim Balasan Bimbingan")
-                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                    Log.e(
+                        TAG,
+                        "onFailure: ${response.message()}, ${response.body()?.message.toString()}"
+                    )
                 }
             }
+
             override fun onFailure(call: Call<UpdateBimbinganResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
@@ -640,16 +770,23 @@ class UserRepository (
             daftarPustaka, status, hasil
         )
         client.enqueue(object : Callback<UpdatePenilaianResponse> {
-            override fun onResponse(call: Call<UpdatePenilaianResponse>, response: Response<UpdatePenilaianResponse>) {
+            override fun onResponse(
+                call: Call<UpdatePenilaianResponse>,
+                response: Response<UpdatePenilaianResponse>
+            ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
                     _textToast.value = Event("Berhasil Update Penilaian")
                     _updatePenilaianResponse.value = response.body()
                 } else {
-                    _textToast.value = Event("Gagal Update Penilaian")
-                    Log.e(TAG,"onFailure: ${response.message()}, ${response.body()?.message.toString()}")
+                    _textToast.value = Event("Berhasil Update Penilaian")
+                    Log.e(
+                        TAG,
+                        "onFailure: ${response.message()}, ${response.body()?.message.toString()}"
+                    )
                 }
             }
+
             override fun onFailure(call: Call<UpdatePenilaianResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message.toString()}")
@@ -675,6 +812,15 @@ class UserRepository (
 
     suspend fun getLoginUser(user: UserModel) {
         preferences.getLoginUser(user)
+    }
+
+//    suspend fun getLoginUser(isLogin: Boolean) {
+//        preferences.getLoginUser(isLogin = preferences)
+//    }
+//
+
+    suspend fun getLoginState(): Flow<Boolean> {
+        return preferences.getLoginState()
     }
 
     suspend fun getLoginDosen(dosen: DosenModel) {

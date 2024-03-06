@@ -44,15 +44,20 @@ class SimilarityFragment : Fragment() {
     }
 
     private fun calculateResult() {
+        showLoading()
         val str1 = binding.inputTextTitle.text.toString()
-        getResult(str1)
+        similarityModel.getUser().observe(viewLifecycleOwner) {
+           val id_user = it.id_mhs
+            getResult(str1, id_user)
+        }
     }
-    private fun getResult(judul: String) {
-        similarityModel.getSimilarty(judul)
+    private fun getResult(judul: String, id_user: String) {
+        similarityModel.getSimilarty(judul, id_user)
         similarityModel.similartyResponse.observe(viewLifecycleOwner) {
             binding.similartyList.adapter = SimilarityAdapter(it.topThreeTitles)
         }
     }
+
 
     private fun showRecyclerView() {
         binding.similartyList.apply {

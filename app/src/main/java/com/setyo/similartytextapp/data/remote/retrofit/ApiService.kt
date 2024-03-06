@@ -41,12 +41,12 @@ interface ApiService {
         @Part("judul_dafsempro") judul: RequestBody,
         @Part transkripNilai: MultipartBody.Part,
         @Part pengesahan: MultipartBody.Part,
-//        @Part bukuBimbingan: MultipartBody.Part,
-//        @Part kwKomputer: MultipartBody.Part,
-//        @Part kwInggris: MultipartBody.Part,
-//        @Part kwKewirausahaan: MultipartBody.Part,
-//        @Part slipPembayaran: MultipartBody.Part,
-//        @Part plagiasi: MultipartBody.Part,
+        @Part bukuBimbingan: MultipartBody.Part,
+        @Part kwKomputer: MultipartBody.Part,
+        @Part kwInggris: MultipartBody.Part,
+        @Part kwKewirausahaan: MultipartBody.Part,
+        @Part slipPembayaran: MultipartBody.Part,
+        @Part plagiasi: MultipartBody.Part,
     ): Call<DaftarSeminarResponse>
 
     @Multipart
@@ -64,6 +64,11 @@ interface ApiService {
     fun getUserData(
         @Path("id") id: String,
     ): Call<UserResponse>
+
+    @GET("dosenrest/{id}")
+    fun getDosen(
+        @Path("id") id: String,
+    ): Call<DosenResponse>
 
     @GET("detsemprorest/{id}")
     fun getDataPenilaian(
@@ -124,6 +129,7 @@ interface ApiService {
     @GET("judulrest")
     fun getSimilartydata(
         @Query("judul_skripsi") judul: String,
+        @Query("id_user") id_user: String,
     ) : Call<SimilartyResponse>
 //
 //    @Multipart
@@ -144,6 +150,18 @@ interface ApiService {
         @Field("nohp_mhs") nohp: String,
         @Field("email_mhs") email: String,
     ): Call<UpdateUserResponse>
+
+    @FormUrlEncoded
+    @PUT("dosenrest/{id_mhs}")
+    fun updateDosen(
+        @Path("id_dosen") id: String,
+        @Field("nidn_dosen") username: String,
+        @Field("password_dosen") password: String,
+        @Field("nama_dosen") name: String,
+        @Field("alamat_dosen") address: String,
+        @Field("nohp_dosen") nohp: String,
+        @Field("email_dosen") email: String,
+    ): Call<UpdateDosenResponse>
 
     @FormUrlEncoded
     @PUT("detsemprorest/{id_detsempro}")

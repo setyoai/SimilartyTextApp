@@ -26,6 +26,8 @@ class SimilarityAdapter(private val similarity: List<TopThreeTitlesItem>):Recycl
                 mBundle.putString(DetailSimilarityFragment.EXTRA_NIM, similarity.nimMhs)
                 mBundle.putString(DetailSimilarityFragment.EXTRA_NAME, similarity.namaMhs)
                 mBundle.putString(DetailSimilarityFragment.EXTRA_TITLE, similarity.judul)
+                mBundle.putString(DetailSimilarityFragment.EXTRA_DOSEN1_ID, similarity.dosen1Dosbing)
+                mBundle.putString(DetailSimilarityFragment.EXTRA_DOSEN2_ID, similarity.dosen2Dosbing)
                 it.findNavController().navigate(R.id.action_similarityFragment_to_detailSimilarityFragment, mBundle)
             }
         }

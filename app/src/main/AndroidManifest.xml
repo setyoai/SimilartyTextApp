@@ -35,6 +35,10 @@
             android:exported="false"
             android:theme="@style/Theme.SimilartyTextApp.NoActionBar" />
         <activity
+            android:name=".ui.profile.UpdateDosenProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SimilartyTextApp.NoActionBar" />
+        <activity
             android:name=".ui.profile.UpdateProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.SimilartyTextApp.NoActionBar" />

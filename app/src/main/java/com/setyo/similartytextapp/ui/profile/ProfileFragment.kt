@@ -56,8 +56,12 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupView() {
-        binding.buttonEdit.setOnClickListener {
+        binding.mhsEditProfile.setOnClickListener {
             val intent = Intent(requireActivity(), UpdateProfileActivity::class.java)
+            startActivity(intent)
+        }
+        binding.dosenEditProfile.setOnClickListener {
+            val intent = Intent(requireActivity(), UpdateDosenProfileActivity::class.java)
             startActivity(intent)
         }
     }
@@ -73,6 +77,7 @@ class ProfileFragment : Fragment() {
                         binding.textViewUsername.setTextColor(Color.BLACK)
                         binding.textViewNameDosen.visibility = View.GONE
                         binding.textViewUsernameDosen.visibility = View.GONE
+                        binding.dosenEditProfile.visibility = View.GONE
                         profileViewModel.getUser().observe(viewLifecycleOwner) {
                             setUserData(it.id_mhs)
                         }
@@ -83,6 +88,7 @@ class ProfileFragment : Fragment() {
                     } else -> {
                     binding.textViewNameDosen.setTextColor(Color.BLACK)
                     binding.textViewUsernameDosen.setTextColor(Color.BLACK)
+                    binding.mhsEditProfile.visibility = View.GONE
                         profileViewModel.getDosen().observe(viewLifecycleOwner) {
                             setUserDosen(it.id_user)
                         }

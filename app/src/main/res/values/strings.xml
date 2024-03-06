@@ -13,7 +13,7 @@
     <string name="inputText_title">Judul</string>
     <string name="inputText_room">Ruangan</string>
     <string name="inputText_time">Jam</string>
-    <string name="inputText_date">01 Sep 2023</string>
+    <string name="inputText_date">Empety</string>
     <string name="inputText_address">Alamat</string>
     <string name="inputText_nohp">No Handphone</string>
     <string name="inputText_email">Email</string>
@@ -57,13 +57,14 @@
     <string name="title_update_penilaian">Update Penilaian</string>
     <string name="title_view_penilaian">Tampilan Penilaian</string>
     <string name="title_detail_similarity">Detail Similarity</string>
+    <string name="title_detail_jadwal_seminar">Detail Jadwal Seminar</string>
     <string name="profile_name">Nama Profile</string>
     <string name="initial_name">My Name</string>
     <string name="initial_level_dosen">Level Dosen</string>
     <string name="initial_menu">Menu</string>
     <string name="initial_hello">Hallo</string>
     <string name="initial_title_percent">%</string>
-    <string name="initial_title_similarty">aplikasi digitalisasi administrasi desa untuk kemudahan layanan administrasi desa menggunakan whatsa</string>
+    <string name="initial_title_similarty">Judul Skripsi</string>
     <string name="initial_my_student">Bimbingan Saya</string>
     <string name="initial_dosen1">Pembimbing Utama</string>
     <string name="initial_dosen2">Pembimbing Pendamping</string>
@@ -87,6 +88,16 @@
     <string name="textview_detail_ket_nama">Keterangan Nama</string>
     <string name="textview_detail_title">Judul Skripsi :</string>
     <string name="textview_detail_ket_title">Keterangan Judul</string>
+    <string name="textview_detail_ketua_penguji">Ketua Penguji :</string>
+    <string name="textview_detail_ket_ketua_penguji">Keterangan Ketua Penguji</string>
+    <string name="textview_detail_penguji1">Anggota Penguji 1 :</string>
+    <string name="textview_detail_ket_penguji1">Keterangan Anggota Penguji 1</string>
+    <string name="textview_detail_penguji2">Anggota Penguji 2 :</string>
+    <string name="textview_detail_ket_penguji2">Keterangan Anggota Penguji 2</string>
+    <string name="textview_detail_dosen1">Pembimbing Utama :</string>
+    <string name="textview_detail_ket_dosen1">Keterangan Pembimbing Utama</string>
+    <string name="textview_detail_dosen2">Pembimbing Pendamping :</string>
+    <string name="textview_detail_ket_dosen2">Keterangan Pembimbing Pendamping</string>
     <string name="textview_role_penguji">Role Penguji</string>
     <string name="textview_nama_penguji">Nama Penguji</string>
     <string name="textview_judul">Judul</string>
@@ -128,11 +139,11 @@
     <string name="textview_name_bimbingan">Buku Bimbingan</string>
     <string name="textview_name_kwkomputer">KW Komputer</string>
     <string name="textview_name_kwinggris">KW B.Inggris</string>
-    <string name="textview_name_kwkewirausahaan">KW Keweriusahaan</string>
+    <string name="textview_name_kwkewirausahaan">KW Kewirausahaan</string>
     <string name="textview_name_slippembayaran">Slip Pembayaran</string>
     <string name="top_three_title">Tiga besar judul skripsi yang mirip adalah: %1$s</string>
     <string name="textview_name_plagiasi">Plagiasi</string>
-    <string name="textview_name_choice">Pilih Salah Satu :</string>
+    <string name="textview_name_choice">Silahkan Pilih Pendaftaran</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- TODO: Remove or change this placeholder text -->
