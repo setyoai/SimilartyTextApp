@@ -1,6 +1,6 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jebrains.kotlin)
     id ("androidx.navigation.safeargs")
 }
 
@@ -20,6 +20,9 @@ android {
 //        buildConfigField("String", "API_URL", "\"http://10.21.4.100/seminar-proposal-exam/public/\"")
 //
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -42,32 +45,48 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 
     // Lifecycle and preference
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.datastore.preferences)
 
     // KTX
-    implementation ("androidx.activity:activity-ktx:1.8.2")
+    implementation (libs.androidx.activity.ktx)
 
     // Retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.11.0")
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.logging.interceptor)
 
     //CameraX
 //    def camerax_version = "1.2.2"
@@ -76,22 +95,25 @@ dependencies {
 //    implementation ("androidx.camera:camera-view:${camerax_version}"
 
     // Glide
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation (libs.glide)
+    implementation (libs.hdodenhof.circleimageview)
+    androidTestImplementation(platform(libs.androidx.compose.bom.v20230800))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
 
     // Navigation
-    val nav_version = "2.7.6"
-    implementation ("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation ("androidx.navigation:navigation-ui-ktx:$nav_version")
-    implementation ("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+    implementation (libs.androidx.navigation.fragment.ktx)
+    implementation (libs.androidx.navigation.ui.ktx)
+    implementation (libs.androidx.navigation.dynamic.features.fragment)
 
-    implementation ("androidx.viewpager2:viewpager2:1.0.0")
+    implementation (libs.androidx.viewpager2)
 
     // Paging
-    implementation ("androidx.paging:paging-runtime-ktx:3.2.1")
+    implementation (libs.androidx.paging.runtime.ktx)
 
     // Cropper
-    implementation ("com.vanniktech:android-image-cropper:4.3.3")
+    implementation (libs.android.image.cropper)
 
-    implementation("androidx.cardview:cardview:1.0.0")
+    implementation(libs.androidx.cardview)
 }
