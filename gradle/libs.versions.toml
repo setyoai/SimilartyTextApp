@@ -1,30 +1,29 @@
 [versions]
-activityCompose = "1.9.0"
-androidGradlePlugin = "8.2.0"
+activityCompose = "1.9.1"
+androidGradlePlugin = "8.2.2"
 androidImageCropper = "4.3.3"
-appcompat = "1.6.1"
+appcompat = "1.7.0"
 cardview = "1.0.0"
 circleimageviewVersion = "3.1.0"
-composeBom = "2024.05.00"
-composeBomVersion = "2024.05.00"
+composeBom = "2024.06.00"
 constraintlayout = "2.1.4"
-converterGson = "2.9.0"
+converterGson = "2.11.0"
 coreKtx = "1.13.1"
 datastorePreferences = "1.1.1"
-espressoCore = "3.5.1"
+espressoCore = "3.6.1"
 glide = "4.16.0"
-jebrainsKotlin = "1.9.0"
+jebrainsKotlin = "2.0.0"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-lifecycleLivedataKtx = "2.8.0"
-lifecycleRuntimeKtx = "2.8.0"
-loggingInterceptor = "4.11.0"
-material = "1.12.0"
+junitVersion = "1.2.1"
+lifecycleLivedataKtx = "2.8.4"
+lifecycleRuntimeKtx = "2.8.4"
+loggingInterceptor = "4.12.0"
+material3 = "1.2.1"
 navigationFragmentKtx = "2.7.7"
 navigationSafeArgsGradlePlugin = "2.7.7"
 navigationUiKtx = "2.7.7"
-pagingRuntimeKtx = "3.3.0"
-retrofit = "2.9.0"
+pagingRuntimeKtx = "3.3.2"
+retrofit = "2.11.0"
 viewpager2 = "1.1.0"
 navigationDynamicFeaturesFragment = "2.7.7"
 
@@ -35,7 +34,13 @@ androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
-androidx-compose-bom-v20230800 = { module = "androidx.compose:compose-bom", version.ref = "composeBomVersion" }
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
+androidx-compose-foundation-layout = { module = "androidx.compose.foundation:foundation-layout" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
+androidx-compose-runtime = { module = "androidx.compose.runtime:runtime" }
+androidx-compose-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
@@ -62,7 +67,6 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 hdodenhof-circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageviewVersion" }
 junit = { module = "junit:junit", version.ref = "junit" }
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
-material = { module = "com.google.android.material:material", version.ref = "material" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 
 [plugins]
